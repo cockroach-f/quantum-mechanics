@@ -8,6 +8,13 @@
 
 本站讲第 1–8 章，未讲第 9 章（量子力学若干进展）。文中“教材例题”“教材习题 2.3”等标注指该教材的例题和习题编号。部分插图（标注“图源：教材”）取自该教材。
 
+## 参考讲义、课件与题库
+
+- 季燕江，《量子力学》讲义（QMUSTB，[github.com/jiyanjiang/QMUSTB](https://github.com/jiyanjiang/QMUSTB)）：基于周世勋教材的开源讲义。标注“图源：QMUSTB”的插图取自该讲义。
+- 上海交通大学《大学物理 A3》量子物理部分课件（[github.com/ARMANDSnow/Physics3-QM](https://github.com/ARMANDSnow/Physics3-QM)）。标注“图源：上海交大《大学物理 A3》课件”的插图取自该课件，原图多为经典实验照片。
+- 华中科技大学 870 量子力学历年试题（2001–2024）。题目标注【HUST 870 年份】，解答为本站重新推导。
+- 吴飙，《简明量子力学》讲义及北京大学 2024 春季课程资料。
+
 ## 延伸阅读
 
 - D. J. Griffiths, *Introduction to Quantum Mechanics*：物理图像最清楚的入门教材，推荐和本站对照阅读。
