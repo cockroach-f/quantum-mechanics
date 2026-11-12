@@ -1,6 +1,6 @@
-"""第 5–8 章（微扰理论 / 散射 / 自旋 / 全同粒子）—— manim 动画源码（LaTeX 排版，自包含）。
+"""第 5–6 章（微扰理论 / 散射）—— manim 动画源码（LaTeX 排版，自包含）。
 
-渲染：tools/render_videos.sh ch5_8_scenes.py [Scene ...]
+渲染：tools/render_videos.sh ch5_6_scenes.py [Scene ...]
 依赖：manim (Community)、numpy、scipy、TeX（xelatex + ctex）。
 """
 import numpy as np

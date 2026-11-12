@@ -621,7 +621,7 @@ $T=300\ \mathrm K$ 时两者相等的波长约 $69\ \mu\mathrm m$。可见光（
 
     | 内容 | 公式 |
     |---|---|
-    | 一级能量 | $E_n^{(1)}=H'_{nn}=\langle n|\hat H'|n\rangle$ |
+    | 一级能量 | $E_n^{(1)}=H'_{nn}=\langle n\vert\hat H'\vert n\rangle$ |
     | 二级能量 | $E_n^{(2)}=\sum_m'\dfrac{\lvert H'_{mn}\rvert^2}{E_n^{(0)}-E_m^{(0)}}$ |
     | 一级波函数 | $\psi_n^{(1)}=\sum_m'\dfrac{H'_{mn}}{E_n^{(0)}-E_m^{(0)}}\psi_m^{(0)}$ |
     | 适用条件 | $\lvert H'_{mn}\rvert\ll\lvert E_n^{(0)}-E_m^{(0)}\rvert$ |
