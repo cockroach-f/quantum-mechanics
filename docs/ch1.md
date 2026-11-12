@@ -345,6 +345,47 @@ $$2d\sin\theta=n\lambda\qquad(d\ \text{为晶面间距},\ \theta\ \text{为掠�
 
 ---
 
+## 典型题精讲
+
+!!! example "例题 1.6　实验与观念"
+
+    把 20 世纪初推动量子论诞生的实验分类，并说明每一类抽象出了什么基本观念。
+
+    **解。**
+
+    | 类别 | 实验 | 抽象出的观念 |
+    |---|---|---|
+    | 光的粒子性 | 黑体辐射、光电效应、康普顿散射 | 能量子 $h\nu$、光子；$E=\hbar\omega$，$p=\hbar k$ |
+    | 实物粒子的波动性 | 戴维孙–革末电子衍射、电子双缝干涉 | 物质波；德布罗意关系对一切微观粒子成立 |
+    | 原子能量分立 | 线状光谱、夫兰克–赫兹实验 | 定态与能级 |
+    | 空间量子化 | 施特恩–盖拉赫实验 | 角动量投影量子化、电子自旋（第 7 章） |
+
+!!! example "例题 1.7　晶体电子衍射"
+
+    (1) 要使电子波长与原子间距 $d\approx0.1\ \mathrm{nm}$ 相当，加速电压应为多少？(2) 只考虑两个相距 $d$ 的原子的散射，说明衍射图样怎样证明了电子的波动性。
+
+    **解。** (1) 由 $\lambda=h/\sqrt{2m_eeU}$ 得
+
+    $$U=\frac{h^2}{2m_ee\lambda^2}=\frac{(6.626\times10^{-34})^2}{2\times9.11\times10^{-31}\times1.602\times10^{-19}\times(10^{-10})^2}\ \mathrm V\approx150\ \mathrm V .$$
+
+    (2) 两个原子各发出一列次级球面波。沿散射角 $\theta$ 方向，两列波的程差为 $\delta=d(\sin\theta-\sin\theta_0)$，强度为
+
+    $$\lvert\psi_1+\psi_2\rvert^2=\lvert\psi_1\rvert^2+\lvert\psi_2\rvert^2+2\Re(\psi_1^*\psi_2)\propto1+\cos k\delta ,$$
+
+    在 $\delta=n\lambda$ 处出现极大。经典粒子只会给出两个单原子强度的简单相加，没有交叉项。实验中条纹位置与 $\lambda=h/p$ 定量吻合，这正是电子波动性的证据。
+
+!!! example "例题 1.8　用旧量子论求谐振子能级"
+
+    用玻尔–索末菲条件 $\oint p\,\dd x=nh$ 求一维谐振子的能级，并与量子力学的结果比较。
+
+    **解。** 相空间中的轨道是椭圆 $\dfrac{p^2}{2m}+\dfrac12m\omega^2x^2=E$，两个半轴为 $\sqrt{2mE}$ 和 $\sqrt{2E/m\omega^2}$，面积为
+
+    $$\oint p\,\dd x=\pi\sqrt{2mE}\sqrt{\frac{2E}{m\omega^2}}=\frac{2\pi E}{\omega}=nh\quad\Longrightarrow\quad E_n=n\hbar\omega .$$
+
+    能级间隔 $\hbar\omega$ 与第 2 章的严格结果一致，但旧量子论漏掉了**零点能** $\tfrac12\hbar\omega$。零点能是不确定关系的直接后果：粒子不可能静止在谷底。
+
+---
+
 ## 知识点归纳总结
 
 ### 知识地图

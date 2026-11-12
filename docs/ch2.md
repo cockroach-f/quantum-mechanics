@@ -494,6 +494,66 @@ $a,b$ 是经典转折点 $U(a)=U(b)=E$（图 2-7）。这个公式虽不严格�
 
 ---
 
+## 典型题精讲
+
+!!! example "例题 2.7　判断定态"
+
+    判断下列状态是否为定态：
+
+    (1) $\psi=u(x)\ee^{\ii x-\ii Et/\hbar}+v(x)\ee^{-\ii x-\ii Et/\hbar}$；
+    (2) $\psi=u(x)\ee^{\ii x-\ii E_1t/\hbar}+v(x)\ee^{-\ii x-\ii E_2t/\hbar}$，$E_1\neq E_2$；
+    (3) $\psi=u(x)\ee^{-\ii Et/\hbar}+u(x)\ee^{\ii Et/\hbar}$。
+
+    **解。** 定态必须能写成 $\psi(x)\ee^{-\ii Et/\hbar}$，即只有一个能量。
+
+    (1) $\psi=[u\ee^{\ii x}+v\ee^{-\ii x}]\ee^{-\ii Et/\hbar}$，**是**定态。
+
+    (2) 含两个不同能量，$\lvert\psi\rvert^2$ 中有交叉项 $\propto\cos[(E_1-E_2)t/\hbar]$，**不是**定态。
+
+    (3) $\lvert\psi\rvert^2=4\lvert u\rvert^2\cos^2(Et/\hbar)$ 随时间变化，**不是**定态（它是能量 $E$ 与 $-E$ 的叠加）。
+
+!!! example "例题 2.8　叠加态的时间演化"
+
+    无限深方势阱（$0<x<a$）中，$\Psi(x,0)=\sqrt{\dfrac{8}{5a}}\left(1+\cos\dfrac{\pi x}{a}\right)\sin\dfrac{\pi x}{a}$。求：(1) $\Psi(x,t)$；(2) 平均能量；(3) $t$ 时刻粒子在左半边 $0\leqslant x\leqslant a/2$ 的概率。
+
+    **解。** 用 $\sin u\cos u=\tfrac12\sin2u$：
+
+    $$\Psi(x,0)=\sqrt{\frac{8}{5a}}\left[\sin\frac{\pi x}{a}+\frac12\sin\frac{2\pi x}{a}\right]=\frac{2}{\sqrt5}\psi_1+\frac{1}{\sqrt5}\psi_2 .$$
+
+    (1) $\Psi(x,t)=\dfrac{2}{\sqrt5}\psi_1\ee^{-\ii E_1t/\hbar}+\dfrac{1}{\sqrt5}\psi_2\ee^{-\ii E_2t/\hbar}$。
+
+    (2) $\bar E=\tfrac45E_1+\tfrac15\cdot4E_1=\tfrac85E_1=\dfrac{4\pi^2\hbar^2}{5ma^2}$，不随时间变化。
+
+    (3) $\int_0^{a/2}\psi_1^2\dd x=\int_0^{a/2}\psi_2^2\dd x=\tfrac12$，$\int_0^{a/2}\psi_1\psi_2\dd x=\dfrac{4}{3\pi}$，所以
+
+    $$P_{\text{左}}(t)=\frac12+\frac{16}{15\pi}\cos\frac{(E_2-E_1)t}{\hbar}=\frac12+\frac{16}{15\pi}\cos\frac{3\pi^2\hbar t}{2ma^2} .$$
+
+    粒子在左右两半之间来回晃动，频率正是 $\omega_{21}$。用狄拉克符号写，能量表象中的态矢为 $\left(\tfrac{2}{\sqrt5}\ee^{-\ii E_1t/\hbar},\ \tfrac1{\sqrt5}\ee^{-\ii E_2t/\hbar},\ 0,\dots\right)^{\mathrm T}$。
+
+!!! example "例题 2.9　势能平移与标度"
+
+    (1) 势能 $U(x)\to U(x)+U_0$ 时，定态波函数和能级怎样变化？(2) 不解方程，证明无限深方势阱的能级 $E_n\propto a^{-2}$。
+
+    **解。** (1) 方程变为 $\left[-\frac{\hbar^2}{2m}\partial_x^2+U\right]\psi=(E-U_0)\psi$，空间波函数不变，能级整体平移 $U_0$。含时波函数只多一个整体相位 $\ee^{-\ii U_0t/\hbar}$，没有可观测效应：**势能零点可以任意选取**。
+
+    (2) 令 $x=a\xi$，$\xi\in(0,1)$，则 $\hat H=-\dfrac{\hbar^2}{2ma^2}\dfrac{\dd^2}{\dd\xi^2}$，边界条件与 $a$ 无关。$-\dd^2/\dd\xi^2$ 的本征值 $\lambda_n$ 是纯数，所以 $E_n=\lambda_n\hbar^2/2ma^2\propto a^{-2}$。不确定关系给出同样的量级：$\Delta p\gtrsim\hbar/a$，$E\gtrsim\hbar^2/ma^2$。
+
+!!! example "例题 2.10　均匀电场中的谐振子"
+
+    带电 $q$ 的谐振子 $\hat H=\dfrac{\hat p^2}{2m}+\dfrac12m\omega^2x^2$ 置于均匀电场 $\mathcal E$ 中。求能级和波函数。
+
+    **解。** 配方：
+
+    $$\hat H=\frac{\hat p^2}{2m}+\frac12m\omega^2x^2-q\mathcal Ex=\frac{\hat p^2}{2m}+\frac12m\omega^2(x-x_0)^2-\frac{q^2\mathcal E^2}{2m\omega^2},\qquad x_0=\frac{q\mathcal E}{m\omega^2} .$$
+
+    这仍是谐振子，只是平衡点移到了 $x_0$，能量零点下移：
+
+    $$E_n=\left(n+\tfrac12\right)\hbar\omega-\frac{q^2\mathcal E^2}{2m\omega^2},\qquad\psi_n(x)=N_n\ee^{-\alpha^2(x-x_0)^2/2}H_n\big(\alpha(x-x_0)\big) .$$
+
+    所有能级平移相同的量，谱线间隔不变。[第 5 章例题 5.1](ch5.md#51) 会用微扰论重新得到这个结果：一级修正为零，二级修正正好是 $-\dfrac{q^2\mathcal E^2}{2m\omega^2}$。
+
+---
+
 ## 知识点归纳总结
 
 ### 知识地图
