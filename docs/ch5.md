@@ -196,6 +196,30 @@ $$H'_{mn}=\int\psi_m^{(0)*}\,\hat H'\,\psi_n^{(0)}\,\mathrm{d}V=\langle m|\hat H
 
     对应零级波函数 $\frac{1}{\sqrt2}(|1,0\rangle\pm|0,1\rangle)$。几何上看，$xy=\frac12(u^2-v^2)$，其中 $u,v$ 是沿 $45^\circ$ 方向的坐标：微扰让两个对角方向的“弹簧”一软一硬，正确的零级态就是沿这两个方向振动的态。
 
+!!! example "例题 5.4（矩阵形式的微扰问题——简并与非简并同时出现）"
+
+    设体系哈密顿量在某表象中的矩阵为（$\varepsilon\ll1$）
+
+    $$H=\begin{pmatrix}1&2\varepsilon&0\\2\varepsilon&2+\varepsilon&\sqrt2\,\varepsilon\\0&\sqrt2\,\varepsilon&2+2\varepsilon\end{pmatrix}.$$
+
+    用微扰论求能量：非简并能级求到二级、波函数求到一级；简并能级求到一级。
+
+    **解**　拆成 $H^{(0)}=\operatorname{diag}(1,2,2)$ 与 $H'=\varepsilon\begin{pmatrix}0&2&0\\2&1&\sqrt2\\0&\sqrt2&2\end{pmatrix}$。$E_1^{(0)}=1$ 非简并，$E_2^{(0)}=E_3^{(0)}=2$ 二重简并。
+
+    **非简并能级** $E_1$：$E_1^{(1)}=H'_{11}=0$，
+
+    $$E_1^{(2)}=\frac{|H'_{21}|^2}{E_1^{(0)}-E_2^{(0)}}+\frac{|H'_{31}|^2}{E_1^{(0)}-E_3^{(0)}}=\frac{4\varepsilon^2}{1-2}+0=-4\varepsilon^2,\qquad E_1\approx1-4\varepsilon^2 ;$$
+
+    $$\psi_1\approx\psi_1^{(0)}+\frac{H'_{21}}{E_1^{(0)}-E_2^{(0)}}\psi_2^{(0)}=\begin{pmatrix}1\\-2\varepsilon\\0\end{pmatrix}.$$
+
+    **简并能级**：在 $\{\psi_2^{(0)},\psi_3^{(0)}\}$ 子空间内
+
+    $$\begin{vmatrix}\varepsilon-E^{(1)}&\sqrt2\,\varepsilon\\\sqrt2\,\varepsilon&2\varepsilon-E^{(1)}\end{vmatrix}=E^{(1)}\big(E^{(1)}-3\varepsilon\big)=0,$$
+
+    所以 $E\approx2$（零级态 $\frac{1}{\sqrt3}(\sqrt2\,\psi_2^{(0)}-\psi_3^{(0)})$）和 $E\approx2+3\varepsilon$（零级态 $\frac{1}{\sqrt3}(\psi_2^{(0)}+\sqrt2\,\psi_3^{(0)})$）。
+
+    **检验**：三个近似本征值之和 $1-4\varepsilon^2+2+2+3\varepsilon=5+3\varepsilon-4\varepsilon^2$，与 $\operatorname{Tr}H=5+3\varepsilon$ 只差 $O(\varepsilon^2)$——差额正是简并能级被 $E_1$ “推上去”的二级修正 $+4\varepsilon^2$ 分到 $E_2,E_3$ 上。这类“给矩阵、分块处理”的题目是期末最常见的题型：**先看对角元判断简并，非简并块用公式，简并块解小久期方程**。
+
 !!! warning "易错点"
 
     - 简并时**不能**直接套非简并公式（分母为零）；也不能随便选 $\phi_i$ 当零级波函数。
@@ -295,7 +319,7 @@ $$\begin{vmatrix}-E^{(1)}&-3e\mathcal Ea_0&0&0\\-3e\mathcal Ea_0&-E^{(1)}&0&0\\0
 
     能量的误差是波函数误差的**二阶小量**：波函数只要“大致像”，能量就相当准。
 
-!!! example "例题 5.4（用高斯函数估计氢原子基态）"
+!!! example "例题 5.5（用高斯函数估计氢原子基态）"
 
     取尝试函数 $\psi=e^{-\alpha r^2}$，求氢原子基态能量的变分估计。
 
@@ -382,7 +406,7 @@ $$\mathrm i\hbar\frac{\mathrm{d}a_m}{\mathrm{d}t}=\sum_na_n(t)\,H'_{mn}(t)\,e^{\
 
     把积分上限推到 $t\to\infty$，$a_m^{(1)}\propto\int H'_{mk}(t)e^{\mathrm i\omega_{mk}t}\mathrm{d}t$——就是 $H'_{mk}(t)$ 在频率 $\omega_{mk}$ 处的**频谱**。微扰的频谱里没有 $\omega_{mk}$ 成分，就引不起 $k\to m$ 跃迁。这和“用含 $f_0$ 分量的信号才能激励谐振频率为 $f_0$ 的 LC 回路”是一回事：原子是一组谐振器，频率为 $\omega_{mk}$，“耦合强度”是 $H'_{mk}$。
 
-!!! example "例题 5.5（随时间指数衰减的电场，教材习题 5.5）"
+!!! example "例题 5.6（随时间指数衰减的电场，教材习题 5.5）"
 
     基态氢原子处于均匀电场 $\mathcal E(t)=\mathcal E_0e^{-t/\tau}$（$t\ge0$，沿 $z$ 轴）中。求长时间后处于 2p 态的概率。
 
@@ -533,7 +557,7 @@ $$\Delta E\,\Delta t\sim\hbar .$$
 
 **寿命。** $\mathrm{d}N_m=-A_{mk}N_m\mathrm{d}t$，$N_m(t)=N_m(0)e^{-t/\tau}$；能级 $m$ 的平均寿命 $\tau_m=1/\sum_kA_{mk}$（对所有更低能级求和）。
 
-!!! example "例题 5.6（氢原子 2p→1s 的自发发射）"
+!!! example "例题 5.7（氢原子 2p→1s 的自发发射）"
 
     求氢原子 $2\mathrm p\ (m=0)\to1\mathrm s$ 的自发发射系数和 2p 态的寿命。
 
@@ -581,7 +605,7 @@ $T=300\ \mathrm K$ 时两者相等的波长约 $69\ \mu\mathrm m$。可见光（
 
     选择定则与斯塔克矩阵（§5.3）是同一组积分：$\langle n'l'm'|z|nlm\rangle\ne0$ 当且仅当 $\Delta l=\pm1$、$\Delta m=0$。
 
-!!! example "例题 5.7（判断跃迁是否允许）"
+!!! example "例题 5.8（判断跃迁是否允许）"
 
     氢原子中，以下电偶极跃迁哪些允许？(1) $3\mathrm d\to2\mathrm p$；(2) $3\mathrm d\to1\mathrm s$；(3) $2\mathrm s\to1\mathrm s$；(4) $4\mathrm f\to3\mathrm d$；(5) $3\mathrm s\to2\mathrm p$。
 
