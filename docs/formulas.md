@@ -56,7 +56,7 @@
 |---|---|
 | 期望值 | $\langle F\rangle=\int\psi^*\hat F\psi\,\dd\tau=\sum_n\lambda_n\lvert c_n\rvert^2$ |
 | 厄米算符 | $\int\psi^*\hat F\phi\,\dd\tau=\int(\hat F\psi)^*\phi\,\dd\tau$ |
-| 动量本征函数 | $\psi_{\vv p}=(2\pi\hbar)^{-3/2}\ee^{\ii\vv p\cdot\vv r/\hbar}$；箱归一化 $p_x=2\pi\hbar n_x/L$ |
+| 动量本征函数 | $\psi_{\vv p}=(2\pi\hbar)^{-3/2}\ee^{\ii\vv p\cdot\vv r/\hbar}$，$\ip{\psi_{\vv p'}}{\psi_{\vv p}}=\delta(\vv p-\vv p')$；箱归一化 $p_x=2\pi\hbar n_x/L$ |
 | 角动量算符 | $\hat L_z=-\ii\hbar\dfrac{\partial}{\partial\varphi}$，$\hat L^2=-\hbar^2\left[\dfrac{1}{\sin\theta}\dfrac{\partial}{\partial\theta}\left(\sin\theta\dfrac{\partial}{\partial\theta}\right)+\dfrac{1}{\sin^2\theta}\dfrac{\partial^2}{\partial\varphi^2}\right]$ |
 | 球谐函数 | $\hat L^2Y_{lm}=l(l+1)\hbar^2Y_{lm}$，$\hat L_zY_{lm}=m\hbar Y_{lm}$，$\lvert m\rvert\leqslant l$ |
 | 低阶球谐函数 | $Y_{00}=\dfrac1{\sqrt{4\pi}}$，$Y_{10}=\sqrt{\dfrac3{4\pi}}\cos\theta$，$Y_{1,\pm1}=\mp\sqrt{\dfrac{3}{8\pi}}\sin\theta\,\ee^{\pm\ii\varphi}$ |
@@ -64,8 +64,11 @@
 | 氢原子能级 | $E_n=-\dfrac{m}{2\hbar^2}\left(\dfrac{Ze^2}{4\pi\varepsilon_0}\right)^2\dfrac1{n^2}$，$n=n_r+l+1$，简并度 $n^2$ |
 | 氢原子基态 | $\psi_{100}=\dfrac{1}{\sqrt{\pi a_0^3}}\ee^{-r/a_0}$，$r_{\text{最概然}}=a_0$，$\langle r\rangle=\tfrac32a_0$ |
 | 低阶径向函数 | $R_{10}=2a_0^{-3/2}\ee^{-r/a_0}$，$R_{20}=\dfrac{1}{\sqrt2a_0^{3/2}}\left(1-\dfrac{r}{2a_0}\right)\ee^{-r/2a_0}$，$R_{21}=\dfrac{1}{2\sqrt6a_0^{3/2}}\dfrac r{a_0}\ee^{-r/2a_0}$ |
+| 光谱与轨道磁矩 | $\nu=R_\infty c\left(\dfrac1{n'^2}-\dfrac1{n^2}\right)$，$R_\infty=-E_1/hc$；$M_z=-m\mu_{\mathrm B}$，$M_z/L_z=-\dfrac{e}{2m_e}$ |
 | 径向期望值 | $\langle r\rangle_{nl}=\dfrac{a_0}{2}\left[3n^2-l(l+1)\right]$，$\left\langle\dfrac1r\right\rangle_{nl}=\dfrac{1}{n^2a_0}$ |
 | 正交归一、完全 | $\ip{\phi_m}{\phi_n}=\delta_{mn}$，$\sum_n\phi_n(x)\phi_n^*(x')=\delta(x-x')$ |
+| 测量与谱分解 | $P(\lambda_n)=\lvert\ip{\phi_n}{\psi}\rvert^2$，$\hat F=\sum_n\lambda_n\ket{\phi_n}\bra{\phi_n}$ |
+| 宇称 | $\hat P\psi(\vv r)=\psi(-\vv r)$，本征值 $\pm1$；$Y_{lm}$ 的宇称为 $(-1)^l$ |
 | 基本对易关系 | $[\hat x_\alpha,\hat p_\beta]=\ii\hbar\delta_{\alpha\beta}$，$\hat{\vv L}\times\hat{\vv L}=\ii\hbar\hat{\vv L}$，$[\hat L^2,\hat L_\alpha]=0$ |
 | 对易子恒等式 | $[\hat A,\hat B\hat C]=[\hat A,\hat B]\hat C+\hat B[\hat A,\hat C]$；$[\hat x,f(\hat p)]=\ii\hbar f'(\hat p)$，$[\hat p,U(x)]=-\ii\hbar U'(x)$ |
 | 不确定关系 | $\Delta F\Delta G\geqslant\tfrac12\lvert\langle[\hat F,\hat G]\rangle\rvert$，$\Delta x\Delta p_x\geqslant\hbar/2$ |
@@ -135,13 +138,18 @@
 | 泡利矩阵 | $\sigma_x=\begin{pmatrix}0&1\\1&0\end{pmatrix}$，$\sigma_y=\begin{pmatrix}0&-\ii\\\ii&0\end{pmatrix}$，$\sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$ |
 | 泡利矩阵性质 | $\sigma_\alpha^2=1$，$\sigma_x\sigma_y=\ii\sigma_z$（轮换），$\sigma_\alpha\sigma_\beta+\sigma_\beta\sigma_\alpha=2\delta_{\alpha\beta}$ |
 | 自旋波函数 | $\chi_{1/2}=\begin{pmatrix}1\\0\end{pmatrix}$，$\chi_{-1/2}=\begin{pmatrix}0\\1\end{pmatrix}$；$\Psi=\begin{pmatrix}\psi_1(\vv r,t)\\\psi_2(\vv r,t)\end{pmatrix}$ |
-| 任意方向 $\vv n$ 的自旋 | $\vv\sigma\cdot\vv n$ 的本征值 $\pm1$；$\ket{+\vv n}=\begin{pmatrix}\cos\frac\theta2\\\ee^{\ii\varphi}\sin\frac\theta2\end{pmatrix}$ |
-| 自旋磁矩 | $\vv M_s=-\dfrac{e}{m_e}\vv S$（$g_s=2$），$\vv M_L=-\dfrac{e}{2m_e}\vv L$ |
-| 正常塞曼效应 | $\Delta E=\mu_BB(m_l+2m_s)$；谱线分裂为三条，$\Delta\omega=\dfrac{eB}{2m_e}$ |
+| 任意方向 $\vv n$ 的自旋 | $\sigma_n=\vv\sigma\cdot\vv n$ 的本征值 $\pm1$；$\chi_{\vv n,+}=\begin{pmatrix}\cos\frac\theta2\\\ee^{\ii\varphi}\sin\frac\theta2\end{pmatrix}$，$\chi_{\vv n,-}=\begin{pmatrix}\sin\frac\theta2\\-\ee^{\ii\varphi}\cos\frac\theta2\end{pmatrix}$ |
+| 布洛赫球 | 两态的跃迁概率 $\lvert\chi_{\vv n}^\dagger\chi_{\vv n'}\rvert^2=\cos^2\dfrac\Theta2$（$\Theta$ 为 $\vv n,\vv n'$ 夹角）；$\langle\hat{\vv S}\rangle=\dfrac\hbar2\vv n$ |
+| 自旋磁矩 | $\vv\mu_s=-\dfrac{e}{m_e}\vv S$（$g_s=2$），$\vv\mu_l=-\dfrac{e}{2m_e}\vv L$（$g_l=1$）；统一写成 $\vv\mu=-g\dfrac{\mu_B}{\hbar}\vv J$ |
+| 磁场中的进动 | $\hat H=-\vv\mu_s\cdot\vv B=\mu_B\vv\sigma\cdot\vv B$；拉莫尔频率 $\omega=eB/m_e$ |
+| 简单塞曼效应（强场） | $E=E_{nl}+\mu_BB(m+2m_s)$；谱线分裂为三条，$\Delta\omega=\dfrac{eB}{2m_e}$（$\Delta m=0,\pm1$） |
+| 弱场（反常塞曼效应） | $\Delta E=g_j\mu_BBm_j$，$g_j=1+\dfrac{j(j+1)-l(l+1)+s(s+1)}{2j(j+1)}$ |
 | 角动量耦合 | $\vv J=\vv J_1+\vv J_2$：$j=j_1+j_2,\dots,\lvert j_1-j_2\rvert$，$\sum_j(2j+1)=(2j_1+1)(2j_2+1)$ |
+| 克莱布什–戈登（$j_2=\tfrac12$） | $\psi_{l,l\pm\frac12,m}=\pm\sqrt{\dfrac{l\pm m+\frac12}{2l+1}}\,Y_{l,m-\frac12}\chi_++\sqrt{\dfrac{l\mp m+\frac12}{2l+1}}\,Y_{l,m+\frac12}\chi_-$ |
 | 自旋–轨道 | $j=l\pm\tfrac12$；$\hat{\vv L}\cdot\hat{\vv S}=\tfrac12\left(\hat J^2-\hat L^2-\hat S^2\right)$ |
-| 精细结构（自旋–轨道） | $\hat H_{so}=\xi(r)\hat{\vv L}\cdot\hat{\vv S}$，$\xi(r)=\dfrac{1}{2m_e^2c^2}\dfrac1r\dfrac{\dd U}{\dd r}$ |
-| 碱金属双线 | $\Delta E=\langle\xi\rangle\hbar^2\left(l+\tfrac12\right)$（如钠 D 线 $589.0/589.6\ \mathrm{nm}$） |
+| 精细结构（自旋–轨道） | $\hat H'=\xi(r)\hat{\vv L}\cdot\hat{\vv S}$，$\xi(r)=\dfrac{1}{2m_e^2c^2}\dfrac1r\dfrac{\dd U}{\dd r}$ |
+| 一级修正 | $E^{(1)}_{nlj}=\dfrac{\hbar^2}2\left[j(j+1)-l(l+1)-\tfrac34\right]\zeta_{nl}$，$\zeta_{nl}=\displaystyle\int_0^\infty R_{nl}^2\xi(r)r^2\dd r$ |
+| 碱金属双线 | $j=l+\tfrac12$ 上移 $\tfrac l2\hbar^2\zeta$，$j=l-\tfrac12$ 下移 $\tfrac{l+1}2\hbar^2\zeta$，差 $\Delta E=\left(l+\tfrac12\right)\hbar^2\zeta$（钠 D 线 $589.0/589.6\ \mathrm{nm}$，$\Delta E\approx2.1\times10^{-3}\ \mathrm{eV}$） |
 
 ## 第 8 章 全同粒子
 

@@ -34,7 +34,7 @@ flowchart TD
 | 边界条件 | 无限深方势阱 $E_n\propto n^2$ | [2.6](ch2.md#26) |
 | 波函数有限（级数截断） | 谐振子 $E_n=(n+\tfrac12)\hbar\omega$、氢原子 $E_n\propto-1/n^2$ | [2.7](ch2.md#27)、[3.3](ch3.md#33) |
 | 单值性 | $L_z=m\hbar$ | [3.2](ch3.md#32) |
-| 代数关系 | $[\hat a,\hat a^\dagger]=1$ 推出 $n=0,1,2,\dots$；$\hat{\vv J}\times\hat{\vv J}=\ii\hbar\hat{\vv J}$ 推出 $j$ 取整数或半整数 | [4](ch4.md)、[7](ch7.md) |
+| 代数关系 | $[\hat a,\hat a^\dagger]=1$ 推出 $n=0,1,2,\dots$；$\hat{\vv J}\times\hat{\vv J}=\ii\hbar\hat{\vv J}$ 推出 $j$ 取整数或半整数 | [4.6](ch4.md#46)、[7.4](ch7.md#74) |
 
 一句话：**束缚态 ⇒ 分立谱，非束缚态 ⇒ 连续谱。** 薛定谔方程本身是连续的，量子化来自“物理上可接受”的条件。
 
@@ -113,16 +113,17 @@ flowchart LR
 | 初态按本征态展开后演化 | $c_n=\ip{\psi_n}{\Psi(0)}$，每项乘 $\ee^{-\ii E_nt/\hbar}$ | [2.5](ch2.md#25) |
 | 证明对易关系 | 作用到任意 $\psi$ 上，或用 $[A,BC]$ 恒等式 | [3.6](ch3.md#36) |
 | 角动量、氢原子 | 用 $Y_{lm}$ 的正交性读出 $L^2,L_z$ 的概率；用 $R_{nl}$ 求径向期望值和最概然半径 | [3.2](ch3.md#32)、[3.3](ch3.md#33) |
-| 给定矩阵求本征值 | 久期方程 → 本征矢量 → 归一化；判断厄米性 | [4](ch4.md) |
-| 换表象 | 找本征矢量排成 $S$；$F'=S^\dagger FS$ | [4](ch4.md) |
-| 谐振子代数 | $\hat x,\hat p$ 换成 $\hat a,\hat a^\dagger$，用 $\hat a\ket n=\sqrt n\ket{n-1}$ | [4](ch4.md) |
+| 给定矩阵求本征值 | 久期方程 → 本征矢量 → 归一化；判断厄米性 | [4.2](ch4.md#42)、[4.3](ch4.md#43) |
+| 换表象 | 找本征矢量排成 $S$；$F'=S^\dagger FS$ | [4.4](ch4.md#44) |
+| 谐振子代数 | $\hat x,\hat p$ 换成 $\hat a,\hat a^\dagger$，用 $\hat a\ket n=\sqrt n\ket{n-1}$ | [4.6](ch4.md#46) |
 | 非简并微扰 | $E^{(1)}=H'_{nn}$，$E^{(2)}=\sum\lvert H'_{mn}\rvert^2/(E_n-E_m)$，常用宇称或递推关系判断哪些矩阵元为零 | [5.1](ch5.md#51) |
 | 简并微扰 | 在简并子空间写出 $H'$ 矩阵并对角化 | [5.2](ch5.md#52) |
 | 变分法 | 选含参试探函数 → $\bar H(\lambda)$ → 求极小 | [5.4](ch5.md#54) |
 | 跃迁概率 | $a_m^{(1)}=\frac1{\ii\hbar}\int H'_{mk}\ee^{\ii\omega_{mk}t}\dd t$；判断选择定则 | [5.7](ch5.md#57) |
 | 散射截面 | 低能：只留 $s$ 波求 $\delta_0$；高能或弱势：玻恩积分 | [6.2](ch6.md#62)、[6.4](ch6.md#64) |
-| 自旋 | 泡利矩阵运算、$\vv\sigma\cdot\vv n$ 本征态、自旋进动、测量概率 | [7](ch7.md) |
-| 全同粒子 | 先写单粒子态，再对称化或反对称化（注意空间部分和自旋部分要搭配） | [8](ch8.md) |
+| 自旋 | 泡利矩阵运算、$\sigma_n=\vv\sigma\cdot\vv n$ 本征态 $\chi_{\vv n,\pm}$、布洛赫球、自旋进动、测量概率 | [7.2](ch7.md#72) |
+| 塞曼效应、角动量耦合、精细结构 | 强场：$\mu_BB(m+2m_s)$；弱场：朗德因子 $g_j$；耦合表象用 CG 系数，$\hat{\vv L}\cdot\hat{\vv S}=\tfrac12(\hat J^2-\hat L^2-\hat S^2)$ | [7.3](ch7.md#73)、[7.4](ch7.md#74)、[7.5](ch7.md#75) |
+| 全同粒子 | 先写单粒子态，再对称化或反对称化（注意空间部分和自旋部分要搭配） | [8.2](ch8.md#82)、[8.3](ch8.md#83)、[8.4](ch8.md#84) |
 
 ## 5. 方法与习惯
 
@@ -189,9 +190,9 @@ flowchart LR
     电子自旋处于 $S_z=+\hbar/2$ 态。测量 $\vv S\cdot\vv n$，其中 $\vv n=(\sin\theta,0,\cos\theta)$。求得到 $+\hbar/2$ 的概率。
 
     ??? success "答案"
-        $\vv\sigma\cdot\vv n=\begin{pmatrix}\cos\theta&\sin\theta\\\sin\theta&-\cos\theta\end{pmatrix}$，本征值 $+1$ 对应的本征态为 $\begin{pmatrix}\cos\frac\theta2\\\sin\frac\theta2\end{pmatrix}$。
+        $\vv\sigma\cdot\vv n=\begin{pmatrix}\cos\theta&\sin\theta\\\sin\theta&-\cos\theta\end{pmatrix}$，本征值 $+1$ 对应的本征态为 $\chi_{\vv n,+}=\begin{pmatrix}\cos\frac\theta2\\\sin\frac\theta2\end{pmatrix}$（$\varphi=0$）。
 
-        概率 $=\left\lvert\left(\cos\tfrac\theta2,\ \sin\tfrac\theta2\right)\begin{pmatrix}1\\0\end{pmatrix}\right\rvert^2=\cos^2\dfrac\theta2$。
+        概率 $=\left\lvert\left(\cos\tfrac\theta2,\ \sin\tfrac\theta2\right)\begin{pmatrix}1\\0\end{pmatrix}\right\rvert^2=\cos^2\dfrac\theta2$。这正是[布洛赫球](ch7.md#72)上两点夹角为 $\theta$ 时的跃迁概率 $\cos^2\frac\theta2$。
 
 !!! example "自测 8（第 8 章）"
     两个无相互作用的电子在一维无限深势阱中。忽略自旋–轨道作用，写出基态和第一激发态的能量、简并度和波函数结构。
