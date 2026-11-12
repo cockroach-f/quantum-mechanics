@@ -45,6 +45,20 @@ $$\langle\vv p\rangle=\int\psi^*(\vv r)\left(-\ii\hbar\nabla\right)\psi(\vv r)\,
 
     $$\langle F\rangle=\int\psi^*\hat F\psi\,\dd\tau\equiv\mel{\psi}{\hat F}{\psi}.$$
 
+!!! info "狄拉克记号：本书与教材记号对照"
+
+    教材用积分写内积，本书同时给出狄拉克（Dirac）记号，二者完全等价，第 4 章会系统讲解：
+
+    | 教材写法 | 狄拉克记号 | 含义 |
+    |---|---|---|
+    | $\psi(\vv r)$ | $\ket\psi$（右矢），$\psi(\vv r)=\ip{\vv r}{\psi}$ | 态矢量 |
+    | $(\phi,\psi)=\int\phi^*\psi\,\dd\tau$ | $\ip{\phi}{\psi}$ | 内积（投影） |
+    | $\int\phi^*\hat F\psi\,\dd\tau$ | $\mel{\phi}{\hat F}{\psi}$ | 矩阵元 |
+    | $\overline F=\int\psi^*\hat F\psi\,\dd\tau$ | $\expval{\hat F}=\mel{\psi}{\hat F}{\psi}$ | 期望值 |
+    | $\int\psi^*\hat F\phi\,\dd\tau=\int(\hat F\psi)^*\phi\,\dd\tau$ | $\mel{\psi}{\hat F}{\phi}=\mel{\phi}{\hat F}{\psi}^*$ | 厄米性 |
+
+    把 $\ket\psi$ 想成一个（无穷维的）列向量，$\bra\phi$ 是它的共轭转置（行向量），$\hat F$ 是矩阵，所有公式就和线性代数一模一样。教材中的期望值记号 $\overline F$ 与 $\langle F\rangle$ 含义相同。
+
 常用算符：
 
 | 力学量 | 经典表达式 | 算符（坐标表象） |
@@ -69,6 +83,21 @@ $$\langle\vv p\rangle=\int\psi^*(\vv r)\left(-\ii\hbar\nabla\right)\psi(\vv r)\,
     4. **厄米算符**：$\hat F^\dagger=\hat F$，即
         $$\int\psi^*\hat F\phi\,\dd\tau=\int(\hat F\psi)^*\phi\,\dd\tau\qquad\text{对一切}\ \psi,\phi.$$
 
+教材 3.1 节系统列出了算符的运算规则，汇总如下（$u$ 为任意函数，内积 $(u,v)=\int u^*v\,\dd\tau=\ip uv$）：
+
+| 运算 | 定义 | 要点 |
+|---|---|---|
+| 相等 | $\hat Fu=\hat Gu$ 对一切 $u$ 成立 $\Rightarrow\hat F=\hat G$ | 必须对**任意**函数成立 |
+| 单位算符 | $\hat Iu=u$ | 对应单位矩阵 |
+| 和 | $(\hat F+\hat G)u=\hat Fu+\hat Gu$ | 满足交换律、结合律 |
+| 积 | $(\hat F\hat G)u=\hat F(\hat Gu)$ | 一般 $\hat F\hat G\neq\hat G\hat F$，从右往左依次作用 |
+| 逆 | $\hat Fu=v$ 唯一确定 $u$ 时，$\hat F^{-1}v=u$ | $(\hat F\hat G)^{-1}=\hat G^{-1}\hat F^{-1}$ |
+| 复共轭 $\hat F^*$ | 把 $\hat F$ 表达式中的复数换成共轭 | $\hat p_x^*=-\hat p_x$ |
+| 转置 $\widetilde F$ | $(u,\widetilde Fv)=(v^*,\hat Fu^*)$ | $\widetilde{\partial_x}=-\partial_x$，$\widetilde{\hat F\hat G}=\widetilde G\,\widetilde F$ |
+| 厄米共轭 $\hat F^\dagger$ | $(u,\hat F^\dagger v)=(\hat Fu,v)$ | $\hat F^\dagger=\widetilde F^{\,*}$，$(\hat F\hat G)^\dagger=\hat G^\dagger\hat F^\dagger$ |
+
+矩阵对照：转置 $\leftrightarrow A^{\mathrm T}$，复共轭 $\leftrightarrow A^*$，厄米共轭 $\leftrightarrow A^\dagger=(A^{\mathrm T})^*$。
+
 !!! example "例题 3.1"
 
     证明 (1) $\hat p_x=-\ii\hbar\dfrac{\partial}{\partial x}$ 是厄米算符；(2) $\dfrac{\partial}{\partial x}$ 不是厄米算符；(3) $[\hat x,\hat p_x]=\ii\hbar$。
@@ -80,6 +109,16 @@ $$\langle\vv p\rangle=\int\psi^*(\vv r)\left(-\ii\hbar\nabla\right)\psi(\vv r)\,
     (2) 同样的计算给出 $\int\psi^*\partial_x\phi=-\int(\partial_x\psi)^*\phi$，多一个负号，所以 $\partial_x$ 是**反厄米**的。正是因子 $-\ii$ 使 $\hat p_x$ 成为厄米算符。
 
     (3) 作用在任意 $\psi$ 上：$[\hat x,\hat p_x]\psi=x(-\ii\hbar\psi')-(-\ii\hbar)(x\psi)'=\ii\hbar\psi$。
+
+!!! example "例题 3.2"
+
+    设 $\hat A,\hat B$ 都是厄米算符。证明：(1) $\hat A\hat B$ 厄米 $\iff[\hat A,\hat B]=0$；(2) $\ii[\hat A,\hat B]$ 和 $\tfrac12(\hat A\hat B+\hat B\hat A)$ 总是厄米的。由此说明经典量 $xp_x$ 应该对应哪个算符。
+
+    **解。** (1) $(\hat A\hat B)^\dagger=\hat B^\dagger\hat A^\dagger=\hat B\hat A$，它等于 $\hat A\hat B$ 当且仅当二者对易。
+
+    (2) $\big(\ii[\hat A,\hat B]\big)^\dagger=-\ii(\hat B\hat A-\hat A\hat B)=\ii[\hat A,\hat B]$；$\big(\hat A\hat B+\hat B\hat A\big)^\dagger=\hat B\hat A+\hat A\hat B$。
+
+    $\hat x,\hat p_x$ 都厄米但不对易，所以 $\hat x\hat p_x$ 不厄米：$(\hat x\hat p_x)^\dagger=\hat p_x\hat x=\hat x\hat p_x-\ii\hbar$。物理上应取对称化的 $\tfrac12(\hat x\hat p_x+\hat p_x\hat x)$。结论 (2) 在 3.7 节证明不确定关系时还会用到：$[\hat F,\hat G]=\ii\hat k$ 中的 $\hat k$ 一定是厄米的。
 
 !!! theorem "定理 3.1（厄米算符的本征值是实数）"
 
@@ -165,13 +204,71 @@ $$Y_{20}=\sqrt{\frac{5}{16\pi}}(3\cos^2\theta-1),\quad Y_{2,\pm1}=\mp\sqrt{\frac
 $l=0,1,2,3,\dots$ 的态依次叫 s, p, d, f, … 态。宇称：$Y_{lm}(\pi-\theta,\varphi+\pi)=(-1)^lY_{lm}(\theta,\varphi)$。
 
 <figure class="video" markdown>
+<video controls preload="metadata" width="100%" poster="assets/posters/C3_SphericalHarmonics.jpg"><source src="assets/videos/C3_SphericalHarmonics.mp4" type="video/mp4"></video>
+<figcaption>动画 3-1　球谐函数的角分布 $\lvert Y_{lm}\rvert^2$（$l=0,1,2$）：与 $\varphi$ 无关，都是绕 $z$ 轴的旋转体；把 $\pm m$ 叠加成实函数就得到 $p_x$、$d_{z^2}$、$d_{xy}$ 等“轨道”形状。</figcaption>
+</figure>
+
+!!! example "例题 3.3【HUST 870 2014、2015、2017】"
+
+    证明 $\psi=(x+\ii y)f(r)$ 是 $\hat L_z$ 和 $\hat L^2$ 的共同本征函数，并求本征值（$f$ 为 $r$ 的任意函数）。
+
+    **解法一（直角坐标）。** $\hat L_z=-\ii\hbar\left(x\dfrac{\partial}{\partial y}-y\dfrac{\partial}{\partial x}\right)$。由于 $\hat L_z$ 只含角度导数，$\hat L_zf(r)=0$，所以
+
+    $$\hat L_z\psi=f(r)\,(-\ii\hbar)(x\cdot\ii-y\cdot1)=\hbar(x+\ii y)f(r)=\hbar\,\psi .$$
+
+    **解法二（球坐标，更快）。** $x+\ii y=r\sin\theta\,\ee^{\ii\varphi}=-\sqrt{\tfrac{8\pi}{3}}\,rY_{11}$，于是 $\psi=-\sqrt{\tfrac{8\pi}{3}}\,rf(r)\,Y_{11}$，立即得
+
+    $$\hat L_z\psi=\hbar\,\psi,\qquad\hat L^2\psi=2\hbar^2\psi\quad(l=1,\ m=1).$$
+
+    **规律：** 把 $x\pm\ii y\propto r\sin\theta\,\ee^{\pm\ii\varphi}$、$z=r\cos\theta$ 换成 $Y_{1,\pm1}$、$Y_{10}$，是判断“谁是角动量本征函数”的标准手法。
+
+<figure class="video" markdown>
 <video controls preload="metadata" width="100%" poster="assets/posters/C3_AngularMomentum.jpg"><source src="assets/videos/C3_AngularMomentum.mp4" type="video/mp4"></video>
-<figcaption>动画 3-1　$l=2$ 的角动量矢量模型：$\lvert\vv L\rvert=\sqrt6\hbar$，$L_z$ 只能取 $-2\hbar,\dots,2\hbar$ 五个值，$\vv L$ 永远不会完全沿 $z$ 轴。</figcaption>
+<figcaption>动画 3-2　$l=2$ 的角动量矢量模型：$\lvert\vv L\rvert=\sqrt6\hbar$，$L_z$ 只能取 $-2\hbar,\dots,2\hbar$ 五个值，$\vv L$ 永远不会完全沿 $z$ 轴。</figcaption>
 </figure>
 
 !!! info "直觉：为什么 $\lvert\vv L\rvert$ 是 $\sqrt{l(l+1)}\hbar$ 而不是 $l\hbar$"
 
     如果 $\lvert\vv L\rvert=l\hbar$，在 $m=l$ 的态中 $\vv L$ 就恰好沿 $z$ 轴，$L_x=L_y=0$ 三个分量同时确定。但 3.6 节会看到 $\hat L_x,\hat L_y,\hat L_z$ 互不对易，不能同时确定。多出来的 $l(l+1)-l^2=l$ 正好是 $\langle L_x^2+L_y^2\rangle/\hbar^2$ 的最小值。
+
+    <figure markdown>
+    ![角动量矢量模型](assets/img/ch3_L_cone.png){ width="230" }
+    <figcaption>图 3-2　角动量矢量模型：$\vv L$ 长 $\sqrt{l(l+1)}\,\hbar$，在 $z$ 轴上的投影最大只有 $l\hbar$（$m=l$），只能落在圆锥面上（图源：季燕江《量子力学》讲义 QMUSTB 图 5.5）</figcaption>
+    </figure>
+
+    在 $Y_{lm}$ 中，$\vv L$ 的 $z$ 分量确定为 $m\hbar$，横向分量“均匀分布在锥口圆周上”：
+
+    $$\langle L_x\rangle=\langle L_y\rangle=0,\qquad\langle L_x^2\rangle=\langle L_y^2\rangle=\tfrac12\big[l(l+1)-m^2\big]\hbar^2\ (>0),$$
+
+    证明见练习 8。
+
+!!! tip "解题模板：先把算符写成 $\hat L^2$、$\hat L_z$ 的函数，再读出本征值"
+
+    若 $\hat H=f(\hat L^2,\hat L_z)$（只含 $\hat L^2$、$\hat L_z$ 及常数），则 $Y_{lm}$ 自动是它的本征函数：
+
+    $$\hat HY_{lm}=f\big(l(l+1)\hbar^2,\ m\hbar\big)\,Y_{lm}.$$
+
+    这就是线性代数中的“谱映射”：若 $A\vv v=\lambda\vv v$，则 $f(A)\vv v=f(\lambda)\vv v$。关键一步是**改写**：用 $\hat L_x^2+\hat L_y^2=\hat L^2-\hat L_z^2$ 消去 $\hat L_x$、$\hat L_y$；中心力场的 $\hat H$ 中角度部分写成 $\hat L^2/2mr^2$ 也是同一个思路（3.3 节）。
+
+!!! example "例题 3.4【HUST 870 2001、2013】"
+
+    对称陀螺（转子）的哈密顿量为 $\hat H=\dfrac{1}{2I_1}(\hat L_x^2+\hat L_y^2)+\dfrac{1}{2I_2}\hat L_z^2$，求能量本征值和本征函数。
+
+    **解。** 按模板改写：
+
+    $$\hat H=\frac{\hat L^2}{2I_1}+\left(\frac{1}{2I_2}-\frac{1}{2I_1}\right)\hat L_z^2 .$$
+
+    $\hat H$ 是 $\hat L^2$、$\hat L_z$ 的函数，本征函数为 $Y_{lm}$，本征值
+
+    $$E_{lm}=\frac{l(l+1)\hbar^2}{2I_1}+\left(\frac{1}{2I_2}-\frac{1}{2I_1}\right)m^2\hbar^2,\qquad l=0,1,2,\dots;\ m=0,\pm1,\dots,\pm l .$$
+
+    $E$ 只依赖 $m^2$，所以 $m\neq0$ 时 $\pm m$ 二重简并。$I_1=I_2=I$ 时退化为球形转子 $E_l=\dfrac{l(l+1)\hbar^2}{2I}$，简并度升为 $2l+1$（练习 3）。对称性越高，简并越大。
+
+!!! warning "易错点（3.2 节）"
+
+    - 动量本征函数 $\ee^{\ii\vv p\cdot\vv r/\hbar}$ **不能**按 $\int\lvert\psi\rvert^2\dd\tau=1$ 归一化，只能 $\delta$ 函数归一化或箱归一化；箱归一化时 $p_x=2\pi\hbar n_x/L$，$n_x$ 可取负整数和零。
+    - $L_z=m\hbar$ 中 $m$ 是**整数**，来自波函数单值条件 $\Phi(\varphi+2\pi)=\Phi(\varphi)$；磁量子数 $m$ 与质量 $m$ 符号相同，计算时注意区分。
+    - $Y_{lm}$ 的归一化积分要带上 $\sin\theta$：$\dd\Omega=\sin\theta\,\dd\theta\,\dd\varphi$。
 
 ---
 
@@ -207,6 +304,12 @@ $$-\frac{\hbar^2}{2m}u''+\left[U(r)+\frac{l(l+1)\hbar^2}{2mr^2}\right]u=Eu,\qqua
 
 能级公式与玻尔理论完全相同，但现在是从薛定谔方程严格推出的，而且多了玻尔理论没有的信息：每个能级有 $n^2$ 个不同的态。
 
+$n\to\infty$ 时 $E_\infty=0$，电子脱离原子核，所以**电离能** $-E_1=13.6\ \mathrm{eV}$。电子从 $E_n$ 跃迁到 $E_{n'}$（$n>n'$）辐射的光频率为
+
+$$\nu=\frac{E_n-E_{n'}}{h}=R_\infty c\left(\frac{1}{n'^2}-\frac{1}{n^2}\right),\qquad R_\infty=\frac{-E_1}{hc}=1.097\,373\,156\,8\times10^{7}\ \mathrm{m^{-1}},$$
+
+这就是第 1 章的**巴耳末公式**，$R_\infty$ 是里德伯常量（下标 $\infty$ 表示把核质量看成无穷大）。例如 $n=3\to2$：$1/\lambda=R_\infty\cdot\tfrac{5}{36}$，$\lambda\approx656\ \mathrm{nm}$，即红色的 $\mathrm H_\alpha$ 线。理论值与光谱实验高度吻合，是量子力学最早的决定性检验之一。
+
 前几个径向函数（$Z=1$；类氢离子把 $a_0$ 换成 $a_0/Z$）：
 
 $$R_{10}=\frac{2}{a_0^{3/2}}\ee^{-r/a_0},\qquad R_{20}=\frac{1}{\sqrt2\,a_0^{3/2}}\left(1-\frac{r}{2a_0}\right)\ee^{-r/2a_0},\qquad R_{21}=\frac{1}{2\sqrt6\,a_0^{3/2}}\frac{r}{a_0}\ee^{-r/2a_0},$$
@@ -228,17 +331,17 @@ $$W_{nl}(r)\,\dd r=R_{nl}^2(r)\,r^2\,\dd r .$$
 
 <figure class="video" markdown>
 <video controls preload="metadata" width="100%" poster="assets/posters/C3_HydrogenRadial.jpg"><source src="assets/videos/C3_HydrogenRadial.mp4" type="video/mp4"></video>
-<figcaption>动画 3-2　氢原子径向概率密度 $W_{nl}=r^2R_{nl}^2$：节点数 $n-l-1$；$l=n-1$ 时只有一个峰，位于 $r=n^2a_0$。</figcaption>
+<figcaption>动画 3-3　氢原子径向概率密度 $W_{nl}=r^2R_{nl}^2$：节点数 $n-l-1$；$l=n-1$ 时只有一个峰，位于 $r=n^2a_0$。</figcaption>
 </figure>
 
 <div class="grid-2" markdown>
 <figure markdown>
 ![n=1,2 径向分布](assets/book/ch3_radial_n2.jpg){ width="300" }
-<figcaption>图 3-2　$n=2$ 的径向概率分布（图源：教材）</figcaption>
+<figcaption>图 3-3　$n=2$ 的径向概率分布（图源：教材）</figcaption>
 </figure>
 <figure markdown>
 ![n=3 径向分布](assets/book/ch3_radial_n3.jpg){ width="300" }
-<figcaption>图 3-3　$n=3$ 的径向概率分布（图源：教材）</figcaption>
+<figcaption>图 3-4　$n=3$ 的径向概率分布（图源：教材）</figcaption>
 </figure>
 </div>
 
@@ -246,15 +349,37 @@ $$W_{nl}(r)\,\dd r=R_{nl}^2(r)\,r^2\,\dd r .$$
 
 <figure markdown>
 ![角向分布](assets/book/ch3_angular.jpg){ width="380" }
-<figcaption>图 3-4　$\lvert Y_{lm}\rvert^2$ 的角向分布（图源：教材）</figcaption>
+<figcaption>图 3-5　$\lvert Y_{lm}\rvert^2$ 的角向分布（图源：教材）</figcaption>
 </figure>
+
+<div class="grid-2" markdown>
+<figure markdown>
+![球谐函数模方立体图](assets/img/ch3_Ylm_sq.png){ width="300" }
+<figcaption>图 3-6　$\lvert Y_{lm}\rvert^2$ 的立体图（$l=0\sim3$，$m\geqslant0$）：都绕 $z$ 轴旋转对称（图源：季燕江《量子力学》讲义 QMUSTB 图 5.4）</figcaption>
+</figure>
+<figure markdown>
+![球谐函数极坐标图](assets/img/ch3_Ylm_polar.png){ width="260" }
+<figcaption>图 3-7　$\lvert Y_{lm}\rvert^2$ 的极坐标网格图（$l=0,1,2$），从上到下依次为 s、p、d 态（图源：上海交通大学《大学物理》课件）</figcaption>
+</figure>
+</div>
 
 <figure class="video" markdown>
 <video controls preload="metadata" width="100%" poster="assets/posters/C3_HydrogenOrbitals.jpg"><source src="assets/videos/C3_HydrogenOrbitals.mp4" type="video/mp4"></video>
-<figcaption>动画 3-3　氢原子“电子云” $\lvert\psi_{nlm}\rvert^2$ 在 $xz$ 平面的截面（亮处概率大）。$m\neq0$ 的态在 $z$ 轴上为零，呈“甜甜圈”状。</figcaption>
+<figcaption>动画 3-4　氢原子“电子云” $\lvert\psi_{nlm}\rvert^2$ 在 $xz$ 平面的截面（亮处概率大）。$m\neq0$ 的态在 $z$ 轴上为零，呈“甜甜圈”状。</figcaption>
 </figure>
 
-!!! example "例题 3.2"
+<div class="grid-2" markdown>
+<figure markdown>
+![电子云截面](assets/img/ch3_orbital_densities.jpg){ width="320" }
+<figcaption>图 3-8　氢原子不同 $(n,l,m)$ 态的电子云截面照片式图像，可与动画对照（图源：上海交通大学《大学物理》课件）</figcaption>
+</figure>
+<figure markdown>
+![电子云角分布](assets/img/ch3_orbital_lobes.png){ width="300" }
+<figcaption>图 3-9　1s、2p（$m=0$ 与 $m=\pm1$）、4f 态电子云的点密度图（图源：上海交通大学《大学物理》课件）</figcaption>
+</figure>
+</div>
+
+!!! example "例题 3.5"
 
     求氢原子基态中电子的 (1) 最概然半径；(2) $\langle r\rangle$；(3) 势能和动能的期望值。
 
@@ -268,7 +393,7 @@ $$W_{nl}(r)\,\dd r=R_{nl}^2(r)\,r^2\,\dd r .$$
 
     $\langle T\rangle=E_1-\langle U\rangle=-13.6+27.2=13.6\ \mathrm{eV}$。满足**位力定理** $2\langle T\rangle=-\langle U\rangle$（对 $1/r$ 势普遍成立）。
 
-!!! example "例题 3.3（教材例题：导体平面上方的电子）"
+!!! example "例题 3.6（教材例题：导体平面上方的电子）"
 
     电子置于接地大导体平面上方，受导体静电吸引。求 (1) 电子能级；(2) 基态电子与平面的平均距离。
 
@@ -292,6 +417,31 @@ $$W_{nl}(r)\,\dd r=R_{nl}^2(r)\,r^2\,\dd r .$$
 
     这类束缚在表面附近的电子态叫**镜像势态**，在液氦表面和金属表面上都已观察到。
 
+!!! example "例题 3.7（教材习题 3.3、3.4：氢原子的电流与磁矩）"
+
+    (1) 证明氢原子处于 $\psi_{nlm}$ 时电子的电流密度只有 $\varphi$ 分量 $J_{e\varphi}=-\dfrac{e\hbar m}{m_er\sin\theta}\lvert\psi_{nlm}\rvert^2$；(2) 求原子磁矩 $M_z$ 与磁旋比 $M_z/L_z$。
+
+    <figure markdown>
+    ![圆周电流](assets/book/ch3_loop.jpg){ width="160" }
+    </figure>
+
+    **解。** (1) 电流密度 = 电荷 $(-e)$ × 概率流密度（第 2 章）：$\vv J_e=-e\cdot\dfrac{\ii\hbar}{2m_e}(\psi\nabla\psi^*-\psi^*\nabla\psi)$。$\psi_{nlm}=R_{nl}(r)\Theta_{lm}(\theta)\ee^{\ii m\varphi}$ 中 $R,\Theta$ 是实函数，所以 $r$、$\theta$ 方向的导数给出 $\psi\partial\psi^*-\psi^*\partial\psi=0$，$J_{er}=J_{e\theta}=0$。$\varphi$ 方向梯度为 $\dfrac{1}{r\sin\theta}\dfrac{\partial}{\partial\varphi}$：
+
+    $$\psi\frac{\partial\psi^*}{\partial\varphi}-\psi^*\frac{\partial\psi}{\partial\varphi}=-2\ii m\lvert\psi\rvert^2\ \Rightarrow\ J_{e\varphi}=-e\frac{\ii\hbar}{2m_e}\cdot\frac{-2\ii m\lvert\psi\rvert^2}{r\sin\theta}=-\frac{e\hbar m}{m_er\sin\theta}\lvert\psi\rvert^2 .$$
+
+    (2) 电流沿绕 $z$ 轴的圆周流动。截面 $\dd S$ 的细圆环电流 $\dd I=J_{e\varphi}\dd S$，所围面积 $\pi(r\sin\theta)^2$，磁矩 $\dd M_z=\pi r^2\sin^2\theta\,\dd I$（方向见[电磁场与电磁波 · 第 4 章磁偶极子](https://cockroach-f.github.io/em-fields-waves/ch4.html)）。对子午面积分，$\dd\tau=2\pi r\sin\theta\,\dd S$：
+
+    $$M_z=-\frac{e\hbar m}{m_e}\int\pi r\sin\theta\,\lvert\psi\rvert^2\dd S=-\frac{e\hbar m}{2m_e}\int\lvert\psi\rvert^2\dd\tau=-\frac{me\hbar}{2m_e},\qquad\frac{M_z}{L_z}=-\frac{e}{2m_e}.$$
+
+    $\mu_{\mathrm B}=\dfrac{e\hbar}{2m_e}$ 叫**玻尔磁子**。s 态（$m=0$）没有轨道磁矩。第 7 章会看到，自旋磁矩的磁旋比是这个值的 2 倍。
+
+!!! warning "易错点（3.3 节）"
+
+    - 径向概率密度是 $r^2R_{nl}^2$，**不要漏掉 $r^2$**；$\lvert\psi\rvert^2$ 本身在 $r=0$ 处最大（1s 态），而径向概率在 $r=a_0$ 处最大，二者不矛盾。
+    - 最概然半径（$a_0$）、平均半径（$\tfrac32a_0$）、$\langle1/r\rangle^{-1}$（$a_0$）是不同的量。
+    - 节点数：$R_{nl}$ 的径向节点 $n-l-1$ 个，$Y_{lm}$ 的角向节面 $l$ 个，共 $n-1$ 个。
+    - 不同 $(n,l)$ 的 $R_{nl}$ 只有在**相同 $l$** 时才按 $\int R_{nl}R_{n'l}r^2\dd r=\delta_{nn'}$ 正交。
+
 ---
 
 ## 3.4 厄米算符本征函数的正交性
@@ -312,7 +462,18 @@ $$\int\phi_m^*\phi_n\,\dd\tau=\delta_{mn}\ (\text{分立谱}),\qquad \int\phi_\l
 
 **简并情形。** 属于同一本征值的 $f$ 个本征函数不一定正交，但它们的任意线性组合仍是该本征值的本征函数，总可以重新组合成 $f$ 个正交的函数。
 
-!!! example "例题 3.4（教材例题：施密特正交化）"
+教材列举的正交归一系（都是厄米算符的本征函数）：
+
+| 本征函数系 | 算符 | 正交归一关系 |
+|---|---|---|
+| 谐振子 $\psi_n=N_n\ee^{-\alpha^2x^2/2}H_n(\alpha x)$ | $\hat H$ | $\int_{-\infty}^{\infty}\psi_m\psi_n\,\dd x=\delta_{mn}$ |
+| 无限深势阱 $\sqrt{2/a}\,\sin\dfrac{n\pi x}{a}$ | $\hat H$ | $\int_0^a\psi_m\psi_n\,\dd x=\delta_{mn}$ |
+| $\Phi_m=\dfrac{1}{\sqrt{2\pi}}\ee^{\ii m\varphi}$ | $\hat L_z$ | $\int_0^{2\pi}\Phi_m^*\Phi_{m'}\dd\varphi=\delta_{mm'}$ |
+| 球谐函数 $Y_{lm}$ | $\hat L^2,\hat L_z$ | $\int Y_{lm}^*Y_{l'm'}\dd\Omega=\delta_{ll'}\delta_{mm'}$ |
+| 氢原子 $\psi_{nlm}=R_{nl}Y_{lm}$ | $\hat H,\hat L^2,\hat L_z$ | $\int\psi_{nlm}^*\psi_{n'l'm'}\dd\tau=\delta_{nn'}\delta_{ll'}\delta_{mm'}$ |
+| 平面波 $(2\pi\hbar)^{-3/2}\ee^{\ii\vv p\cdot\vv r/\hbar}$ | $\hat{\vv p}$ | $\int\psi_{\vv p'}^*\psi_{\vv p}\dd\tau=\delta(\vv p-\vv p')$ |
+
+!!! example "例题 3.8（教材例题：施密特正交化）"
 
     能级 $E$ 有 3 个线性无关但不正交的简并态 $\psi_1,\psi_2,\psi_3$，把它们构成正交归一的波函数。
 
@@ -330,7 +491,7 @@ $$\int\phi_m^*\phi_n\,\dd\tau=\delta_{mn}\ (\text{分立谱}),\qquad \int\phi_\l
 
     $$\psi(\vv r)=\sum_nc_n\phi_n(\vv r)+\int c_\lambda\phi_\lambda(\vv r)\,\dd\lambda,\qquad c_n=\ip{\phi_n}{\psi}=\int\phi_n^*\psi\,\dd\tau .$$
 
-    完全性的等价形式（**封闭关系**）：$\sum_n\phi_n(\vv r)\phi_n^*(\vv r')=\delta(\vv r-\vv r')$。
+    完全性的等价形式（**封闭关系**）：$\sum_n\phi_n(\vv r)\phi_n^*(\vv r')=\delta(\vv r-\vv r')$，狄拉克记号写作 $\sum_n\ket{\phi_n}\bra{\phi_n}=\hat I$。
 
     傅里叶级数（$\ee^{\ii nx}$）、傅里叶积分（$\ee^{\ii kx}$）、勒让德多项式展开都是这个定理的特例。
 
@@ -352,11 +513,18 @@ $$\int\phi_m^*\phi_n\,\dd\tau=\delta_{mn}\ (\text{分立谱}),\qquad \int\phi_\l
 
 **两种算期望值的方法等价**：把 $\psi=\sum c_n\phi_n$ 代入 $\int\psi^*\hat F\psi$，利用 $\hat F\phi_n=\lambda_n\phi_n$ 和正交归一性，直接得 $\sum\lambda_n\lvert c_n\rvert^2$。
 
+<figure class="video" markdown>
+<video controls preload="metadata" width="100%" poster="assets/posters/C3_Measurement.jpg"><source src="assets/videos/C3_Measurement.mp4" type="video/mp4"></video>
+<figcaption>动画 3-5　先把 $\psi=\sqrt{30/a^5}\,x(a-x)$ 按势阱本征函数展开（部分和迅速收敛）；再对 $\psi=\tfrac{1}{\sqrt2}\phi_1+\tfrac12\phi_2+\tfrac12\phi_3$ 测量能量：单次结果随机，测后坍缩为本征态；大量重复后频率趋于 $\lvert c_n\rvert^2$。</figcaption>
+</figure>
+
 !!! info "几何图像"
 
     $\ket\psi$ 是单位向量，$\{\ket{\phi_n}\}$ 是一组正交归一基。$c_n$ 是 $\ket\psi$ 在第 $n$ 个基矢上的投影，$\sum\lvert c_n\rvert^2=1$ 是“勾股定理”。测量 $F$ 时，态“随机地落到”某个本征矢上，落到 $\ket{\phi_n}$ 的概率等于投影长度的平方。测量后态就变成 $\ket{\phi_n}$（**波函数坍缩**），立即再测一次必然还得 $\lambda_n$。
 
-!!! example "例题 3.5（教材例题：氢原子基态的动量分布）"
+用狄拉克记号，展开就是插入单位算符：$\ket\psi=\hat I\ket\psi=\sum_n\ket{\phi_n}\ip{\phi_n}{\psi}$。$\hat P_n=\ket{\phi_n}\bra{\phi_n}$ 是投影到第 $n$ 个本征矢的**投影算符**，得到 $\lambda_n$ 的概率 $=\mel{\psi}{\hat P_n}{\psi}$。算符本身可以写成**谱分解** $\hat F=\sum_n\lambda_n\ket{\phi_n}\bra{\phi_n}$——这正是厄米矩阵的对角化 $A=U\Lambda U^\dagger$。简并时，$P(\lambda)$ 要把属于 $\lambda$ 的所有本征矢的 $\lvert c\rvert^2$ 加起来。
+
+!!! example "例题 3.9（教材例题：氢原子基态的动量分布）"
 
     求氢原子处于基态时电子动量的概率分布。
 
@@ -377,7 +545,7 @@ $$\int\phi_m^*\phi_n\,\dd\tau=\delta_{mn}\ (\text{分立谱}),\qquad \int\phi_\l
 
     最概然动量 $p=\hbar/(\sqrt3a_0)$，动量尺度约 $\hbar/a_0$——这正是 $\Delta x\sim a_0$ 时不确定关系所要求的。
 
-!!! example "例题 3.6"
+!!! example "例题 3.10"
 
     宽为 $a$ 的无限深方势阱（$0<x<a$）中，粒子处于 $\psi(x)=Ax(a-x)$。求能量的概率分布和期望值（教材习题 3.8）。
 
@@ -394,6 +562,35 @@ $$\int\phi_m^*\phi_n\,\dd\tau=\delta_{mn}\ (\text{分立谱}),\qquad \int\phi_\l
     $$\langle E\rangle=\int_0^a\psi^*\left(-\frac{\hbar^2}{2m}\frac{\dd^2}{\dd x^2}\right)\psi\,\dd x=\frac{\hbar^2}{2m}\cdot2A^2\int_0^ax(a-x)\dd x=\frac{\hbar^2}{m}\cdot\frac{30}{a^5}\cdot\frac{a^3}{6}=\frac{5\hbar^2}{ma^2}.$$
 
     略大于 $E_1=\dfrac{\pi^2\hbar^2}{2ma^2}\approx\dfrac{4.93\hbar^2}{ma^2}$，符合“任何态的平均能量不低于基态能量”（第 5 章变分法的出发点）。
+
+!!! example "例题 3.11【HUST 870 2014、2017】"
+
+    粒子处于 $\psi(\vv r)=(x+y+z)f(r)$（$f$ 使 $\psi$ 归一化）。求 $L^2$ 和 $L_z$ 的可能测值、概率和期望值。
+
+    **解。** 用例题 3.3 的手法把角度部分写成球谐函数。$\sin\theta\,\ee^{\pm\ii\varphi}=\mp\sqrt{\tfrac{8\pi}{3}}Y_{1,\pm1}$，$\cos\theta=\sqrt{\tfrac{4\pi}{3}}Y_{10}$，于是
+
+    $$x+y+z=r\left[\tfrac{1-\ii}{2}\sin\theta\,\ee^{\ii\varphi}+\tfrac{1+\ii}{2}\sin\theta\,\ee^{-\ii\varphi}+\cos\theta\right]=r\sqrt{\tfrac{4\pi}{3}}\left[\tfrac{-1+\ii}{\sqrt2}Y_{11}+\tfrac{1+\ii}{\sqrt2}Y_{1,-1}+Y_{10}\right].$$
+
+    三个系数的模方都是 $1$，相等。所以
+
+    - $L^2$：只有 $l=1$，测值 $2\hbar^2$，概率 1；
+    - $L_z$：$\hbar,\ 0,\ -\hbar$ 的概率各为 $\tfrac13$，$\langle L_z\rangle=0$。
+
+    （结果与 $f(r)$ 无关：径向部分只影响能量等量，不影响角动量的测量。）$x+y+z=\sqrt3\,\vv n\cdot\vv r$ 是沿 $\vv n=(1,1,1)/\sqrt3$ 方向的“$p$ 轨道”，它是 $\vv n\cdot\hat{\vv L}$ 属于 0 的本征态，但不是 $\hat L_z$ 的本征态。
+
+!!! example "例题 3.12（线性代数视角：$l=1$ 时的 $\hat L_x$ 矩阵）"
+
+    已知升降算符 $\hat L_\pm=\hat L_x\pm\ii\hat L_y$ 满足 $\hat L_\pm Y_{lm}=\hbar\sqrt{(l\mp m)(l\pm m+1)}\,Y_{l,m\pm1}$（第 4 章证明）。在基 $\{Y_{11},Y_{10},Y_{1,-1}\}$ 下写出 $\hat L_x$ 的矩阵，求其本征值；并求处于 $Y_{10}$ 时测量 $L_x$ 的结果。
+
+    **解。** $\hat L_x=\tfrac12(\hat L_++\hat L_-)$，非零矩阵元只有 $\mel{1,m\pm1}{\hat L_x}{1,m}=\tfrac{\hbar}{2}\sqrt2=\tfrac{\hbar}{\sqrt2}$：
+
+    $$L_x=\frac{\hbar}{\sqrt2}\begin{pmatrix}0&1&0\\1&0&1\\0&1&0\end{pmatrix},\qquad\det(L_x-\lambda I)=-\lambda(\lambda^2-\hbar^2)=0\ \Rightarrow\ \lambda=\hbar,0,-\hbar .$$
+
+    这是一个厄米（实对称）矩阵，本征值是实数，且与 $L_z$ 的本征值相同——$x$ 轴和 $z$ 轴本来就没有区别。归一化本征矢：
+
+    $$\lambda=\hbar:\ \tfrac12(1,\sqrt2,1)^{\mathrm T};\qquad\lambda=0:\ \tfrac1{\sqrt2}(1,0,-1)^{\mathrm T};\qquad\lambda=-\hbar:\ \tfrac12(1,-\sqrt2,1)^{\mathrm T}.$$
+
+    三者两两正交（定理 3.4）。$Y_{10}=(0,1,0)^{\mathrm T}$，投影系数为 $\tfrac{\sqrt2}{2},0,-\tfrac{\sqrt2}{2}$，所以 $P(\hbar)=P(-\hbar)=\tfrac12$，$P(0)=0$，$\langle L_x\rangle=0$，$\langle L_x^2\rangle=\hbar^2$。处在 $L_z$ 的本征态，$L_x$ 就不确定——这正是 3.6 节要讲的“不对易”。
 
 ---
 
@@ -413,7 +610,7 @@ $$\int\phi_m^*\phi_n\,\dd\tau=\delta_{mn}\ (\text{分立谱}),\qquad \int\phi_\l
 
 $$[\hat A,\hat B\hat C]=[\hat A,\hat B]\hat C+\hat B[\hat A,\hat C],\qquad [\hat A\hat B,\hat C]=\hat A[\hat B,\hat C]+[\hat A,\hat C]\hat B .$$
 
-!!! example "例题 3.7"
+!!! example "例题 3.13"
 
     计算 (1) $[\hat x,\hat p_x^2]$；(2) $[\hat L_z,\hat x]$；(3) $[\hat x,f(\hat p_x)]$ 与 $[\hat p_x,U(x)]$。
 
@@ -422,6 +619,23 @@ $$[\hat A,\hat B\hat C]=[\hat A,\hat B]\hat C+\hat B[\hat A,\hat C],\qquad [\hat
     (2) $[\hat L_z,x]=[x\hat p_y-y\hat p_x,x]=-y[\hat p_x,x]=\ii\hbar y$。同理 $[\hat L_z,y]=-\ii\hbar x$，$[\hat L_z,z]=0$。
 
     (3) 推广 (1)：$[\hat x,f(\hat p_x)]=\ii\hbar f'(\hat p_x)$，$[\hat p_x,U(x)]=-\ii\hbar U'(x)$。$\hat x$ 对 $\hat p$ 的作用像“$\ii\hbar\partial_p$”，$\hat p$ 对 $x$ 的作用像“$-\ii\hbar\partial_x$”。
+
+!!! example "例题 3.14【HUST 870 2017】"
+
+    证明 (1) $[\hat L_\alpha,\hat x_\beta]=\ii\hbar\,\varepsilon_{\alpha\beta\gamma}\hat x_\gamma$；(2) $\hat{\vv r}\times\hat{\vv L}+\hat{\vv L}\times\hat{\vv r}=2\ii\hbar\,\hat{\vv r}$。
+
+    **解。** (1) 例题 3.13(2) 已得 $[\hat L_z,x]=\ii\hbar y$，$[\hat L_z,y]=-\ii\hbar x$，$[\hat L_z,z]=0$，轮换 $x\to y\to z\to x$ 即得一般式（$\varepsilon_{\alpha\beta\gamma}$ 为列维–奇维塔符号，$\varepsilon_{xyz}=1$）。动量同理：$[\hat L_\alpha,\hat p_\beta]=\ii\hbar\,\varepsilon_{\alpha\beta\gamma}\hat p_\gamma$，角动量本身：$[\hat L_\alpha,\hat L_\beta]=\ii\hbar\,\varepsilon_{\alpha\beta\gamma}\hat L_\gamma$。凡是“矢量算符”都满足这一形式。
+
+    (2) 看 $x$ 分量：
+
+    $$(\hat{\vv r}\times\hat{\vv L}+\hat{\vv L}\times\hat{\vv r})_x=(y\hat L_z-z\hat L_y)+(\hat L_yz-\hat L_zy)=[\hat L_y,z]-[\hat L_z,y]=\ii\hbar x-(-\ii\hbar x)=2\ii\hbar x .$$
+
+    $y,z$ 分量轮换可得。注意经典力学中 $\vv r\times\vv L+\vv L\times\vv r=0$，右边的 $2\ii\hbar\hat{\vv r}$ 完全来自算符不对易。
+
+<figure class="video" markdown>
+<video controls preload="metadata" width="100%" poster="assets/posters/C3_Commutator.jpg"><source src="assets/videos/C3_Commutator.mp4" type="video/mp4"></video>
+<figcaption>动画 3-6　同一本书先绕 $x$ 轴再绕 $y$ 轴转 $90^\circ$，与先绕 $y$ 再绕 $x$ 结果不同。角动量是转动的生成元，转动的不可交换性就是 $[\hat L_x,\hat L_y]=\ii\hbar\hat L_z$。</figcaption>
+</figure>
 
 ### 3.6.2 同时有确定值的条件
 
@@ -451,6 +665,13 @@ $$[\hat A,\hat B\hat C]=[\hat A,\hat B]\hat C+\hat B[\hat A,\hat C],\qquad [\hat
     - 一维自由粒子：$\{\hat p_x\}$；三维自由粒子：$\{\hat p_x,\hat p_y,\hat p_z\}$；
     - 氢原子（不计自旋）：$\{\hat H,\hat L^2,\hat L_z\}$，共同本征函数 $\psi_{nlm}$，用量子数 $(n,l,m)$ 标记。
 
+!!! warning "易错点（3.6 节）"
+
+    - **对易没有传递性。** $\partial_x$ 与 $\partial_y$ 对易，$\partial_y$ 与 $x$ 对易，但 $\partial_x$ 与 $x$ 不对易。$\hat L_x$、$\hat L_z$ 都与 $\hat L^2$ 对易，但 $\hat L_x$ 与 $\hat L_z$ 不对易。
+    - **对易 $\Rightarrow$ 存在**一组共同本征函数，**不是**说 $\hat F$ 的每个本征函数都是 $\hat G$ 的本征函数。例如 $\tfrac1{\sqrt2}(Y_{11}+Y_{10})$ 是 $\hat L^2$ 的本征函数，却不是 $\hat L_z$ 的本征函数（简并造成的）。
+    - **不对易的两个算符也可能有个别共同本征函数。** 例如 $Y_{00}$ 同时是 $\hat L_x,\hat L_y,\hat L_z$ 属于 0 的本征函数，但它们没有组成完全系的共同本征函数。
+    - 计算对易子时让它作用在任意函数 $\psi$ 上，**不要漏掉求导时作用到 $\psi$ 上的项**。
+
 ---
 
 ## 3.7 不确定关系
@@ -475,22 +696,42 @@ $$[\hat A,\hat B\hat C]=[\hat A,\hat B]\hat C+\hat B[\hat A,\hat C],\qquad [\hat
 
 <figure class="video" markdown>
 <video controls preload="metadata" width="100%" poster="assets/posters/C3_Uncertainty.jpg"><source src="assets/videos/C3_Uncertainty.mp4" type="video/mp4"></video>
-<figcaption>动画 3-4　高斯态的坐标分布与动量分布此消彼长，$\Delta x\,\Delta p$ 始终等于 $\hbar/2$（不确定关系取等号）。</figcaption>
+<figcaption>动画 3-7　高斯态的坐标分布与动量分布此消彼长，$\Delta x\,\Delta p$ 始终等于 $\hbar/2$（不确定关系取等号）。</figcaption>
 </figure>
 
 !!! info "直觉：不确定关系是波动性的必然结果"
 
     $\psi(x)$ 与 $c(p)$ 是傅里叶变换对。一个信号的时宽 $\Delta t$ 与带宽 $\Delta\omega$ 满足 $\Delta t\,\Delta\omega\geqslant\tfrac12$（时宽–带宽积），乘以 $\hbar$ 就是 $\Delta x\,\Delta p\geqslant\hbar/2$。所以不确定关系**不是测量仪器不够精密**，而是“粒子同时有确定的位置和动量”这个概念本身对波不成立。高斯函数是时宽–带宽积最小的信号，对应取等号的**最小不确定态**。
 
-!!! example "例题 3.8"
+!!! example "例题 3.15"
 
-    (1) 验证谐振子基态满足 $\Delta x\,\Delta p=\hbar/2$；(2) 用不确定关系估计谐振子和氢原子的基态能量。
+    验证谐振子基态满足 $\Delta x\,\Delta p=\hbar/2$。
 
-    **解。** (1) 基态 $\psi_0=\sqrt{\alpha/\sqrt\pi}\,\ee^{-\alpha^2x^2/2}$ 是偶函数，$\langle x\rangle=\langle p\rangle=0$。$\langle x^2\rangle=\dfrac{1}{2\alpha^2}$，$\langle p^2\rangle=\hbar^2\displaystyle\int\lvert\psi_0'\rvert^2\dd x=\dfrac{\hbar^2\alpha^2}{2}$。$\Delta x\,\Delta p=\sqrt{\dfrac{1}{2\alpha^2}\cdot\dfrac{\hbar^2\alpha^2}{2}}=\dfrac\hbar2$。
+    **解。** 基态 $\psi_0=\sqrt{\alpha/\sqrt\pi}\,\ee^{-\alpha^2x^2/2}$ 是偶函数，$\langle x\rangle=\langle p\rangle=0$。$\langle x^2\rangle=\dfrac{1}{2\alpha^2}$，$\langle p^2\rangle=\hbar^2\displaystyle\int\lvert\psi_0'\rvert^2\dd x=\dfrac{\hbar^2\alpha^2}{2}$。$\Delta x\,\Delta p=\sqrt{\dfrac{1}{2\alpha^2}\cdot\dfrac{\hbar^2\alpha^2}{2}}=\dfrac\hbar2$。
 
-    (2) 谐振子：$E=\dfrac{\langle p^2\rangle}{2m}+\dfrac12m\omega^2\langle x^2\rangle\geqslant\dfrac{\hbar^2}{8m(\Delta x)^2}+\dfrac12m\omega^2(\Delta x)^2\geqslant2\sqrt{\dfrac{\hbar^2}{8m}\cdot\dfrac{m\omega^2}{2}}=\dfrac12\hbar\omega$，恰好是精确值。
+!!! tip "三行估算：用不确定关系估计基态能量【HUST 870 2004、2016；教材习题 3.13】"
 
-    氢原子：取 $p\sim\hbar/r$，$E(r)\approx\dfrac{\hbar^2}{2mr^2}-\dfrac{e^2}{4\pi\varepsilon_0r}$，对 $r$ 求极小：$r=\dfrac{4\pi\varepsilon_0\hbar^2}{me^2}=a_0$，$E_{\min}=-\dfrac{me^4}{2(4\pi\varepsilon_0)^2\hbar^2}=-13.6\ \mathrm{eV}$。这种估计在数量级上可靠（这里恰好得到精确值是巧合）。它也说明了**原子为什么稳定**：电子若落向核，$\Delta x$ 变小，动能 $\sim\hbar^2/2mr^2$ 增长得比势能更快。
+    **谐振子。** ① 基态 $\langle x\rangle=\langle p\rangle=0$，所以 $\langle x^2\rangle=(\Delta x)^2$，$\langle p^2\rangle=(\Delta p)^2\geqslant\dfrac{\hbar^2}{4(\Delta x)^2}$；
+    ② $\langle E\rangle\geqslant\dfrac{\hbar^2}{8m(\Delta x)^2}+\dfrac12m\omega^2(\Delta x)^2$；
+    ③ 对 $(\Delta x)^2$ 求极小（或用均值不等式）：$(\Delta x)^2=\dfrac{\hbar}{2m\omega}$，$E_{\min}=\dfrac12\hbar\omega$。零点能就是不确定关系要求的最小能量。
+
+    **氢原子。** ① 电子局限在尺度 $r$ 内，$p\sim\hbar/r$；
+    ② $E(r)\approx\dfrac{\hbar^2}{2mr^2}-\dfrac{e^2}{4\pi\varepsilon_0r}$；
+    ③ $\dfrac{\dd E}{\dd r}=0\Rightarrow r=\dfrac{4\pi\varepsilon_0\hbar^2}{me^2}=a_0$，$E_{\min}=-\dfrac{me^4}{2(4\pi\varepsilon_0)^2\hbar^2}=-13.6\ \mathrm{eV}$。
+
+    这种估计只保证数量级（$p\sim\hbar/r$ 中的系数取法不同，结果会差一个常数因子；这里恰好得到精确值是巧合）。它也说明了**原子为什么稳定**：电子若落向核，$r$ 变小，动能 $\sim\hbar^2/2mr^2$ 比势能 $\sim-1/r$ 增长得更快。
+
+**角动量分量的不确定关系。** 由 $[\hat L_x,\hat L_y]=\ii\hbar\hat L_z$，
+
+$$\overline{(\Delta L_x)^2}\;\overline{(\Delta L_y)^2}\geqslant\frac{\hbar^2}{4}\overline{L_z}^{\,2}.$$
+
+在 $Y_{lm}$ 中右边为 $\dfrac{m^2\hbar^4}{4}$；而由练习 8，左边实际等于 $\left[\dfrac{l(l+1)-m^2}{2}\right]^2\hbar^4$。因为 $l(l+1)-m^2\geqslant\lvert m\rvert$，不等式成立，$\lvert m\rvert=l$ 时取等号。
+
+!!! warning "易错点（3.7 节）"
+
+    - 不确定关系的**右边依赖于态**（$\langle\hat k\rangle$ 要在所给的态中求）。$\hat L_x,\hat L_y$ 在 $m=0$ 的态中右边为零，并不是说它们此时可以同时确定。
+    - 它约束的是同一个态的**两个标准差**（对大量全同体系分别测 $F$ 和测 $G$ 的统计离散），不是一次测量的误差。
+    - $\Delta x\,\Delta p_y\geqslant0$：不同方向的坐标和动量对易，没有限制。
 
 ---
 
@@ -513,7 +754,37 @@ $$[\hat A,\hat B\hat C]=[\hat A,\hat B]\hat C+\hat B[\hat A,\hat C],\qquad [\hat
 | 角动量 $\vv L$、$L^2$ | 中心力场 $U(r)$ | 空间转动不变 |
 | 宇称 $\hat P$ | $U(-\vv r)=U(\vv r)$ | 空间反演不变 |
 
-**守恒量与对称性**是一一对应的（诺特定理的量子版本），这是物理学最深刻的结论之一。
+**宇称守恒（教材重点）。** 定义**宇称算符** $\hat P\psi(\vv r,t)=\psi(-\vv r,t)$（空间反演）。$\hat P^2\psi=\psi$，所以 $\hat P^2$ 的本征值是 1，$\hat P$ 的本征值是 $\pm1$：$\hat P\psi=+\psi$ 叫**偶宇称**，$\hat P\psi=-\psi$ 叫**奇宇称**。若 $\hat H(-\vv r)=\hat H(\vv r)$，则对任意 $\psi$，
+
+$$\hat P\hat H(\vv r)\psi(\vv r)=\hat H(-\vv r)\psi(-\vv r)=\hat H(\vv r)\hat P\psi(\vv r)\ \Rightarrow\ [\hat P,\hat H]=0 ,$$
+
+宇称是守恒量，能量本征函数可以取确定的宇称，且宇称不随时间改变。谐振子 $\psi_n$ 的宇称为 $(-1)^n$，氢原子 $\psi_{nlm}$ 的宇称为 $(-1)^l$（由 $Y_{lm}$ 决定）。宇称没有经典对应，是纯量子的力学量。
+
+**守恒量与对称性**是一一对应的（诺特定理的量子版本）：一个不可观测量的对称性（绝对位置、绝对方向、绝对时刻、左右）导致一个可观测量的守恒，这是物理学最深刻的结论之一。
+
+!!! info "守恒量 ≠ 定态：两个容易混淆的“不随时间变”"
+
+    | | 守恒量 $F$ | 定态 $\Psi=\psi_E\ee^{-\ii Et/\hbar}$ |
+    |---|---|---|
+    | 是谁的性质 | **算符**的性质：$[\hat F,\hat H]=0$，$\partial_t\hat F=0$ | **态**的性质：能量本征态 |
+    | 什么不变 | 在**任意态**中，$F$ 的期望值和测值概率分布不变 | 在**这个态**中，任意（不显含 $t$ 的）力学量的期望值和概率分布不变 |
+    | 例子 | 氢原子中 $L^2$、$L_z$ 在任何叠加态中的分布都不变 | 氢原子处于 $\psi_{nlm}$ 时 $\langle x\rangle$ 也不变 |
+
+    守恒量的量子数（如 $n,l,m$）叫**好量子数**，可以用来标记状态。
+
+!!! example "例题 3.16"
+
+    宽为 $a$ 的无限深势阱中，$t=0$ 时粒子处于 $\psi=\tfrac1{\sqrt2}(\phi_1+\phi_2)$。求 $\langle H\rangle$、$\langle x\rangle$ 随时间的变化，并说明哪些量守恒。
+
+    **解。** $\Psi(x,t)=\tfrac1{\sqrt2}\left(\phi_1\ee^{-\ii E_1t/\hbar}+\phi_2\ee^{-\ii E_2t/\hbar}\right)$。
+
+    - 能量：$P(E_1)=P(E_2)=\tfrac12$ 不随时间变，$\langle H\rangle=\tfrac12(E_1+E_2)=\dfrac{5\pi^2\hbar^2}{4ma^2}$。$\hat H$ 不显含时间，能量守恒。
+    - 坐标：$\langle x\rangle=\tfrac12(x_{11}+x_{22})+x_{12}\cos\omega t$，其中 $x_{11}=x_{22}=\tfrac a2$，$\omega=\dfrac{E_2-E_1}{\hbar}=\dfrac{3\pi^2\hbar}{2ma^2}$，
+      $$x_{12}=\frac2a\int_0^ax\sin\frac{\pi x}{a}\sin\frac{2\pi x}{a}\dd x=-\frac{16a}{9\pi^2}\ \Rightarrow\ \langle x\rangle=\frac a2-\frac{16a}{9\pi^2}\cos\omega t .$$
+      粒子在阱中左右“晃动”，$[\hat x,\hat H]\neq0$，$x$ 不守恒。验证埃伦费斯特定理：$m\dd\langle x\rangle/\dd t=\langle p\rangle\neq0$。
+    - 关于阱中心的宇称：$\phi_1$ 偶、$\phi_2$ 奇，势对中心对称，宇称守恒，$P(+1)=P(-1)=\tfrac12$ 始终不变，但态本身没有确定宇称。
+
+    这个例子同时说明：**叠加态不是定态**（$\langle x\rangle$ 变化），而**守恒量的分布在非定态中也不变**。
 
 !!! theorem "定理 3.10（埃伦费斯特定理）"
 
@@ -523,15 +794,16 @@ $$[\hat A,\hat B\hat C]=[\hat A,\hat B]\hat C+\hat B[\hat A,\hat C],\qquad [\hat
 
     期望值在形式上满足牛顿方程。当波包足够窄、$\langle U'(x)\rangle\approx U'(\langle x\rangle)$ 时，波包中心的运动就是经典轨道——这就是经典力学作为量子力学极限的含义。
 
-!!! warning "易错点"
+!!! warning "本章易错点汇总"
 
     - **本征态 ≠ 任意态。** 只有在 $\hat F$ 的本征态中 $F$ 才有确定值；一般态中只能谈概率和期望值。
-    - **期望值不一定是可能的测量值。** 例如例题 3.6 中 $\langle E\rangle=5\hbar^2/ma^2$ 不是任何 $E_n$。
+    - **期望值不一定是可能的测量值。** 例如例题 3.10 中 $\langle E\rangle=5\hbar^2/ma^2$ 不是任何 $E_n$。
     - **展开系数要用归一化的本征函数**计算，并检查 $\sum\lvert c_n\rvert^2=1$；初态没有归一化时先归一化。
     - **$L^2$ 的本征值是 $l(l+1)\hbar^2$**，不是 $l^2\hbar^2$；$L_z$ 的本征值是 $m\hbar$，$\lvert m\rvert\leqslant l$。
     - **氢原子简并度是 $n^2$**（不计自旋）；计入自旋后是 $2n^2$。
     - 不确定关系中的 $\Delta F$ 是标准差，不是“测量误差”；$\Delta x\Delta p\geqslant\hbar/2$ 不是 $\geqslant\hbar$ 或 $h$（数量级估计时可以粗略写 $\Delta x\Delta p\sim\hbar$）。
     - 守恒量不一定处于本征态：守恒的是概率分布，不是“取确定值”。
+    - 求测值概率时，**简并本征值要把所有对应本征态的概率加起来**；不同表示（$\sin\theta\cos\varphi$ 与 $Y_{1,\pm1}$）之间换算时注意归一化因子。
 
 ---
 
@@ -553,6 +825,8 @@ graph TD
   J --> K["对易 ⇔ 共同本征函数<br/>力学量完全集"]
   J --> L["不确定关系<br/>ΔFΔG ≥ |⟨[F,G]⟩|/2"]
   J --> M["d⟨F⟩/dt = ⟨[F,H]⟩/iħ<br/>守恒量 ↔ 对称性"]
+  M --> N["能量 · 动量 · 角动量 · 宇称"]
+  D --> O["测量后坍缩为本征态<br/>谱分解 F = Σλₙ|φₙ⟩⟨φₙ|"]
 ```
 
 ### 核心公式
@@ -565,9 +839,14 @@ graph TD
 | 角动量（球坐标） | $\hat L_z=-\ii\hbar\partial_\varphi$，$\hat L^2Y_{lm}=l(l+1)\hbar^2Y_{lm}$，$\hat L_zY_{lm}=m\hbar Y_{lm}$ |
 | 径向方程 | $-\dfrac{\hbar^2}{2m}u''+\left[U+\dfrac{l(l+1)\hbar^2}{2mr^2}\right]u=Eu$，$u=rR$ |
 | 氢原子 | $E_n=-\dfrac{e^2}{8\pi\varepsilon_0a_0n^2}$，$n=n_r+l+1$，简并度 $n^2$ |
+| 巴耳末公式 | $\nu=R_\infty c\left(\dfrac1{n'^2}-\dfrac1{n^2}\right)$，$R_\infty=-E_1/hc$ |
+| 磁矩 | $M_z=-m\mu_{\mathrm B}$，$\mu_{\mathrm B}=\dfrac{e\hbar}{2m_e}$，$M_z/L_z=-\dfrac{e}{2m_e}$ |
+| 低阶球谐 | $x\pm\ii y\propto rY_{1,\pm1}$，$z\propto rY_{10}$；宇称 $(-1)^l$ |
 | 氢原子基态 | $\psi_{100}=\dfrac{1}{\sqrt{\pi a_0^3}}\ee^{-r/a_0}$，$\langle r\rangle=\tfrac32a_0$，$\langle 1/r\rangle=1/a_0$ |
 | 基本对易关系 | $[\hat x_\alpha,\hat p_\beta]=\ii\hbar\delta_{\alpha\beta}$，$[\hat L_x,\hat L_y]=\ii\hbar\hat L_z$，$[\hat L^2,\hat L_\alpha]=0$ |
 | 不确定关系 | $\Delta F\Delta G\geqslant\tfrac12\lvert\langle[\hat F,\hat G]\rangle\rvert$，$\Delta x\Delta p\geqslant\hbar/2$ |
+| 投影与谱分解 | $P(\lambda_n)=\lvert\ip{\phi_n}{\psi}\rvert^2$，$\sum_n\ket{\phi_n}\bra{\phi_n}=\hat I$，$\hat F=\sum_n\lambda_n\ket{\phi_n}\bra{\phi_n}$ |
+| 宇称 | $\hat P\psi(\vv r)=\psi(-\vv r)$，本征值 $\pm1$，$\hat H(-\vv r)=\hat H(\vv r)\Rightarrow[\hat P,\hat H]=0$ |
 | 时间演化 | $\dfrac{\dd\langle F\rangle}{\dd t}=\left\langle\dfrac{\partial\hat F}{\partial t}\right\rangle+\dfrac{1}{\ii\hbar}\langle[\hat F,\hat H]\rangle$ |
 | 常用积分 | $\int_0^\infty r^n\ee^{-\beta r}\dd r=\dfrac{n!}{\beta^{n+1}}$，$\int_{-\infty}^\infty x^2\ee^{-\lambda x^2}\dd x=\dfrac{\sqrt\pi}{2\lambda^{3/2}}$ |
 
@@ -581,9 +860,15 @@ graph TD
 4. 概率 $\lvert c_n\rvert^2$（连续谱为概率密度），检查 $\sum=1$；
 5. 期望值 $\sum\lambda_n\lvert c_n\rvert^2$，或直接 $\int\psi^*\hat F\psi$。
 
+**角动量测量题：** 把角度部分中的 $x\pm\ii y$、$z$ 换成 $Y_{1,\pm1}$、$Y_{10}$（高阶用 $Y_{2m}$），直接读出系数（例题 3.11）。
+
+**有限维（矩阵）题：** 写出算符在给定基下的矩阵 → 解久期方程求本征值 → 求归一化本征矢 → 态矢量与本征矢做内积得概率（例题 3.12）。
+
 **对易子计算：** 化为基本对易关系 + 乘积恒等式；或作用在任意试探函数 $\psi$ 上直接算。
 
-**判断守恒量：** 算 $[\hat F,\hat H]$，或看 $\hat H$ 有什么对称性。
+**判断守恒量：** 算 $[\hat F,\hat H]$，或看 $\hat H$ 有什么对称性（平移 → 动量，转动 → 角动量，反演 → 宇称）。
+
+**数量级估计：** 用 $\Delta x\,\Delta p\sim\hbar$ 把能量写成尺度 $r$ 的函数再求极小（例题 3.15）。
 
 ---
 
@@ -603,17 +888,23 @@ graph TD
 
         $\lvert c(p)\rvert^2=\dfrac{1}{\alpha\hbar\sqrt\pi}\ee^{-p^2/\alpha^2\hbar^2}$，仍是高斯分布。
 
-!!! example "练习 2（教材习题 3.2）"
+!!! example "练习 2（教材习题 3.7）"
 
-    氢原子处在基态 $\psi=\dfrac{1}{\sqrt{\pi a_0^3}}\ee^{-r/a_0}$，求 (1) $\langle r\rangle$；(2) 势能 $-\dfrac{e^2}{4\pi\varepsilon_0r}$ 的期望值；(3) 最概然半径；(4) 动能期望值；(5) 动量的概率分布函数。
+    一维运动粒子的状态是 $\psi(x)=Ax\ee^{-\lambda x}$（$x\geqslant0$），$\psi=0$（$x<0$），$\lambda>0$。求 (1) 粒子动量的概率分布函数；(2) 动量期望值。
 
     ??? success "答案"
 
-        见例题 3.2 与例题 3.5：(1) $\tfrac32a_0$；(2) $-\dfrac{e^2}{4\pi\varepsilon_0a_0}=-27.2\ \mathrm{eV}$；(3) $a_0$；(4) $\dfrac{e^2}{8\pi\varepsilon_0a_0}=13.6\ \mathrm{eV}$；(5) $\lvert c(\vv p)\rvert^2=\dfrac{8a_0^3\hbar^5}{\pi^2(a_0^2p^2+\hbar^2)^4}$。
+        归一化：$A^2\displaystyle\int_0^\infty x^2\ee^{-2\lambda x}\dd x=\frac{A^2}{4\lambda^3}=1$，$A=2\lambda^{3/2}$。
 
-        (4) 也可以直接算 $\langle T\rangle=-\dfrac{\hbar^2}{2m}\int\psi\nabla^2\psi\,\dd\tau=\dfrac{\hbar^2}{2m}\int\lvert\nabla\psi\rvert^2\dd\tau=\dfrac{\hbar^2}{2ma_0^2}$，等于 $13.6\ \mathrm{eV}$。
+        (1) $c(p)=\dfrac{1}{\sqrt{2\pi\hbar}}\displaystyle\int_0^\infty Ax\,\ee^{-(\lambda+\ii p/\hbar)x}\dd x=\frac{A}{\sqrt{2\pi\hbar}}\frac{1}{(\lambda+\ii p/\hbar)^2}$，
 
-!!! example "练习 3（教材习题 3.5）"
+        $$\lvert c(p)\rvert^2=\frac{2\lambda^3\hbar^3}{\pi\left(\lambda^2\hbar^2+p^2\right)^2}.$$
+
+        检验：$\int_{-\infty}^{\infty}\dfrac{\dd p}{(p^2+b^2)^2}=\dfrac{\pi}{2b^3}$，$b=\lambda\hbar$，积分为 1。
+
+        (2) $\lvert c(p)\rvert^2$ 是 $p$ 的偶函数，$\langle p\rangle=0$。也可以直接看出：$\psi$ 是实函数，$\int\psi(-\ii\hbar\psi')\dd x=-\tfrac{\ii\hbar}{2}[\psi^2]_0^\infty=0$。**实波函数（束缚态）的动量期望值总是零。**
+
+!!! example "练习 3（教材习题 3.5）【HUST 870 2007】"
 
     刚性转子转动惯量为 $I$，经典能量 $H=\dfrac{L^2}{2I}$。求下列情况下的定态能量和波函数：(1) 绕固定轴转动；(2) 绕固定点转动。
 
@@ -623,7 +914,7 @@ graph TD
 
         (2) $\hat H=\dfrac{\hat L^2}{2I}$，$\psi=Y_{lm}(\theta,\varphi)$，$E_l=\dfrac{l(l+1)\hbar^2}{2I}$，$l=0,1,2,\dots$，$(2l+1)$ 度简并。双原子分子的转动光谱就是这样的能级结构，相邻跃迁频率等间距。
 
-!!! example "练习 4（教材习题 3.6、3.11）"
+!!! example "练习 4（教材习题 3.6）【HUST 870 2015、2024】"
 
     $t=0$ 时粒子的状态为 $\psi(x)=A\left[\sin^2kx+\dfrac12\cos kx\right]$，求此时动量的可能值、概率、期望值和动能期望值。
 
@@ -639,7 +930,7 @@ graph TD
 
         （平面波不可归一化，这里按箱归一化理解：把 $\ee^{\ii nkx}$ 看成正交基。）
 
-!!! example "练习 5（教材习题 3.9）"
+!!! example "练习 5（教材习题 3.9）【HUST 870 2006、2007】"
 
     氢原子处于 $\psi=\dfrac12R_{21}Y_{10}-\dfrac{\sqrt3}{2}R_{21}Y_{1,-1}$，求能量、角动量平方、角动量 $z$ 分量的可能值、概率和期望值。
 
@@ -689,4 +980,112 @@ graph TD
 
         $\langle L_x^2+L_y^2\rangle=\langle L^2-L_z^2\rangle=[l(l+1)-m^2]\hbar^2$。绕 $z$ 轴的转动对称性使 $\langle L_x^2\rangle=\langle L_y^2\rangle$，各占一半。
 
-        即使 $m=l$，$\langle L_x^2+L_y^2\rangle=l\hbar^2>0$：这就是动画 3-1 中 $\vv L$ 不能完全指向 $z$ 轴的定量说法。
+        即使 $m=l$，$\langle L_x^2+L_y^2\rangle=l\hbar^2>0$：这就是动画 3-2 中 $\vv L$ 不能完全指向 $z$ 轴的定量说法。
+
+---
+
+## 真题精选
+
+下面的题目选自华中科技大学 870 量子力学历年真题，与本章内容直接相关，标签中是出现年份。与上面例题、练习重复的题已在原处标注。
+
+!!! example "真题 1【HUST 870 2003、2004、2010、2012、2015、2016】升降算符"
+
+    令 $\hat L_\pm=\hat L_x\pm\ii\hat L_y$。(1) 求 $[\hat L^2,\hat L_\pm]$ 和 $[\hat L_z,\hat L_\pm]$；(2) 证明 $\hat L_\pm Y_{lm}$ 仍是 $\hat L^2$、$\hat L_z$ 的本征函数，求本征值并说明物理意义。
+
+    ??? success "答案"
+
+        (1) $\hat L^2$ 与各分量都对易，所以 $[\hat L^2,\hat L_\pm]=0$。
+
+        $$[\hat L_z,\hat L_\pm]=[\hat L_z,\hat L_x]\pm\ii[\hat L_z,\hat L_y]=\ii\hbar\hat L_y\pm\ii(-\ii\hbar\hat L_x)=\pm\hbar(\hat L_x\pm\ii\hat L_y)=\pm\hbar\hat L_\pm .$$
+
+        (2) $\hat L^2(\hat L_\pm Y_{lm})=\hat L_\pm\hat L^2Y_{lm}=l(l+1)\hbar^2(\hat L_\pm Y_{lm})$；
+
+        $$\hat L_z(\hat L_\pm Y_{lm})=(\hat L_\pm\hat L_z\pm\hbar\hat L_\pm)Y_{lm}=(m\pm1)\hbar\,(\hat L_\pm Y_{lm}).$$
+
+        $\hat L_\pm$ 不改变 $l$，只把 $m$ 升高或降低 1，故称升、降算符。因为 $\lvert m\rvert\leqslant l$，“梯子”必须在两端中断：$\hat L_+Y_{ll}=0$，$\hat L_-Y_{l,-l}=0$。归一化后 $\hat L_\pm Y_{lm}=\hbar\sqrt{(l\mp m)(l\pm m+1)}\,Y_{l,m\pm1}$（例题 3.12 用过），第 4 章会用它构造角动量矩阵。
+
+!!! example "真题 2【HUST 870 2009、2011、2014、2015】厄米性与本征函数的判断"
+
+    (1) $\dfrac{\dd}{\dd x}$ 和 $\ii\dfrac{\dd}{\dd x}$ 是否为厄米算符？(2) $x^2$、$\ee^x$、$\sin x+\cos x$ 是否为 $\dfrac{\dd^2}{\dd x^2}$ 的本征函数？若是，求本征值。
+
+    ??? success "答案"
+
+        (1) 分部积分（边界项为零）：$\displaystyle\int\psi^*\frac{\dd\phi}{\dd x}\dd x=-\int\Big(\frac{\dd\psi}{\dd x}\Big)^*\phi\,\dd x$，即 $\big(\tfrac{\dd}{\dd x}\big)^\dagger=-\tfrac{\dd}{\dd x}$，是**反厄米**算符，不能表示力学量。$\big(\ii\tfrac{\dd}{\dd x}\big)^\dagger=(-\ii)\big(-\tfrac{\dd}{\dd x}\big)=\ii\tfrac{\dd}{\dd x}$，是厄米算符（$\hat p_x=-\ii\hbar\tfrac{\dd}{\dd x}$ 同理，见例题 3.1）。
+
+        (2) $(x^2)''=2$，不正比于 $x^2$，不是本征函数；$(\ee^x)''=\ee^x$，是，本征值 1；$(\sin x+\cos x)''=-(\sin x+\cos x)$，是，本征值 $-1$。
+
+!!! example "真题 3【HUST 870 2003、2004、2005、2009、2015、2018、2020】对易子计算"
+
+    计算：(1) $[x^3,\tfrac{\dd}{\dd x}]$；(2) $[\hat p_x,\ee^{\alpha x}]$；(3) 若 $[\hat A,\hat B]=1$，求 $[\hat A,\hat B^n]$；(4) $[\hat x,\hat p_x^2f(x)]$；(5) $[\hat L_x,\hat p^2]$。
+
+    ??? success "答案"
+
+        (1) 作用于任意 $\psi$：$x^3\psi'-(x^3\psi)'=-3x^2\psi$，所以 $[x^3,\tfrac{\dd}{\dd x}]=-3x^2$。
+
+        (2) $[\hat p_x,f(x)]=-\ii\hbar f'(x)$，故 $[\hat p_x,\ee^{\alpha x}]=-\ii\hbar\alpha\,\ee^{\alpha x}$。
+
+        (3) 归纳：$[\hat A,\hat B^n]=[\hat A,\hat B^{n-1}]\hat B+\hat B^{n-1}[\hat A,\hat B]=[\hat A,\hat B^{n-1}]\hat B+\hat B^{n-1}$，由 $n=1$ 成立推得 $[\hat A,\hat B^n]=n\hat B^{n-1}$。
+
+        (4) $[\hat x,\hat p_x^2f]=[\hat x,\hat p_x^2]f+\hat p_x^2[\hat x,f]=2\ii\hbar\,\hat p_xf(x)$（$\hat x$ 与 $f(x)$ 对易）。
+
+        (5) $\hat{\vv L}$ 与任何标量算符（$\hat p^2$、$r$、$\hat{\vv r}\cdot\hat{\vv p}$）对易，$[\hat L_x,\hat p^2]=0$。直接验证：$[\hat L_x,\hat p^2]=\sum_\beta\big([\hat L_x,\hat p_\beta]\hat p_\beta+\hat p_\beta[\hat L_x,\hat p_\beta]\big)=2\ii\hbar\sum_\beta\varepsilon_{x\beta\gamma}\hat p_\gamma\hat p_\beta=0$（反对称乘对称）。
+
+!!! example "真题 4【HUST 870 2012、2013、2001】$Y_{lm}$ 态中 $L_x$ 的期望值与涨落"
+
+    证明在 $Y_{lm}$ 中 $\langle L_x\rangle=\langle L_y\rangle=0$，并求 $(\Delta L_x)^2$。
+
+    ??? success "答案"
+
+        **升降算符法：** $\hat L_x=\tfrac12(\hat L_++\hat L_-)$，$\hat L_\pm Y_{lm}\propto Y_{l,m\pm1}$ 与 $Y_{lm}$ 正交，所以 $\langle L_x\rangle=0$；同理 $\langle L_y\rangle=0$。（对易子法见练习 8。）
+
+        $\langle L_x^2\rangle=\langle L_y^2\rangle=\tfrac12\langle L^2-L_z^2\rangle=\tfrac12[l(l+1)-m^2]\hbar^2$，所以 $(\Delta L_x)^2=\tfrac12[l(l+1)-m^2]\hbar^2$，而 $(\Delta L_z)^2=0$。
+
+!!! example "真题 5【HUST 870 2005、2016】$\psi=c_1Y_{11}+c_2Y_{20}$ 的角动量测量"
+
+    设 $\lvert c_1\rvert^2+\lvert c_2\rvert^2=1$。求 $L_z$、$L^2$ 的可能值、概率和期望值；再求 $L_x$ 的可能值和概率。
+
+    ??? success "答案"
+
+        - $L_z$：$\hbar$（概率 $\lvert c_1\rvert^2$）或 $0$（概率 $\lvert c_2\rvert^2$），$\langle L_z\rangle=\lvert c_1\rvert^2\hbar$。
+        - $L^2$：$2\hbar^2$（概率 $\lvert c_1\rvert^2$）或 $6\hbar^2$（概率 $\lvert c_2\rvert^2$），$\langle L^2\rangle=(2\lvert c_1\rvert^2+6\lvert c_2\rvert^2)\hbar^2$。
+        - $L_x$：$\hat L_x$ 与 $\hat L^2$ 对易，可以在 $l=1$ 和 $l=2$ 两个子空间里分别对角化，不同 $l$ 之间不干涉。$l=1$ 子空间用例题 3.12 的本征矢：$Y_{11}=(1,0,0)^{\mathrm T}$ 的投影为 $\tfrac12,\tfrac1{\sqrt2},\tfrac12$，得 $L_x=\hbar,0,-\hbar$ 的概率 $\tfrac14,\tfrac12,\tfrac14$。$l=2$ 子空间同理（$5\times5$ 矩阵），$Y_{20}$ 中 $L_x=\pm2\hbar,\pm\hbar,0$ 的概率为 $\tfrac38,0,\tfrac14$（各 $\pm$ 号分别）。合起来：
+
+        $$P(L_x=\pm2\hbar)=\tfrac38\lvert c_2\rvert^2,\quad P(\pm\hbar)=\tfrac14\lvert c_1\rvert^2,\quad P(0)=\tfrac12\lvert c_1\rvert^2+\tfrac14\lvert c_2\rvert^2 .$$
+
+        检验：总和 $=\lvert c_1\rvert^2+\lvert c_2\rvert^2=1$，且 $\langle L_x\rangle=0$，与真题 4 一致。
+
+!!! example "真题 6【HUST 870 2007、2013】势阱和谐振子中的不确定关系"
+
+    (1) 宽 $a$ 的无限深势阱基态中，$(\Delta x)^2(\Delta p)^2=?$ 是否满足不确定关系？(2) 谐振子第 $n$ 个本征态中呢？
+
+    ??? success "答案"
+
+        (1) 由对称性 $\langle x\rangle=\tfrac a2$，$\langle x^2\rangle=a^2\left(\tfrac13-\tfrac{1}{2\pi^2}\right)$，所以 $(\Delta x)^2=\dfrac{a^2(\pi^2-6)}{12\pi^2}$；$\langle p\rangle=0$（实波函数），$\langle p^2\rangle=2mE_1=\dfrac{\pi^2\hbar^2}{a^2}$。
+
+        $$(\Delta x)^2(\Delta p)^2=\frac{\pi^2-6}{12}\hbar^2\approx0.32\hbar^2>\frac{\hbar^2}{4},$$
+
+        满足不确定关系。
+
+        (2) 宇称给出 $\langle x\rangle=\langle p\rangle=0$；$\langle x^2\rangle=\left(n+\tfrac12\right)\dfrac{\hbar}{m\omega}$，$\langle p^2\rangle=\left(n+\tfrac12\right)m\hbar\omega$（由位力定理，动能、势能各占 $E_n$ 的一半）。所以 $(\Delta x)^2(\Delta p)^2=\left(n+\tfrac12\right)^2\hbar^2\geqslant\dfrac{\hbar^2}{4}$，只有基态取等号——基态是最小不确定态。
+
+!!! example "真题 7【HUST 870 2019、2020、2022、2024】期望值随时间的变化"
+
+    证明 $\dfrac{\dd\overline F}{\dd t}=\overline{\dfrac{\partial\hat F}{\partial t}}+\dfrac{1}{\ii\hbar}\overline{[\hat F,\hat H]}$；说明定态中不显含时间的力学量，期望值和测值概率都不随时间变化；并由此导出埃伦费斯特定理。
+
+    ??? success "答案"
+
+        证明见定理 3.9：对 $\overline F=\int\Psi^*\hat F\Psi\,\dd\tau$ 求导，用 $\ii\hbar\partial_t\Psi=\hat H\Psi$ 和 $\hat H$ 的厄米性 $\int(\hat H\Psi)^*\hat F\Psi=\int\Psi^*\hat H\hat F\Psi$。
+
+        定态 $\Psi=\psi\,\ee^{-\ii Et/\hbar}$：$\overline F=\int\psi^*\hat F\psi\,\dd\tau$，相因子消去；$c_n(t)=\int\phi_n^*\Psi\,\dd\tau=c_n(0)\ee^{-\ii Et/\hbar}$，$\lvert c_n\rvert^2$ 不变。这一结论**不要求** $F$ 是守恒量。
+
+        令 $\hat F=\hat{\vv p}$：$\dfrac{\dd\overline{\vv p}}{\dd t}=\dfrac{1}{\ii\hbar}\overline{[\hat{\vv p},U]}=-\overline{\nabla U}$，即埃伦费斯特定理（定理 3.10）。
+
+!!! example "真题 8【HUST 870 2014、2015、2017】角动量本征函数的判断"
+
+    (1) $\phi=x+y+z$ 是否为 $\hat L^2$ 的本征函数？(2) 证明 $y+\ii z$、$z+\ii x$、$x+\ii y$ 分别是 $\hat L_x$、$\hat L_y$、$\hat L_z$ 属于本征值 $\hbar$ 的本征函数。
+
+    ??? success "答案"
+
+        (1) 是。由例题 3.11，$\phi$ 的角向部分是 $Y_{11}$、$Y_{10}$、$Y_{1,-1}$ 的线性组合，都属于 $l=1$；$\hat L^2$ 只作用于角度，所以 $\hat L^2\phi=2\hbar^2\phi$。
+
+        (2) $x+\ii y=r\sin\theta\,\ee^{\ii\varphi}$，$\hat L_z=-\ii\hbar\partial_\varphi$，故 $\hat L_z(x+\ii y)=\hbar(x+\ii y)$（例题 3.3）。$\hat L_x,\hat L_y,\hat L_z$ 与 $x,y,z$ 同时轮换 $x\to y\to z\to x$ 时公式形式不变，所以 $\hat L_x(y+\ii z)=\hbar(y+\ii z)$，$\hat L_y(z+\ii x)=\hbar(z+\ii x)$。
