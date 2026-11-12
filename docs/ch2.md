@@ -108,7 +108,7 @@ $$\psi_{\vv p}(\vv r)=\frac{1}{(2\pi\hbar)^{3/2}}\ee^{\ii\vv p\cdot\vv r/\hbar}.
 
     $c(\vv p)$ 叫**动量空间的波函数**，$\lvert c(\vv p)\rvert^2\dd^3p$ 是动量在 $\vv p\sim\vv p+\dd\vv p$ 内的概率。由帕塞瓦尔定理 $\int\lvert\psi\rvert^2\dd\tau=\int\lvert c\rvert^2\dd^3p$，归一化自动保持。
 
-在一维情况下，$\psi(x)$ 和 $c(p)$ 就是一对**傅里叶变换**（变量 $k=p/\hbar$）。用信号与系统的语言来说：$\psi(x)$ 是“时域信号”，$c(p)$ 是“频谱”。窄脉冲对应宽频谱，这就是第 3 章不确定关系的数学根源。
+在一维情况下，$\psi(x)$ 和 $c(p)$ 就是一对**傅里叶变换**（变量 $k=p/\hbar$）。用信号与系统的语言来说：$\psi(x)$ 是“时域信号”，$c(p)$ 是“频谱”。窄脉冲对应宽频谱，这就是第 3 章不确定关系的数学根源。傅里叶变换的定义和性质可复习[复变函数 · 第 8 章 傅里叶变换](https://cockroach-f.github.io/complex-functions/ch8.html)。
 
 **波包。** 把许多动量相近的平面波叠加，就得到一个局域的**波包**。下面的动画用高斯波包演示：
 
