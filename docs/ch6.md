@@ -342,6 +342,17 @@ $$\tan\delta_l=\frac{j_l(ka)}{n_l(ka)},\qquad\text{s 波：}\ \delta_0=-ka\ (\te
 
     对方势垒，高能时由 $k'=k\sqrt{1-U_0/E}\approx k\left(1-\dfrac{U_0}{2E}\right)$，衔接条件中 $k'a$ 与 $ka$ 只差 $\dfrac{kaU_0}{2E}=\dfrac{aU_0}{\hbar v}$；它很小时 $\delta_0$ 很小，微扰处理合理。低能时 $\tan\delta_0\approx\sqrt{E/|U_0|}\tan k_0a$，只要 $k_0a$ 不接近 $\pi/2$（远离零能共振），$\delta_0$ 就很小。 $\square$
 
+!!! success "分波法与玻恩近似怎样分工"
+
+    | | 分波法 | 玻恩近似 |
+    |---|---|---|
+    | 适用能区 | **低能**（$ka\lesssim1$），只需少数几个分波 | **高能**或弱势（$\lvert U_0 a/\hbar v\rvert\ll1$） |
+    | 物理图像 | 只有 $l\lesssim ka$ 的分波碰得到势场（经典碰撞参数 $l/k\lesssim a$） | 散射振幅就是势能的傅里叶变换 $f\propto\tilde U(\boldsymbol K)$，$K=2k\sin\tfrac\theta2$ |
+    | 低能极限 | $s$ 波为主，截面各向同性，由散射长度决定 | 仅当势阱浅到不能形成束缚态时才可用 |
+    | 高能极限 | 要叠加很多分波，不方便 | 越来越好；角分布逐渐集中于前向 |
+
+    两条路线在浅方势阱的低能极限下给出同一个截面（练习 7），正好作为互相校验。光学定理 $\sigma_t=\dfrac{4\pi}{k}\operatorname{Im}f(0)$ 则是对振幅整体的约束：一级玻恩近似的 $f$ 是实数，还不满足它。
+
 ### 6.4.4 屏蔽库仑场与卢瑟福公式
 
 !!! example "例题 6.4（带电粒子被中性原子散射）"
@@ -607,6 +618,41 @@ $$u_1\cos\theta_0=v_m+u_1'\cos\theta,\qquad u_1\sin\theta_0=u_1'\sin\theta .$$
     $$\frac{1}{Q}\int_0^{\pi/6}\frac{Q\cos\theta_0}{\pi}2\pi\sin\theta_0\,\mathrm d\theta_0=\sin^2\theta_0\Big|_0^{\pi/6}=\frac14 .$$
 
     质心系中对应 $\theta<60^\circ$，比例 $\dfrac{1-\cos60^\circ}{2}=\dfrac14$，一致。
+
+## 补充练习
+
+华科 870 没有出过散射大题，下面两题补充教材中尚未收入练习的题型。答案可以展开查看。
+
+!!! example "补充练习 1【教材 6.5】截断的库仑势"
+
+    势场为
+
+    $$U=\frac{Ze^2}{4\pi\varepsilon_0}\left(\frac1r-\frac{r}{a^2}\right)\quad(r<a),\qquad U=0\quad(r>a)$$
+
+    （在 $r=a$ 处连续为零）。用玻恩近似求散射振幅，并讨论 $qa\gg1$ 与 $qa\to0$ 两个极限。其中 $q=2k\sin\tfrac\theta2$。
+
+    ??? success "答案"
+
+        记 $C=\dfrac{Ze^2}{4\pi\varepsilon_0}$，则
+
+        $$\int_0^a rU\sin qr\,\mathrm{d}r=C\int_0^a\left(1-\frac{r^2}{a^2}\right)\sin qr\,\mathrm{d}r=\frac Cq\left[1-\frac{2\sin qa}{qa}+\frac{2(1-\cos qa)}{(qa)^2}\right].$$
+
+        于是
+
+        $$f(\theta)=-\frac{2mC}{\hbar^2 q^2}\left[1-\frac{2\sin qa}{qa}+\frac{2(1-\cos qa)}{q^2 a^2}\right],\qquad \sigma(\theta)=\lvert f\rvert^2.$$
+
+        两个极限可以用来检验：$qa\gg1$ 时方括号趋于 1，回到卢瑟福公式 $\sigma=\dfrac{m^2 C^2}{4\hbar^4 k^4\sin^4(\theta/2)}$；$qa\to0$ 时方括号约为 $\dfrac{(qa)^2}{4}$，$f\to-\dfrac{m C a^2}{2\hbar^2}$ 有限，说明截断（屏蔽）消除了库仑散射在前向的发散。
+
+!!! example "补充练习 2【概念题】分波法与玻恩近似的分工"
+
+    简述分波法和玻恩近似各自适用的能区与物理图像，并写出光学定理。全同的自旋为 0 的玻色子弹性散射，微分截面应怎样改写？
+
+    ??? success "答案"
+
+        - 分波法适用于**低能**（$ka\lesssim1$），只需保留少数几个分波。只有满足 $l\lesssim ka$ 的分波才碰得到势场，因为经典碰撞参数 $l/k$ 必须小于力程 $a$。
+        - 玻恩近似适用于**高能**或**弱势**，其结果 $f\propto\tilde U(q)$ 就是势能的傅里叶变换。
+        - 光学定理：$\sigma_t=\dfrac{4\pi}{k}\operatorname{Im}f(0)$。
+        - 全同粒子散射（与第 8 章衔接）：对自旋为 0 的玻色子，$\sigma=\lvert f(\theta)+f(\pi-\theta)\rvert^2$，在 $\theta=90^\circ$ 处是经典（可区分）结果的两倍。
 
 ---
 

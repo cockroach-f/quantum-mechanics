@@ -118,6 +118,29 @@ $$\Psi=\sum_na_nu_n+\int a_q\,u_q\,\dd q,\qquad \sum_n\lvert a_n\rvert^2+\int\lv
 
 坐标表象的“基矢”是 $\delta(x-x')$（以 $x'$ 编号，连续），分量就是 $\Psi(x')$ 本身；动量表象的基矢是 $\psi_p(x)$，分量是 $c(p)$。常用的还有**能量表象**（基矢 = 定态 $\psi_n$）和**角动量表象**（基矢 = $Y_{lm}$）。
 
+最容易看清这套几何的，是二维的自旋空间：基矢只有两个，矩阵都是 $2\times2$ 的，不必一上来就面对 $\psi(x)$ 那种无穷维的函数空间。
+
+!!! example "引例　二维自旋：最简单的表象"
+
+    取 $\hat S_z$ 的本征态 $\ket{\uparrow},\ket{\downarrow}$ 为基（$S_z$ 表象），一般的自旋态写成
+
+    $$\ket\psi=a_\uparrow\ket{\uparrow}+a_\downarrow\ket{\downarrow}=\begin{pmatrix}a_\uparrow\\a_\downarrow\end{pmatrix},\qquad \lvert a_\uparrow\rvert^2+\lvert a_\downarrow\rvert^2=1.$$
+
+    $\lvert a_\uparrow\rvert^2$ 就是沿 $z$ 方向测得自旋向上的概率。若改用 $\hat S_x$ 的本征态
+
+    $$\ket{+_x}=\frac1{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix},\qquad \ket{-_x}=\frac1{\sqrt2}\begin{pmatrix}1\\-1\end{pmatrix}$$
+
+    作基（$S_x$ 表象），同一态的分量变成 $b_\pm=\ip{\pm_x}{\psi}$，也就是
+
+    $$b=S^\dagger a,\qquad S=\frac1{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}.$$
+
+    矢量 $\ket\psi$ 本身没有变，变的只是用来读分量的坐标轴——这就是换表象。第 7 章会系统讨论自旋；这里只需记住：后面的 $\psi(x)$、$c(p)$、$a_n$ 都是“某个基下的分量”，和这里的 $(a_\uparrow,a_\downarrow)$ 是同一类对象，只不过基从 2 个变成了无穷多个。
+
+<figure markdown>
+![态矢在一组正交基上的投影](assets/figs/ch4_vector_projection_analogy.png){ width="520" }
+<figcaption>图 4.1　三维矢量在三个正交轴上的投影，对应封闭性 $1=\ket x\bra x+\ket y\bra y+\ket z\bra z$。换一组轴，投影（分量）变了，矢量本身不变——量子力学里的换表象也是如此。（图源：QMUSTB）</figcaption>
+</figure>
+
 !!! example "例题 4.2　能量表象中的列矩阵"
 
     一维无限深势阱（$0<x<a$）中粒子处于 $\Psi(x,0)=\dfrac{1}{\sqrt2}\left[\psi_1(x)+\ii\,\psi_2(x)\right]$，$\psi_n=\sqrt{\dfrac2a}\sin\dfrac{n\pi x}{a}$。写出它在能量表象中的波函数（$t=0$ 及任意 $t$），并求 $\langle H\rangle$。
@@ -356,6 +379,10 @@ $$F'_{\alpha\beta}=\sum_{m,n}S_{m\alpha}^*F_{mn}S_{n\beta},\qquad\text{即}\quad
 
     (2) $b=S^\dagger a=\dfrac{1}{\sqrt2}\begin{pmatrix}1&-\ii\\1&\ii\end{pmatrix}\begin{pmatrix}1\\0\end{pmatrix}=\dfrac{1}{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix}$。测量 $F$ 得 $+1$、$-1$ 的概率各 $\tfrac12$，$\langle F\rangle=0$。直接用旧表象算 $a^\dagger Fa=F_{11}=0$，结果一致。（这个矩阵就是第 7 章的泡利矩阵 $\sigma_y$。）
 
+!!! info "只靠代数关系就能写出矩阵"
+
+    若两个厄米算符满足 $\hat A^2=\hat B^2=1$、$\hat A\hat B+\hat B\hat A=0$，则在 $A$ 表象中必有 $A=\mathrm{diag}(1,-1)$，$B=\begin{pmatrix}0&e^{-\ii\delta}\\e^{\ii\delta}&0\end{pmatrix}$（取相位 $\delta=0$ 即 $\sigma_x$）。不必事先知道算符的微分表达式，对易和反对易关系已经把矩阵定下来了——这正是第 7 章泡利矩阵的代数原型。完整计算见本章补充练习【HUST 870 2004】。
+
 !!! example "例题 4.8　坐标表象 $\to$ 动量表象也是幺正变换"
 
     说明 4.1 节的傅里叶变换是“连续指标”的幺正变换。
@@ -536,6 +563,11 @@ N=\begin{pmatrix}0&&&\\&1&&\\&&2&\\&&&\ddots\end{pmatrix}.$$
 
 $a$ 只有对角线**上方**一条非零，$a^\dagger$ 只有**下方**一条非零（互为厄米共轭）。于是 $\hat x\propto\hat a+\hat a^\dagger$ 在能量表象中是三对角、对角元为零的矩阵（动画 4-2）。
 
+<figure markdown>
+![谐振子能级梯与升降算符](assets/figs/ch4_ladder_operators.png){ width="240" }
+<figcaption>图 4.2　占有数表象中的能级梯：$\hat a^\dagger$ 把 $\ket n$ 升到 $\ket{n+1}$，$\hat a$ 降到 $\ket{n-1}$，到 $n=0$ 时再降就得到零矢量。（图源：QMUSTB）</figcaption>
+</figure>
+
 <figure class="video" markdown>
 <video controls preload="metadata" width="100%" poster="assets/posters/C4_Ladder.jpg"><source src="assets/videos/C4_Ladder.mp4" type="video/mp4"></video>
 <figcaption>动画 4-4　升降算符在等间距能级间“爬梯子”：$\hat a^\dagger$ 每次升一级、带系数 $\sqrt{n+1}$，$\hat a$ 每次降一级、带系数 $\sqrt n$，到 $\ket0$ 时 $\hat a\ket0=0$；右侧是占有数表象中的矩阵。</figcaption>
@@ -587,6 +619,7 @@ $$[\hat a,\hat N]=\hat a,\qquad[\hat a^\dagger,\hat N]=-\hat a^\dagger .$$
     4. **$\hat x$ 在动量表象中是 $+\ii\hbar\partial_p$。** 与 $\hat p=-\ii\hbar\partial_x$ 差一个符号，记法：两者都必须保证 $[\hat x,\hat p]=\ii\hbar$。
     5. **$\hat a$、$\hat a^\dagger$ 不是厄米算符**，不是力学量；系数是 $\hat a\ket n=\sqrt n\ket{n-1}$、$\hat a^\dagger\ket n=\sqrt{n+1}\ket{n+1}$，不要把两个根号对调；$\hat a\ket0=0$（零矢量），不是 $\ket0$ 也不是 $\ket{-1}$。
     6. **连续谱的基矢不能归一化为 1**：$\ip{x}{x'}=\delta(x-x')$，$\ip{p}{p'}=\delta(p-p')$；封闭性中的求和要换成积分。
+    7. **本征值不随表象改变。** 换到新表象只改变矩阵的样子，本征值、迹、对易关系都不变；由代数关系定矩阵时，非对角元还可能留下一个相位规范（如上面 $B$ 中的 $\delta$），物理结论与相位无关。
 
 ---
 ## 知识点归纳总结
@@ -765,3 +798,68 @@ graph TD
         (1) 归纳：$n=1$ 即 $[\hat a,\hat a^\dagger]=1$。设对 $n$ 成立，则 $[\hat a,(\hat a^\dagger)^{n+1}]=[\hat a,(\hat a^\dagger)^n]\hat a^\dagger+(\hat a^\dagger)^n[\hat a,\hat a^\dagger]=(n+1)(\hat a^\dagger)^n$。于是 $\hat N(\hat a^\dagger)^n\ket0=\hat a^\dagger[\hat a,(\hat a^\dagger)^n]\ket0=n(\hat a^\dagger)^n\ket0$（用了 $\hat a\ket0=0$）。归一化：$\mel{0}{\hat a^n(\hat a^\dagger)^n}{0}=n\mel{0}{\hat a^{n-1}(\hat a^\dagger)^{n-1}}{0}=\cdots=n!$。
 
         (2) $\hat N^2=\hat a^\dagger\hat a\hat a^\dagger\hat a=\hat a^\dagger(1-\hat a^\dagger\hat a)\hat a=\hat a^\dagger\hat a-(\hat a^\dagger)^2\hat a^2=\hat N$（$\hat a^2=\tfrac12\{\hat a,\hat a\}=0$）。若 $\hat N\ket\nu=\nu\ket\nu$，则 $\nu^2=\nu$，$\nu=0$ 或 $1$：一个费米子态最多被一个粒子占据。
+
+## 补充练习
+
+下面几题来自华科 870 考研真题和风格相近的练习，与上面的教材习题不重复。答案可以展开查看。
+
+!!! example "补充练习 1【HUST 870 2004】由代数关系求矩阵表示"
+
+    厄米算符 $\hat A,\hat B$ 满足 $\hat A^2=\hat B^2=1$，$\hat A\hat B+\hat B\hat A=0$。求：(1) $A$ 表象中 $\hat A,\hat B$ 的矩阵，以及 $\hat B$ 的本征函数；(2) $B$ 表象中 $\hat A,\hat B$ 的矩阵，以及 $\hat A$ 的本征函数；(3) 从 $A$ 表象到 $B$ 表象的幺正变换矩阵。
+
+    ??? success "答案"
+
+        取二维的不可约情形。由 $\hat A^2=1$ 知本征值为 $\pm1$。又 $\hat B\hat A\hat B^{-1}=-\hat A$，说明 $\hat A$ 与 $-\hat A$ 的谱相同，所以 $+1$ 与 $-1$ 成对出现。因此在 $A$ 表象中
+
+        $$A=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.$$
+
+        设 $B=\begin{pmatrix}b_{11}&b_{12}\\b_{21}&b_{22}\end{pmatrix}$。由 $AB=-BA$ 得 $b_{11}=b_{22}=0$；厄米性要求 $b_{21}=b_{12}^*$；$B^2=1$ 要求 $\lvert b_{12}\rvert=1$。所以 $B=\begin{pmatrix}0&e^{-\ii\delta}\\e^{\ii\delta}&0\end{pmatrix}$，取 $\delta=0$ 得 $B=\sigma_x$。
+
+        $\hat B$ 的本征值 $b=\pm1$，对应本征矢 $\dfrac{1}{\sqrt2}\begin{pmatrix}1\\\pm1\end{pmatrix}$。
+
+        在 $B$ 表象中，对称地有 $B=\mathrm{diag}(1,-1)$，$A=\sigma_x$，$\hat A$ 的本征矢为 $\dfrac1{\sqrt2}(1,\pm1)^{\mathrm T}$。
+
+        变换矩阵的各列就是 $\hat B$ 的本征矢：
+
+        $$S=\dfrac{1}{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix},$$
+
+        满足 $S^\dagger=S^{-1}$，并且 $S^\dagger AS$ 就是 $B$ 表象中对角的 $A$（即 $\sigma_x$）。这个代数结构就是泡利矩阵，也是理解自旋的原型。
+
+!!! example "补充练习 2【HUST 870 2019 简答】三种表象中的波函数"
+
+    说明 $\lvert\psi(\vv r,t)\rvert^2$、$\lvert c(\vv p,t)\rvert^2$、$\lvert a_n(t)\rvert^2$ 的物理意义，并写出力学量平均值在三种表象中的表达式。
+
+    ??? success "答案"
+
+        三者分别是：在 $\vv r$ 附近单位体积内找到粒子的概率；动量在 $\vv p$ 附近单位动量体积内的概率；测量力学量 $Q$ 得到本征值 $Q_n$ 的概率。平均值
+
+        $$\bar F=\int\psi^*\hat F\!\left(\vv r,-\ii\hbar\nabla\right)\psi\,\dd\tau=\int c^*\hat F\!\left(\ii\hbar\nabla_p,\vv p\right)c\,\dd\vv p=\sum_{mn}a_m^*F_{mn}a_n=\Psi^\dagger F\Psi.$$
+
+        三种写法给出同一个数，因为它们只是同一个态、同一个算符在不同表象中的分量。
+
+!!! example "补充练习 3【幺正变换】$S_z$ 表象到 $S_x$ 表象"
+
+    写出从 $S_z$ 表象到 $S_x$ 表象的变换矩阵 $S$，并求新表象中 $S_x$、$S_y$、$S_z$ 的矩阵。哪些量在变换下不变？
+
+    ??? success "答案"
+
+        $S_x$ 的本征矢 $\chi_\pm^{(x)}=\dfrac1{\sqrt2}(1,\pm1)^{\mathrm T}$，所以
+
+        $$S=\frac1{\sqrt2}\begin{pmatrix}1&1\\1&-1\end{pmatrix}.$$
+
+        新表象中 $S_x'=S^\dagger S_x S=\dfrac{\hbar}{2}\sigma_z$，$S_z'=\dfrac{\hbar}{2}\sigma_x$，$S_y'=-\dfrac{\hbar}{2}\sigma_y$。
+
+        本征值不变（仍是 $\pm\hbar/2$），对易关系 $[S_x',S_y']=\ii\hbar S_z'$ 不变，矩阵的迹也不变。这对应“本征值在新表象下不变”这一基本事实。
+
+!!! example "补充练习 4【PKU 简量 2024 期末风格】狄拉克符号的基本计算"
+
+    $\ket\psi=\dfrac{7}{25}\ket{\uparrow}-\dfrac{24}{25}\ii\ket{\downarrow}$。求沿 $z$ 方向测得自旋向上的概率，以及测得 $\sigma_x=-1$ 的概率。
+
+    ??? success "答案"
+
+        $P(\uparrow_z)=\left(\dfrac{7}{25}\right)^2=\dfrac{49}{625}$。$\sigma_x=-1$ 的本征态为 $\ket{-_x}=\dfrac1{\sqrt2}(\ket{\uparrow}-\ket{\downarrow})$，于是
+
+        $$\ip{-_x}{\psi}=\frac1{\sqrt2}\left(\frac7{25}+\frac{24}{25}\ii\right),\qquad P=\frac12\cdot\frac{49+576}{625}=\frac12.$$
+
+        提示：只要两个分量的相对相位是 $\pm\pi/2$，$\langle\sigma_x\rangle=2\mathrm{Re}(a^*b)=0$，测 $\sigma_x$ 必然各占一半。
+

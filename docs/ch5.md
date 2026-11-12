@@ -89,7 +89,29 @@ $$H'_{mn}=\int\psi_m^{(0)*}\,\hat H'\,\psi_n^{(0)}\,\mathrm{d}V=\langle m|\hat H
     - 只保留**对角元**，就得到一级能量 $E_n^{(0)}+H'_{nn}$；
     - **非对角元**把能级 $n$ 和 $m$ “耦合”起来，它们的效果要经过一次“出去 $n\to m$、再回来 $m\to n$”，所以是 $|H'_{mn}|^2$ 除以能量差——这就是二级修正。
 
-    两条重要推论：(1) **基态的二级修正总是负的**（分母 $E_0^{(0)}-E_m^{(0)}<0$）；(2) 两个能级通过 $H'_{mn}$ 耦合时，下面的被**推下**、上面的被**推上**——“**能级排斥**”。这和电路里两个耦合谐振回路的频率被“推开”是同一个线性代数事实。
+    两条重要推论：(1) **基态的二级修正总是负的**（分母 $E_0^{(0)}-E_m^{(0)}<0$）；(2) 两个能级通过 $H'_{mn}$ 耦合时，下面的被**推下**、上面的被**推上**——“**能级排斥**”。这和电路里两个耦合谐振回路的频率被“推开”是同一个线性代数事实。题目里可以用“所有能级的二级修正之和为零”来自检：每一对耦合对 $n,m$ 的贡献大小相等、符号相反。
+
+!!! info "从二能级精确解“猜”出二级微扰"
+
+    最简单的微扰问题只有两个能级，可以严格对角化。设
+
+    $$H=\begin{pmatrix}E_1&\Delta\\\Delta&E_2\end{pmatrix},\qquad \lvert\Delta\rvert\ll\lvert E_1-E_2\rvert.$$
+
+    精确本征值是
+
+    $$E_\pm=\frac{E_1+E_2}{2}\pm\frac12\sqrt{(E_1-E_2)^2+4\Delta^2}.$$
+
+    令 $\varepsilon=4\Delta^2/(E_1-E_2)^2$，把 $\sqrt{1+\varepsilon}$ 展开到一阶：$\sqrt{1+\varepsilon}\approx1+\varepsilon/2$，立即得到
+
+    $$E_+\approx E_1+\frac{\Delta^2}{E_1-E_2},\qquad E_-\approx E_2+\frac{\Delta^2}{E_2-E_1}.$$
+
+    这正是定理 5.1 的二级公式。由此可见：
+
+    1. 二级微扰就是精确解按 $\Delta$ 展开到 $\Delta^2$ 阶的结果；
+    2. 耦合使两条能级互相推开，低的更低、高的更高；
+    3. 适用条件 $\lvert\Delta\rvert\ll\lvert E_1-E_2\rvert$ 就是展开参数 $\varepsilon\ll1$——一旦 $\Delta$ 大到与能级间距相当，抛物线型的二级近似就会与精确曲线分道扬镳（见下面的动画，以及动画 5-2 的回避交叉）。
+
+    “给一个几乎对角的小矩阵，先求精确解，再与二级微扰比较”是最常见的题型，做法就是上面这一段。
 
 <figure class="video" markdown>
 <video controls preload="metadata" width="100%" poster="assets/posters/C5_PerturbMatrix.jpg"><source src="assets/videos/C5_PerturbMatrix.mp4" type="video/mp4"></video>
@@ -441,6 +463,11 @@ $$a_m^{(1)}(t)=-\frac{H'_{mk}}{\hbar}\cdot\frac{e^{\mathrm i\omega_{mk}t}-1}{\om
 <figcaption>图 5.3　作用时间为 $t'$ 时，跃迁概率对 $\omega_{mk}-\omega$ 的分布：主峰宽 $\sim2\pi/t'$。</figcaption>
 </figure>
 
+<figure markdown>
+![跃迁概率函数 sin^2(omega t/2)/omega^2 的形状](assets/figs/ch5_transition_sinc2.png){ width="440" }
+<figcaption>图 5.4　函数 $\sin^2(\omega_{mk}t/2)/\omega_{mk}^2$ 的形状：主峰在 $\omega_{mk}=0$，两侧有逐渐衰减的次峰。峰高 $\propto t^2$，宽度 $\propto 1/t$，曲线下面积 $\propto t$，由此自然引出跃迁速率和费米黄金定则。（图源：QMUSTB）</figcaption>
+</figure>
+
 !!! theorem "引理（$\delta$ 函数的一种表示）"
 
     $$\lim_{t\to\infty}\frac{\sin^2xt}{\pi tx^2}=\delta(x).$$
@@ -521,6 +548,11 @@ $$\Delta E\,\Delta t\sim\hbar .$$
     - **自发发射系数** $A_{mk}$：无外场时，单位时间内原子由 $\epsilon_m$ 自发跃迁到 $\epsilon_k$ 的概率；
     - **受激发射系数** $B_{mk}$：单位时间受激跃迁 $m\to k$ 的概率为 $B_{mk}I(\omega_{mk})$；
     - **吸收系数** $B_{km}$：单位时间吸收跃迁 $k\to m$ 的概率为 $B_{km}I(\omega_{mk})$。
+
+<figure markdown>
+![自发发射、受激发射与吸收](assets/figs/ch5_einstein_AB.png){ width="280" }
+<figcaption>图 5.5　光与原子相互作用的三个过程：(a) 自发发射（与外场无关）；(b) 受激发射（外场光子诱发，末态多一个全同光子）；(c) 吸收。细致平衡要求 $B_{mk}=B_{km}$，再与普朗克公式比较就定出 $A$ 与 $B$ 的关系。（图源：QMUSTB）</figcaption>
+</figure>
 
 !!! theorem "定理 5.7（爱因斯坦关系）"
 
@@ -677,6 +709,9 @@ $T=300\ \mathrm K$ 时两者相等的波长约 $69\ \mu\mathrm m$。可见光（
     - 变分结果只是上界，不能低于真实基态能量；算出比精确值还低，一定有错。
     - 黄金定则只用于**连续**末态；单个分立末态严格共振时 $W\propto t^2$。
     - 选择定则对 $n$ 无限制；“禁戒”只在电偶极近似下。
+    - 各能级二级修正之和为零（能级成对排斥），算完矩阵微扰题时用它自检。
+    - 无限深势阱中偶量子数态在中心有节点：中心处的 $\delta$ 势微扰对它们的一级修正为零。
+    - 空间转子在弱**电**场中的斯塔克效应，一级修正为零、二级修正 $\propto\mathcal E^2$；不要把题面里偶尔出现的“磁场”误当成塞曼效应。
 
 ---
 
@@ -785,6 +820,88 @@ $T=300\ \mathrm K$ 时两者相等的波长约 $69\ \mu\mathrm m$。可见光（
     (1) $\frac{A}{BI}=e^{hc/\lambda k_BT}-1$，$\frac{hc}{\lambda k_BT}=\frac{6.63\times10^{-34}\times3\times10^8}{5\times10^{-7}\times1.38\times10^{-23}\times300}\approx96$，比值 $\approx e^{96}\sim10^{41}$。
 
     (2) 热平衡下受激发射完全可以忽略，而且吸收（$\propto N_k$）多于受激发射（$\propto N_m$）。要让受激发射成为主导，必须 ① 粒子数反转 $N_m>N_k$，使净效果是放大；② 用谐振腔把同一模式的辐射密度 $I$ 提高许多个数量级，使 $BI\gg A$。
+
+## 补充练习
+
+下面几题主要来自华科 870 考研真题，与上面的教材习题不重复。矩阵微扰“精确解与二级近似比较”几乎每年都会出现。答案可以展开查看。
+
+!!! example "补充练习 1【HUST 870 2004、2012、2013】三维矩阵：精确解与二级微扰比较"
+
+    $H_0=\begin{pmatrix}1&0&0\\0&3&0\\0&0&-2\end{pmatrix}$，$H'=\begin{pmatrix}0&c&0\\c&0&0\\0&0&c\end{pmatrix}$，$c\ll1$。求精确本征值，再用微扰论求到二级，并比较。
+
+    ??? success "答案"
+
+        (1) **精确解。** $H$ 是分块对角矩阵。由 $\begin{vmatrix}1-E&c\\c&3-E\end{vmatrix}=0$ 得 $E_\pm=2\pm\sqrt{1+c^2}$；第三个本征值为 $E_3=-2+c$。
+
+        (2) **微扰解。**
+
+        $$E_1=1+0+\frac{c^2}{1-3}=1-\frac{c^2}{2},\qquad E_2=3+\frac{c^2}{2},\qquad E_3=-2+c\quad\text{（只有一级修正，二级修正为零）}.$$
+
+        (3) **比较。** $2-\sqrt{1+c^2}=1-\dfrac{c^2}{2}+\dfrac{c^4}{8}-\cdots$，可见二级微扰正是精确解展开到 $c^2$ 阶的结果。三级以上的差别从 $c^4$ 才开始出现。
+
+!!! example "补充练习 2【HUST 870 2017】三维矩阵（无零元）"
+
+    $H_0=\mathrm{diag}(1,2,3)$，$H'=\lambda\begin{pmatrix}0&2&0\\2&1&3\\0&3&2\end{pmatrix}$，求能量到二级修正。
+
+    ??? success "答案"
+
+        $$
+        \begin{aligned}
+        E_1&=1+0+\frac{(2\lambda)^2}{1-2}=1-4\lambda^2,\\
+        E_2&=2+\lambda+\frac{(2\lambda)^2}{2-1}+\frac{(3\lambda)^2}{2-3}=2+\lambda-5\lambda^2,\\
+        E_3&=3+2\lambda+\frac{(3\lambda)^2}{3-2}=3+2\lambda+9\lambda^2.
+        \end{aligned}
+        $$
+
+        自检：$E_2$ 的二级修正是 $4\lambda^2-9\lambda^2=-5\lambda^2$，三者之和 $(-4-5+9)\lambda^2=0$，正好符合“二级修正之和为零”。
+
+!!! example "补充练习 3【HUST 870 2003】$\delta$ 函数微扰"
+
+    无限深势阱（$0<x<a$）受微扰 $H'=a\omega_0\,\delta(x-a/2)$，求一级能量修正。
+
+    ??? success "答案"
+
+        $$E_n^{(1)}=a\omega_0\lvert\psi_n(a/2)\rvert^2=a\omega_0\cdot\frac2a\sin^2\frac{n\pi}{2}=\begin{cases}2\omega_0,&n\ \text{为奇数}\\0,&n\ \text{为偶数}\end{cases}$$
+
+        偶 $n$ 的态在中心有节点，所以“感觉不到”这个 $\delta$ 势。
+
+!!! example "补充练习 4【HUST 870 2010；2015、2016 变体】线性微扰"
+
+    无限深势阱中 $H'=\dfrac{V_0}{a}x$，求基态和第一激发态的一级修正。
+
+    ??? success "答案"
+
+        对一切 $n$ 都有 $\bar x=a/2$，所以 $E_n^{(1)}=\dfrac{V_0}{a}\cdot\dfrac a2=\dfrac{V_0}{2}$，基态和第一激发态相同。若微扰写成 $V=\tfrac{v_0}{2}x$（2015 年的版本），则 $E^{(1)}=\tfrac{v_0 a}{4}$。这与例题 5.2 中“半边加台阶”的一级修正恰好同为常数，但原因不同：那里是粒子一半时间待在右半边，这里是坐标的平均值恰好在阱中心。
+
+!!! example "补充练习 5【HUST 870 2011、2016】三角形微扰"
+
+    $H'=\dfrac{2\lambda x}{a}$（$0<x<\tfrac a2$），$H'=2\lambda\left(1-\dfrac xa\right)$（$\tfrac a2<x<a$），求基态能量的一级修正。
+
+    ??? success "答案"
+
+        $H'$ 关于 $x=a/2$ 对称，所以
+
+        $$E_1^{(1)}=2\int_0^{a/2}\frac{2\lambda x}{a}\cdot\frac2a\sin^2\frac{\pi x}{a}\,\mathrm{d}x=\frac{8\lambda}{a^2}\left(\frac{a^2}{16}+\frac{a^2}{4\pi^2}\right)=\lambda\left(\frac12+\frac{2}{\pi^2}\right).$$
+
+        其中用到 $\displaystyle\int_0^{a/2}x\cos\frac{2\pi x}{a}\,\mathrm{d}x=-\dfrac{a^2}{2\pi^2}$。
+
+        物理检验：基态集中在阱中心，而那里 $H'$ 最大（等于 $\lambda$），所以结果 $0.70\lambda$ 大于 $H'$ 的空间平均值 $\lambda/2$，合理。
+
+!!! example "补充练习 6【HUST 870 2022（四.4）】弱横向磁场中的电子自旋"
+
+    $H=\mu_B\,\boldsymbol\sigma\cdot\boldsymbol B$，$\boldsymbol B=(B_x,0,B_z)$，$B_x\ll B_z$。求能量（到二级）和本征态（到一级）。
+
+    ??? success "答案"
+
+        取 $H_0=\mu_B B_z\sigma_z$，$H'=\mu_B B_x\sigma_x$。
+
+        $$E_\pm=\pm\mu_B B_z\pm\frac{(\mu_B B_x)^2}{2\mu_B B_z}=\pm\mu_B\left(B_z+\frac{B_x^2}{2B_z}\right),$$
+
+        这就是精确解 $\pm\mu_B\sqrt{B_x^2+B_z^2}$ 的展开。一级近似的本征态为
+
+        $$\chi_+\approx\begin{pmatrix}1\\\dfrac{B_x}{2B_z}\end{pmatrix},\qquad \chi_-\approx\begin{pmatrix}-\dfrac{B_x}{2B_z}\\1\end{pmatrix}.$$
+
+        几何意义：量子化轴转向合磁场方向，偏转角 $\theta\approx B_x/B_z$，而 $\sin\tfrac\theta2\approx\dfrac{B_x}{2B_z}$。
 
 ---
 

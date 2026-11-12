@@ -186,7 +186,12 @@ $$
 - **对称**：$\Psi_{\mathrm S}=\frac1{\sqrt2}[\psi_1(x_1)\psi_2(x_2)+\psi_2(x_1)\psi_1(x_2)]$；
 - **反对称**：$\Psi_{\mathrm A}=\frac1{\sqrt2}[\psi_1(x_1)\psi_2(x_2)-\psi_2(x_1)\psi_1(x_2)]$。
 
-在对角线 $x_1=x_2=x$ 上，$\Psi_{\mathrm A}(x,x)=0$，$|\Psi_{\mathrm S}(x,x)|^2=2|\Psi_{\mathrm D}(x,x)|^2$：反对称态中两粒子**永远不会出现在同一点**，周围形成一个概率被挖空的区域，称为**交换空穴**；对称态则在对角线附近概率加倍，称为**聚束**。
+在对角线 $x_1=x_2=x$ 上，$\Psi_{\mathrm A}(x,x)=0$，$|\Psi_{\mathrm S}(x,x)|^2=2|\Psi_{\mathrm D}(x,x)|^2$：反对称态中两粒子**永远不会出现在同一点**，周围形成一个概率被挖空的区域，称为**交换空穴**；对称态则在对角线附近概率加倍，称为**聚束**。泡利原理在这里有一个几何图像：两个费米子的联合密度在 $x_1=x_2$ 处为零，它们在空间上互相回避。正是这种回避，使得排斥相互作用下三重态（空间反对称）的库仑能更低——氦原子的正氦低于仲氦，也是洪德规则的雏形。
+
+<figure markdown>
+![两个全同费米子的联合概率密度](assets/figs/ch8_fermion_exclusion_density.png){ width="360" }
+<figcaption>两个全同费米子的联合概率密度在对角线 $x_1=x_2$ 上为零：交换空穴是“几何上的回避”，并不需要在哈密顿量里再另加一项排斥势。（图源：QMUSTB）</figcaption>
+</figure>
 
 <figure class="video" markdown>
 <video controls preload="metadata" width="100%" poster="assets/posters/C8_ExchangeHole.jpg"><source src="assets/videos/C8_ExchangeHole.mp4" type="video/mp4"></video>
@@ -535,6 +540,25 @@ $$
     - 单态对应**对称**的空间波函数，三重态对应**反对称**的空间波函数——“自旋对称，空间反对称”，两者总是相反，别记反。
     - $\hat{\boldsymbol\sigma}_1\cdot\hat{\boldsymbol\sigma}_2$ 在单态是 $-3$，不是 $-\frac34$；$-\frac34\hbar^2$ 是 $\hat{\boldsymbol S}_1\cdot\hat{\boldsymbol S}_2$ 的值。
 
+### 选读：单态的关联测量与纠缠
+
+反对称化并不只改变“两个电子靠得近不近”，它还把两粒子锁成一个不可分离的整体。最干净的例子是自旋单态
+
+$$\chi_{\mathrm A}=\frac1{\sqrt2}\big(\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow}\big).$$
+
+它在任意方向上都是“一上一下”：对任何单位矢量 $\hat n$，都有 $(\boldsymbol\sigma_1+\boldsymbol\sigma_2)\cdot\hat n\,\chi_{\mathrm A}=0$。于是两个粒子分开之后，沿 $\hat a$、$\hat b$ 两个方向分别测量，关联系数为
+
+$$\big\langle(\boldsymbol\sigma_1\cdot\hat a)(\boldsymbol\sigma_2\cdot\hat b)\big\rangle=-\hat a\cdot\hat b.$$
+
+两个方向相同时总是相反（关联系数为 $-1$）；相互垂直时完全不相关。这个结果不能写成两个单粒子平均值的乘积，单态是**纠缠态**：单独看每一个粒子，自旋朝向是完全随机的，但两个结果之间有严格的关联。全同粒子的反对称化与“纠缠”其实是同一套数学结构。
+
+<figure markdown>
+![自旋单态的关联测量](assets/figs/ch8_EPR_singlet_correlation.png){ width="640" }
+<figcaption>自旋单态源向左右发出两个粒子，分别进入施特恩–盖拉赫装置。沿同一方向测量时，结果总是相反的；夹角为 $\theta$ 时，关联系数等于 $-\cos\theta$。（图源：QMUSTB）</figcaption>
+</figure>
+
+这一关联是贝尔不等式和 EPR 讨论的出发点。计算见本章补充练习【PKU 简量期末风格】。
+
 ---
 
 ## 8.4 氦原子（微扰法）
@@ -882,6 +906,7 @@ $K$ 的三项依次是两电子间的库仑能、电子 2 在核 $A$ 场中的�
     - $|{\uparrow\downarrow}\rangle$ 不是 $\hat S^2$ 本征态；$|1,0\rangle$ 和 $|0,0\rangle$ 的 $S_z$ 都为 0。
     - 仲氦 = 单态（较高），正氦 = 三重态（较低）；氢分子则是单态成键。
     - 泡利原理与相互作用无关；交换能也不是新的力，而是库仑能在对称化下分出的一部分。
+    - 单态的自旋关联是 $-\hat a\cdot\hat b$，不是两个单粒子平均值的乘积；不要把它理解成“事先各自带好了确定的自旋方向”。
 
 ---
 
@@ -1011,6 +1036,62 @@ $K$ 的三项依次是两电子间的库仑能、电子 2 在核 $A$ 场中的�
     $$E=E_0+K-J\hat P^{\sigma}_{12}=E_0+K-\frac J2\big(1+\hat{\boldsymbol\sigma}_1\cdot\hat{\boldsymbol\sigma}_2\big).$$
 
     哈密顿量本身不含自旋，但能量依赖于 $\hat{\boldsymbol\sigma}_1\cdot\hat{\boldsymbol\sigma}_2$——好像两个自旋之间有强度为 $J$ 的耦合。$J>0$ 时自旋平行能量低（铁磁倾向），$J<0$ 时自旋反平行能量低（如氢分子）。这就是海森伯用来解释铁磁性的**交换相互作用**模型的出发点：铁磁性来自库仑作用加泡利原理，而不是磁偶极之间的作用（后者小了约三个数量级）。
+
+## 补充练习
+
+下面几题来自华科 870 考研真题和风格相近的练习。教材习题 8.1–8.3 已在上面的练习 1–3 中，这里不再重复。答案可以展开查看。
+
+!!! example "补充练习 1【HUST 870 2001、2013】势阱中两个全同费米子"
+
+    两个质量为 $m$、自旋为 $\tfrac12$ 的全同粒子处于一维无限深势阱（$0<x<a$）中，忽略与自旋有关的力。(1) 无相互作用时，用单粒子态和自旋态写出三个最低能级的态；(2) 有相互作用 $V(\lvert x_1-x_2\rvert)$，用一级微扰求第一、第二激发态的能量（保留积分式）。
+
+    ??? success "答案"
+
+        记 $E_n=n^2 E_1$，$E_1=\dfrac{\pi^2\hbar^2}{2ma^2}$。
+
+        (1) **基态**：两个粒子都在 $n=1$，空间部分 $\psi_1(x_1)\psi_1(x_2)$ 对称，所以自旋必须是单态：$\Psi_0=\psi_1(x_1)\psi_1(x_2)\chi_{\mathrm A}$，$E=2E_1$，不简并。
+
+        **第一激发态**（一个 $n=1$、一个 $n=2$），$E=5E_1$，共 4 重简并：
+
+        $$\Psi_{\mathrm S}=\tfrac{1}{\sqrt2}[\psi_1(x_1)\psi_2(x_2)+\psi_2(x_1)\psi_1(x_2)]\chi_{\mathrm A}\ (1\text{ 个}),\qquad
+        \Psi_{\mathrm A}=\tfrac{1}{\sqrt2}[\psi_1(x_1)\psi_2(x_2)-\psi_2(x_1)\psi_1(x_2)]\chi_{\mathrm S}^{(i)}\ (3\text{ 个}).$$
+
+        **第二激发态**：两个粒子都在 $n=2$，$\psi_2(x_1)\psi_2(x_2)\chi_{\mathrm A}$，$E=8E_1$，不简并。（再下一个是 $n=1,3$，$E=10E_1$。）
+
+        (2) $V$ 不含自旋，而且在对称、反对称的空间态之间没有矩阵元，所以简并的 4 个态已经是正确的零级态。记
+
+        $$J=\iint\lvert\psi_1(x_1)\rvert^2\lvert\psi_2(x_2)\rvert^2 V\,\mathrm{d}x_1\mathrm{d}x_2,\qquad
+        K=\iint\psi_1(x_1)\psi_2(x_1)\psi_1(x_2)\psi_2(x_2)V\,\mathrm{d}x_1\mathrm{d}x_2.$$
+
+        第一激发态分裂为：单态 $E=5E_1+J+K$，三重态 $E=5E_1+J-K$，三重简并。这里的 $K$ 是交换积分（与 §8.4 中 $J$ 的用法对应，只是积分符号习惯不同）。
+
+        第二激发态：$E=8E_1+\iint\psi_2^2(x_1)\psi_2^2(x_2)V\,\mathrm{d}x_1\mathrm{d}x_2$。
+
+        本题是例题 8.6 的考试写法，并多问了第二激发态。若题目问的是“第二、第三最低能态”，指的就是第一激发态劈裂出的两条能级。
+
+!!! example "补充练习 2【HUST 870 2006、2007 简答】全同性原理与交换对称性"
+
+    简述全同性原理，说明为什么交换对称性不随时间改变，并指出玻色子与费米子的主要区别。
+
+    ??? success "答案"
+
+        全同粒子不可区分，交换任意两个粒子不改变体系的物理状态，所以 $\hat P_{ij}\Psi=\pm\Psi$：玻色子（整数自旋）取对称，费米子（半整数自旋）取反对称。
+
+        交换对称性不随时间改变，因为全同粒子体系的 $\hat H$ 对交换对称，$[\hat P_{ij},\hat H]=0$，$\hat P_{ij}$ 是守恒量。由 $\Psi(t+\mathrm{d}t)=\bigl(1-\tfrac{\mathrm i}{\hbar}\hat H\,\mathrm{d}t\bigr)\Psi(t)$，若 $\Psi(t)$ 有确定的交换对称性，$\hat H\Psi$ 的对称性与之相同，所以 $\Psi(t+\mathrm{d}t)$ 也保持这一对称性。
+
+        主要区别：费米子满足泡利不相容原理，斯莱特行列式中出现两行相同时为零；玻色子可以大量占据同一个态，例如玻色–爱因斯坦凝聚。
+
+!!! example "补充练习 3【PKU 简量期末 2021、2024 风格】单态的关联测量"
+
+    两个自旋处于 $\chi_{\mathrm A}=\tfrac1{\sqrt2}(\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow})$，分别沿 $\hat a$、$\hat b$ 两个方向测量。求 $\langle(\boldsymbol\sigma_1\cdot\hat a)(\boldsymbol\sigma_2\cdot\hat b)\rangle$。
+
+    ??? success "答案"
+
+        单态在旋转下不变，即对任何方向都是“一上一下”，所以 $(\boldsymbol\sigma_1+\boldsymbol\sigma_2)\chi_{\mathrm A}=0$。于是
+
+        $$\langle(\boldsymbol\sigma_1\cdot\hat a)(\boldsymbol\sigma_2\cdot\hat b)\rangle=-\langle(\boldsymbol\sigma_1\cdot\hat a)(\boldsymbol\sigma_1\cdot\hat b)\rangle=-\hat a\cdot\hat b.$$
+
+        两个方向相同时总是相反（关联系数为 $-1$）；相互垂直时完全不相关。这是贝尔不等式和 EPR 讨论的出发点，也说明全同粒子的反对称化与纠缠是同一套数学结构。
 
 ---
 
