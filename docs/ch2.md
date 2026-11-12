@@ -29,7 +29,12 @@
 
 ### 2.1.1 波函数与玻恩解释
 
-第 1 章的电子双缝实验告诉我们：微观粒子的状态要用一个“波”来描述，而这个波的强度决定粒子在各处出现的概率。
+第 1 章的电子双缝实验告诉我们：微观粒子的状态要用一个“波”来描述，而这个波的强度决定粒子在各处出现的概率。图 2-1 是单电子双缝实验的真实记录（外村彰等，1989）：电子一个一个地打到屏上，起初落点看似杂乱无章，随着数目增加到几万个，干涉条纹逐渐显现。**单个事件是随机的，大量事件的统计分布由 $\lvert\Psi\rvert^2$ 确定。**
+
+<figure markdown>
+![单电子双缝图样逐步累积](assets/figs/ch2_electron_buildup.jpg){ width="100%" }
+<figcaption>图 2-1　单电子双缝实验：从左到右，电子数逐渐增加，干涉条纹逐步显现（图源：上海交大《大学物理 A3》课件）</figcaption>
+</figure>
 
 !!! definition "定义 2.1（波函数及其统计解释）"
 
@@ -49,6 +54,13 @@ $$\int_{\infty}\lvert\Psi(\vv r,t)\rvert^2\,\dd\tau=1\qquad(\text{归一化条�
     2. **整体相因子不确定。** 归一化后仍可以乘 $\ee^{\ii\delta}$（$\delta$ 为实常数），$\lvert\ee^{\ii\delta}\Psi\rvert^2=\lvert\Psi\rvert^2$。但**相对相位有物理意义**：$\psi_1+\psi_2$ 和 $\psi_1-\psi_2$ 的干涉图样不同。
 
     平面波 $\ee^{\ii(\vv p\cdot\vv r-Et)/\hbar}$ 的 $\lvert\Psi\rvert^2=1$ 处处相等，在全空间积分发散，不能按上式归一化。这类“理想化”的态要用 $\delta$ 函数归一化（见第 3 章 3.4 节）。
+
+**测量与波函数坍缩。** 电子打到屏上之前，波函数弥散在整个空间；一旦在 $x_0$ 处测到它，紧接着再测，粒子必然还在 $x_0$ 附近。也就是说，测量使波函数从弥散的 $\psi(x)$ 突变为集中在 $x_0$ 的尖峰（图 2-2）。这种突变不服从薛定谔方程，是测量公设的一部分，第 3 章 3.5 节会把它推广到任意力学量。
+
+<figure markdown>
+![波函数坍缩示意](assets/figs/ch2_collapse.jpg){ width="420" }
+<figcaption>图 2-2　位置测量使波函数坍缩：$t=0^-$ 时弥散，$t=0^+$ 时集中在测得的位置 $x_0$（图源：QMUSTB）</figcaption>
+</figure>
 
 !!! definition "定义 2.2（波函数的标准条件）"
 
@@ -91,6 +103,28 @@ $$\int_{\infty}\lvert\Psi(\vv r,t)\rvert^2\,\dd\tau=1\qquad(\text{归一化条�
 $$\lvert\Psi\rvert^2=\lvert c_1\Psi_1\rvert^2+\lvert c_2\Psi_2\rvert^2+c_1^*c_2\Psi_1^*\Psi_2+c_1c_2^*\Psi_1\Psi_2^*,$$
 
 后两项就是干涉项。
+
+!!! example "思考题 2.1　双缝 + 自旋：干涉什么时候消失？【HUST 870 2011、2014、2016、2017、2018】"
+
+    电子束通过含双缝 A、B 的挡板到达接收屏。对下列每种情况，粗略画出屏上电子出现的概率分布并加以分析：
+
+    (1) A 开 B 关；(2) A、B 均开；(3) 在双缝前加施特恩–盖拉赫装置，使自旋向上的电子通过 A、自旋向下的电子通过 B；(4) 通过 A 和 B 的电子都是自旋向上的。
+
+    **解。** 设电子经 A、B 到达屏上的空间波函数为 $\psi_A(x)$、$\psi_B(x)$。
+
+    (1) $P=\lvert\psi_A\rvert^2$：单缝衍射图样，没有干涉条纹。
+
+    (2) $\Psi=\psi_A+\psi_B$，$P=\lvert\psi_A\rvert^2+\lvert\psi_B\rvert^2+2\Re(\psi_A^*\psi_B)$：出现干涉条纹。
+
+    (3) 状态为 $\Psi=\psi_A\chi_\uparrow+\psi_B\chi_\downarrow$。屏上测的是位置，要对自旋求和：
+
+    $$P=\lvert\psi_A\rvert^2\ip{\chi_\uparrow}{\chi_\uparrow}+\lvert\psi_B\rvert^2\ip{\chi_\downarrow}{\chi_\downarrow}+2\Re\left(\psi_A^*\psi_B\ip{\chi_\uparrow}{\chi_\downarrow}\right)=\lvert\psi_A\rvert^2+\lvert\psi_B\rvert^2 .$$
+
+    两个自旋态正交，干涉项为零，条纹消失，只剩两个单缝图样之和。原则上可以通过测自旋知道电子走了哪条缝，**“路径信息”一旦存在，干涉就消失**。
+
+    (4) $\Psi=(\psi_A+\psi_B)\chi_\uparrow$，自旋部分是公共因子，$P$ 与 (2) 相同，干涉条纹恢复。
+
+    自旋将在[第 7 章](ch7.md)系统讲解，这里只用到“自旋向上、向下两个态正交”这一点。
 
 ### 2.2.1 按平面波展开：坐标与动量的傅里叶变换对
 
@@ -162,6 +196,12 @@ $$E\ \to\ \ii\hbar\frac{\partial}{\partial t},\qquad \vv p\ \to\ \hat{\vv p}=-\i
 
     上面的“猜法”只说明薛定谔方程是合理的，它本身是量子力学的**基本假设**，正确性由它导出的结论与实验一致来保证（就像牛顿第二定律）。注意方程中出现了 $\ii$：**波函数必然是复数**，否则 $\ii\hbar\partial_t\Psi$（纯虚）与 $\hat H\Psi$（实）无法相等。
 
+!!! info "为什么薛定谔方程是线性的，且不含状态参量？【HUST 870 2009、2015、2018】"
+
+    - **线性**：态叠加原理要求，若 $\Psi_1,\Psi_2$ 是方程的解，则 $c_1\Psi_1+c_2\Psi_2$ 也必须是解。只有线性方程才有这个性质。
+    - **不含状态参量**：方程描述的是**一切可能状态**的演化规律，不能只对某个特定的 $E$ 或 $\vv p$ 成立。如果方程里出现了 $E$、$\vv p$ 这类只属于某个状态的量，它就只适用于这一个状态，而不同能量的态叠加起来就不再满足同一个方程。所以构造方程时要把 $E$ 和 $\vv p$ 换成算符 $\ii\hbar\partial_t$ 和 $-\ii\hbar\nabla$。
+    - **对时间一阶**：知道初态 $\Psi(\vv r,0)$ 就应当能确定以后的一切状态。
+
 ---
 
 ## 2.4 粒子流密度和粒子数守恒定律
@@ -225,6 +265,7 @@ $$\boxed{\ \Psi(\vv r,t)=\sum_nc_n\psi_n(\vv r)\,\ee^{-\ii E_nt/\hbar},\qquad c_
     - 定态不是“静止”的态：$\Psi$ 本身随时间振荡（$\ee^{-\ii Et/\hbar}$），只是 $\lvert\Psi\rvert^2$ 不变。
     - **两个不同能量定态的叠加不是定态**，它的概率密度会振荡（2.6 节动画）。
     - 定态薛定谔方程只适用于 $U$ 不含时的情形。
+    - 时间因子必须是 $\ee^{-\ii Et/\hbar}$。像 $u(x)(\ee^{-\ii Et/\hbar}+\ee^{\ii Et/\hbar})$ 这样的态，$\ee^{+\ii Et/\hbar}$ 对应能量 $-E$，它是两个“能量”的叠加，不是定态。
 
 ---
 
@@ -238,12 +279,12 @@ $$\boxed{\ \Psi(\vv r,t)=\sum_nc_n\psi_n(\vv r)\,\ee^{-\ii E_nt/\hbar},\qquad c_
 
 <figure markdown>
 ![本征函数](assets/book/ch2_well_psi.jpg){ width="200" }
-<figcaption>图 2-1　前四个能量本征函数（图源：教材）</figcaption>
+<figcaption>图 2-3　前四个能量本征函数（图源：教材）</figcaption>
 </figure>
 
 <figure markdown>
 ![概率密度](assets/book/ch2_well_rho.jpg){ width="200" }
-<figcaption>图 2-2　前四个态的概率密度（图源：教材）</figcaption>
+<figcaption>图 2-4　前四个态的概率密度（图源：教材）</figcaption>
 </figure>
 
 </div>
@@ -317,6 +358,19 @@ $A,B$ 不能同时为零，所以有两组解：$A=0,\cos\alpha a=0$（$\alpha a
 
     （积分：$\cos A\cos B=\tfrac12[\cos(A-B)+\cos(A+B)]$，$\displaystyle\int_{-a/2}^{a/2}\cos\frac{\pi x}{2a}\dd x=\frac{4a}{\pi}\sin\frac\pi4$，$\displaystyle\int_{-a/2}^{a/2}\cos\frac{3\pi x}{2a}\dd x=\frac{4a}{3\pi}\sin\frac{3\pi}4$，合起来 $\dfrac{\sqrt2}{a}\cdot\dfrac12\cdot\dfrac{4a}{\pi}\cdot\dfrac{\sqrt2}{2}\left(1+\dfrac13\right)=\dfrac{8}{3\pi}$。）
 
+!!! warning "易错点"
+
+    - 叠加态问题要先把初态**化成本征函数的线性组合**（常用积化和差，如 $\sin u\cos u=\tfrac12\sin2u$、$\sin u\cos^2u=\tfrac14(\sin u+\sin3u)$），再读概率、乘相因子。不要直接对原函数做积分求 $c_n$ 而忘了检查归一化。
+    - “粒子处于势阱中心的概率”要理解为**概率密度** $\lvert\psi(a/2)\rvert^2$。单个点上的概率总是零。
+    - 能量的平均值不随时间变化，但位置概率分布会振荡（只要叠加了不同能量的态）。
+
+**二维的“盒中粒子”。** 1993 年 IBM 的研究人员用扫描隧道显微镜把 48 个铁原子在铜表面排成一个圆圈（**量子围栏**）。圈内铜表面的电子被围住，形成驻波，即二维圆形势阱中的本征态（图 2-5）。本节的一维势阱是它的简化模型。
+
+<figure markdown>
+![IBM 量子围栏](assets/figs/ch2_quantum_corral.jpg){ width="360" }
+<figcaption>图 2-5　量子围栏：48 个铁原子围成的圆圈内，表面电子形成同心圆驻波（图源：上海交大《大学物理 A3》课件）</figcaption>
+</figure>
+
 ---
 
 ## 2.7 线性谐振子
@@ -325,12 +379,12 @@ $A,B$ 不能同时为零，所以有两组解：$A=0,\cos\alpha a=0$（$\alpha a
 
 <figure markdown>
 ![双原子分子势能](assets/book/ch2_diatomic.jpg){ width="230" }
-<figcaption>图 2-3　双原子分子势能曲线在平衡点附近近似为抛物线（图源：教材）</figcaption>
+<figcaption>图 2-6　双原子分子势能曲线在平衡点附近近似为抛物线（图源：教材）</figcaption>
 </figure>
 
 <figure markdown>
 ![谐振子能级](assets/book/ch2_osc_levels.jpg){ width="190" }
-<figcaption>图 2-4　线性谐振子的能级（图源：教材）</figcaption>
+<figcaption>图 2-7　线性谐振子的能级（图源：教材）</figcaption>
 </figure>
 
 </div>
@@ -377,11 +431,11 @@ $$\xi\psi_n=\sqrt{\frac n2}\psi_{n-1}+\sqrt{\frac{n+1}{2}}\psi_{n+1},\qquad \fra
 - **能级等间距**，间隔 $\hbar\omega$，与普朗克的能量子假设一致；但多了**零点能** $E_0=\tfrac12\hbar\omega$（第 1 章玻尔–索末菲量子化中的 $n+\tfrac12$）。零点能已被实验证实（如低温下晶体的 X 射线散射、卡西米尔效应）。
 - **宇称**：$\psi_n(-x)=(-1)^n\psi_n(x)$，$n$ 个节点。
 - **经典禁区**：经典粒子只能在 $\lvert\xi\rvert\leqslant\sqrt{2n+1}$ 内运动，量子粒子在禁区也有一定概率（基态约 16%，例题 2.1）。
-- **对应原理**：经典振子在端点附近速度最小、停留时间最长，概率密度 $w_{\mathrm{cl}}\propto1/\sqrt{\xi_0^2-\xi^2}$。基态的量子分布在中心最大，与经典相反；但 $n$ 很大时，量子分布的平均趋势趋近经典分布（动画后半段、图 2-5）。
+- **对应原理**：经典振子在端点附近速度最小、停留时间最长，概率密度 $w_{\mathrm{cl}}\propto1/\sqrt{\xi_0^2-\xi^2}$。基态的量子分布在中心最大，与经典相反；但 $n$ 很大时，量子分布的平均趋势趋近经典分布（动画后半段、图 2-8）。
 
 <figure markdown>
 ![n=10 的概率密度](assets/book/ch2_osc_n10.jpg){ width="300" }
-<figcaption>图 2-5　$n=10$ 时谐振子的概率密度（实线）与经典概率密度（虚线）（图源：教材）</figcaption>
+<figcaption>图 2-8　$n=10$ 时谐振子的概率密度（实线）与经典概率密度（虚线）（图源：教材）</figcaption>
 </figure>
 
 !!! example "例题 2.5"
@@ -406,7 +460,7 @@ $$\xi\psi_n=\sqrt{\frac n2}\psi_{n-1}+\sqrt{\frac{n+1}{2}}\psi_{n+1},\qquad \fra
 
 <figure markdown>
 ![势垒穿透示意](assets/book/ch2_tunnel.jpg){ width="380" }
-<figcaption>图 2-6　势垒穿透：左侧入射波 + 反射波，右侧透射波（图源：教材）</figcaption>
+<figcaption>图 2-9　势垒穿透：左侧入射波 + 反射波，右侧透射波（图源：教材）</figcaption>
 </figure>
 
 **求解。** 令 $k_1=\sqrt{2mE}/\hbar$，$k_2=\sqrt{2m(E-U_0)}/\hbar$。三个区域的解为
@@ -451,19 +505,33 @@ $$D=\frac{J_D}{J}=\frac{\lvert C\rvert^2}{\lvert A\rvert^2},\qquad R=\frac{J_R}{
 
 $$D\approx D_0\exp\left[-\frac2\hbar\int_a^b\sqrt{2m\left[U(x)-E\right]}\,\dd x\right],$$
 
-$a,b$ 是经典转折点 $U(a)=U(b)=E$（图 2-7）。这个公式虽不严格，但与 WKB 近似的结果一致，是估算 $\alpha$ 衰变寿命、场致电子发射的标准工具。
+$a,b$ 是经典转折点 $U(a)=U(b)=E$（图 2-10）。这个公式虽不严格，但与 WKB 近似的结果一致，是估算 $\alpha$ 衰变寿命、场致电子发射的标准工具。
 
 <figure markdown>
 ![任意形状势垒](assets/book/ch2_wkb.jpg){ width="260" }
-<figcaption>图 2-7　任意形状的势垒（图源：教材）</figcaption>
+<figcaption>图 2-10　任意形状的势垒（图源：教材）</figcaption>
 </figure>
 
-!!! info "隧道效应与电子工程"
+!!! info "隧道效应的应用"
 
-    - **扫描隧道显微镜（STM）**：针尖与样品间距变化 $0.1\ \mathrm{nm}$，隧穿电流变化约一个数量级，因此能分辨单个原子。
+    - **扫描隧道显微镜（STM）**：针尖与样品间距变化 $0.1\ \mathrm{nm}$，隧穿电流变化约一个数量级，因此能分辨单个原子（图 2-11）。STM 不仅能“看”原子，还能用针尖搬动原子（图 2-12）。
     - **隧道二极管**、**约瑟夫森结**：利用隧穿实现负阻和超导量子器件。
     - **闪存（Flash）**：编程/擦除时电子通过 F–N 隧穿穿过约 $10\ \mathrm{nm}$ 的氧化层进出浮栅。
     - **MOSFET 栅极漏电**：栅氧化层薄到 $1\sim2\ \mathrm{nm}$ 时直接隧穿电流急剧增大，这是工艺改用高 $k$ 介质的原因之一。
+
+<div class="grid-2" markdown>
+
+<figure markdown>
+![STM 针尖扫描示意](assets/figs/ch2_stm_tip.jpg){ width="340" }
+<figcaption>图 2-11　STM 原理：针尖在表面上方扫描，保持隧穿电流恒定，针尖的起伏就描出了原子的轮廓（图源：上海交大《大学物理 A3》课件）</figcaption>
+</figure>
+
+<figure markdown>
+![用原子写出的“原子”二字](assets/figs/ch2_stm_atoms.jpg){ width="200" }
+<figcaption>图 2-12　用 STM 在硅表面移走原子，刻出“原子”二字（中国科学院，图源：上海交大《大学物理 A3》课件）</figcaption>
+</figure>
+
+</div>
 
 !!! example "例题 2.6（教材例题：$\delta$ 势垒）"
 
@@ -496,7 +564,7 @@ $a,b$ 是经典转折点 $U(a)=U(b)=E$（图 2-7）。这个公式虽不严格�
 
 ## 典型题精讲
 
-!!! example "例题 2.7　判断定态"
+!!! example "例题 2.7　判断定态【HUST 870 2003、2009、2012、2017、2022】"
 
     判断下列状态是否为定态：
 
@@ -512,7 +580,7 @@ $a,b$ 是经典转折点 $U(a)=U(b)=E$（图 2-7）。这个公式虽不严格�
 
     (3) $\lvert\psi\rvert^2=4\lvert u\rvert^2\cos^2(Et/\hbar)$ 随时间变化，**不是**定态（它是能量 $E$ 与 $-E$ 的叠加）。
 
-!!! example "例题 2.8　叠加态的时间演化"
+!!! example "例题 2.8　叠加态的时间演化【HUST 870 2001、2011、2013、2017、2020】"
 
     无限深方势阱（$0<x<a$）中，$\Psi(x,0)=\sqrt{\dfrac{8}{5a}}\left(1+\cos\dfrac{\pi x}{a}\right)\sin\dfrac{\pi x}{a}$。求：(1) $\Psi(x,t)$；(2) 平均能量；(3) $t$ 时刻粒子在左半边 $0\leqslant x\leqslant a/2$ 的概率。
 
@@ -530,7 +598,7 @@ $a,b$ 是经典转折点 $U(a)=U(b)=E$（图 2-7）。这个公式虽不严格�
 
     粒子在左右两半之间来回晃动，频率正是 $\omega_{21}$。用狄拉克符号写，能量表象中的态矢为 $\left(\tfrac{2}{\sqrt5}\ee^{-\ii E_1t/\hbar},\ \tfrac1{\sqrt5}\ee^{-\ii E_2t/\hbar},\ 0,\dots\right)^{\mathrm T}$。
 
-!!! example "例题 2.9　势能平移与标度"
+!!! example "例题 2.9　势能平移与标度【HUST 870 2006】"
 
     (1) 势能 $U(x)\to U(x)+U_0$ 时，定态波函数和能级怎样变化？(2) 不解方程，证明无限深方势阱的能级 $E_n\propto a^{-2}$。
 
@@ -538,7 +606,7 @@ $a,b$ 是经典转折点 $U(a)=U(b)=E$（图 2-7）。这个公式虽不严格�
 
     (2) 令 $x=a\xi$，$\xi\in(0,1)$，则 $\hat H=-\dfrac{\hbar^2}{2ma^2}\dfrac{\dd^2}{\dd\xi^2}$，边界条件与 $a$ 无关。$-\dd^2/\dd\xi^2$ 的本征值 $\lambda_n$ 是纯数，所以 $E_n=\lambda_n\hbar^2/2ma^2\propto a^{-2}$。不确定关系给出同样的量级：$\Delta p\gtrsim\hbar/a$，$E\gtrsim\hbar^2/ma^2$。
 
-!!! example "例题 2.10　均匀电场中的谐振子"
+!!! example "例题 2.10　均匀电场中的谐振子【HUST 870 2022、2003】"
 
     带电 $q$ 的谐振子 $\hat H=\dfrac{\hat p^2}{2m}+\dfrac12m\omega^2x^2$ 置于均匀电场 $\mathcal E$ 中。求能级和波函数。
 
@@ -608,7 +676,7 @@ graph TD
 
 ## 练习题
 
-!!! example "练习 1（教材习题 2.1）"
+!!! example "练习 1（教材习题 2.1）【HUST 870 2018、2022】"
 
     证明归一化常数与时间无关。
 
@@ -624,7 +692,7 @@ graph TD
 
         $\Psi=\psi(\vv r)\ee^{-\ii Et/\hbar}$，$\Psi^*=\psi^*\ee^{\ii Et/\hbar}$（$E$ 为实数）。$\vv J=\dfrac{\ii\hbar}{2m}(\Psi\nabla\Psi^*-\Psi^*\nabla\Psi)$ 中两个相因子总是成对出现、相乘为 1，所以 $\vv J=\dfrac{\ii\hbar}{2m}(\psi\nabla\psi^*-\psi^*\nabla\psi)$，与 $t$ 无关。
 
-!!! example "练习 3（教材习题 2.3）"
+!!! example "练习 3（教材习题 2.3）【HUST 870 2006、2007】"
 
     由下列两定态波函数计算概率流密度：(1) $\psi_1=\dfrac1r\ee^{\ii kr}$；(2) $\psi_2=\dfrac1r\ee^{-\ii kr}$。说明 $\psi_1$ 表示向外传播的球面波，$\psi_2$ 表示向内传播的球面波。
 
@@ -660,7 +728,7 @@ graph TD
 
         （若能级简并，总可以组合出 $\psi(x)\pm\psi(-x)$ 作为有确定宇称的本征函数。一维束缚态能级都是不简并的。）
 
-!!! example "练习 6（教材习题 2.8）"
+!!! example "练习 6（教材习题 2.8）【HUST 870 2006】"
 
     粒子在一维有限深方势阱 $U(x)=U_0$（$\lvert x\rvert>a$），$U=0$（$\lvert x\rvert\leqslant a$）中运动，求束缚态（$0<E<U_0$）的能级所满足的方程。
 
@@ -705,3 +773,48 @@ graph TD
         $$E=-\frac{m\gamma^2}{2\hbar^2},\qquad \psi(x)=\sqrt\kappa\,\ee^{-\kappa\lvert x\rvert}=\frac{\sqrt{m\gamma}}{\hbar}\ee^{-m\gamma\lvert x\rvert/\hbar^2}.$$
 
         只有**一个**束缚态。
+
+### 真题拓展
+
+!!! example "拓展 1【HUST 870 2005、2009、2014、2016、2018】"
+
+    一维无限深方势阱（$0<x<a$）中的粒子处于 $\psi(x)=\dfrac{4}{\sqrt a}\sin\dfrac{\pi x}{a}\cos^2\dfrac{\pi x}{a}$。求能量的可能测量值、相应概率和平均值。
+
+    ??? success "答案"
+
+        由 $\sin u\cos^2u=\tfrac14(\sin u+\sin3u)$，
+
+        $$\psi=\frac1{\sqrt a}\left(\sin\frac{\pi x}{a}+\sin\frac{3\pi x}{a}\right)=\frac1{\sqrt2}(\psi_1+\psi_3) .$$
+
+        测得 $E_1=\dfrac{\pi^2\hbar^2}{2ma^2}$ 和 $E_3=9E_1$ 的概率各为 $\tfrac12$，平均值 $\bar E=5E_1=\dfrac{5\pi^2\hbar^2}{2ma^2}$。
+
+!!! example "拓展 2【HUST 870 2024】"
+
+    势阱（$0<x<a$）中的粒子处于 $\varphi=\dfrac{1}{\sqrt{13}}(3\varphi_2-2\ii\varphi_6)$。求粒子处于势阱中心的概率（密度）。
+
+    ??? success "答案"
+
+        $\varphi_n(a/2)=\sqrt{2/a}\sin(n\pi/2)$，$n$ 为偶数时等于 0。$\varphi_2$ 和 $\varphi_6$ 在中心都有节点，所以 $\lvert\varphi(a/2)\rvert^2=0$。两项都是偶数 $n$，乘上各自的相因子后仍然在中心为零，所以这个结论对任意时刻都成立。
+
+!!! example "拓展 3【HUST 870 2006】"
+
+    求 $\psi=A\ee^{\ii kx}+B\ee^{-\ii kx}$（$A,B$ 为实数）的概率流密度。
+
+    ??? success "答案"
+
+        $$J=\frac{\ii\hbar}{2m}\left(\psi\psi'^*-\psi^*\psi'\right)=\frac{\hbar k}{m}(A^2-B^2) ,$$
+
+        即入射流减去反射流。交叉项 $AB\ee^{\pm2\ii kx}$ 在两部分中相互抵消。
+
+!!! example "拓展 4【HUST 870 2022】"
+
+    用不确定关系估算谐振子 $\hat H=\dfrac{\hat p^2}{2m}+\dfrac12m\omega^2x^2$ 的基态能量。
+
+    ??? success "答案"
+
+        对基态 $\bar x=\bar p=0$，所以 $\overline{p^2}=(\Delta p)^2$、$\overline{x^2}=(\Delta x)^2$，且 $\Delta p\geqslant\hbar/2\Delta x$：
+
+        $$\bar E\geqslant\frac{\hbar^2}{8m(\Delta x)^2}+\frac12m\omega^2(\Delta x)^2 .$$
+
+        当 $(\Delta x)^2=\hbar/2m\omega$ 时右边最小，$E_{\min}=\tfrac12\hbar\omega$，恰好等于严格结果（谐振子基态是最小不确定态）。经典粒子可以静止在谷底，量子粒子不行，所以基态能量不为零。
+
