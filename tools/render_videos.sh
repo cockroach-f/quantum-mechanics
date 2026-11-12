@@ -29,7 +29,7 @@ PY
   fi
   for s in "${scenes[@]}"; do
     echo ">> $f :: $s"
-    manim -qm --disable_caching "$f" "$s" >/dev/null
+    manim -qm --progress_bar none --disable_caching "$f" "$s" >/dev/null
     src="media/videos/$mod/720p30/$s.mp4"
     # 再压一遍，减小体积（H.264, CRF 28, faststart 便于网页边下边播）
     ffmpeg -v error -y -i "$src" -c:v libx264 -preset slow -crf 28 -pix_fmt yuv420p -movflags +faststart -an "$OUT/$s.mp4"

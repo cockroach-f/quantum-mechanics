@@ -1,5 +1,5 @@
 site_name: 量子力学从零到精通
-site_description: 面向电子信息类本科生的量子力学讲义——从黑体辐射到全同粒子，配 manim 动画可视化与知识点归纳
+site_description: 量子力学讲义——从黑体辐射到全同粒子，配 manim 动画可视化与知识点归纳
 site_author: light
 site_url: https://cockroach-f.github.io/quantum-mechanics/
 repo_url: https://github.com/cockroach-f/quantum-mechanics

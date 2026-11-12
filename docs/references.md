@@ -13,7 +13,7 @@
 - D. J. Griffiths, *Introduction to Quantum Mechanics*：物理图像最清楚的入门教材，推荐和本站对照阅读。
 - 曾谨言，《量子力学教程》：国内经典教材，习题丰富。
 - J. J. Sakurai, *Modern Quantum Mechanics*：以狄拉克符号和表象理论为主线的进阶教材。
-- R. Shankar, *Principles of Quantum Mechanics*：第 1 章的线性代数复习非常适合工科学生。
+- R. Shankar, *Principles of Quantum Mechanics*：第 1 章对线性代数（向量空间、算符、本征值）的复习写得很透彻。
 
 ## 本站说明
 
