@@ -213,3 +213,111 @@ class C2_Tunneling(Scene):
         res.to_corner(UR, buff=0.25).shift(DOWN * 0.9)
         self.play(FadeIn(res))
         self.wait(3)
+
+
+# --------------------------------------------------------------------------
+# 2.6 有限深势阱：图解法——圆与 ξtanξ、−ξcotξ 的交点
+# --------------------------------------------------------------------------
+def _bisect(f, a, b, n=60):
+    fa = f(a)
+    for _ in range(n):
+        m = 0.5 * (a + b); fm = f(m)
+        if fa * fm <= 0:
+            b = m
+        else:
+            a, fa = m, fm
+    return 0.5 * (a + b)
+
+
+def finite_well_roots(R):
+    roots = []  # (xi, parity)
+    k = 0
+    while k * np.pi / 2 < R:
+        lo, hi = k * np.pi / 2 + 1e-9, min((k + 1) * np.pi / 2 - 1e-9, R)
+        if k % 2 == 0:
+            f = lambda x: x * np.tan(x) - np.sqrt(max(R * R - x * x, 0))
+        else:
+            f = lambda x: -x / np.tan(x) - np.sqrt(max(R * R - x * x, 0))
+        if f(lo) * f(hi) <= 0:
+            roots.append((_bisect(f, lo, hi), "even" if k % 2 == 0 else "odd"))
+        k += 1
+    return roots
+
+
+class C2_FiniteWell(Scene):
+    def construct(self):
+        title = title_bar(r"有限深势阱的图解：$\xi^2+\eta^2=R^2$ 的圆与 $\eta=\xi\tan\xi$、$\eta=-\xi\cot\xi$ 的交点就是束缚态")
+        self.play(FadeIn(title))
+        M = 8.0
+        ax = Axes(x_range=[0, M, np.pi / 2], y_range=[0, M, 2], x_length=5.2, y_length=5.2,
+                  axis_config={"include_tip": False}).to_corner(DL, buff=0.4).shift(RIGHT * 0.2)
+        xl = MT(r"\xi=\tfrac{ka}{2}", 24).next_to(ax.x_axis, RIGHT, buff=0.05).shift(UP * 0.25)
+        yl = MT(r"\eta=\tfrac{\kappa a}{2}", 24).next_to(ax.y_axis, UP, buff=0.08)
+        tk = VGroup(*[MT(s, 20, GREY_B).next_to(ax.c2p(v, 0), DOWN, buff=0.1)
+                      for s, v in [(r"\tfrac\pi2", np.pi / 2), (r"\pi", np.pi), (r"\tfrac{3\pi}2", 1.5 * np.pi), (r"2\pi", 2 * np.pi)]])
+        self.play(Create(ax), FadeIn(xl), FadeIn(yl), FadeIn(tk))
+        br = VGroup()
+        for k in range(6):
+            a, b = k * np.pi / 2 + 1e-3, (k + 1) * np.pi / 2 - 1e-3
+            xs = np.linspace(a, b, 300)
+            ys = xs * np.tan(xs) if k % 2 == 0 else -xs / np.tan(xs)
+            m = (ys >= 0) & (ys <= M) & (xs <= M)
+            if m.sum() > 2:
+                br.add(curve(ax, xs[m], ys[m], C_PSI if k % 2 == 0 else C_IM, 3))
+        leg = VGroup(CT(r"偶态 $\eta=\xi\tan\xi$", 22, C_PSI), CT(r"奇态 $\eta=-\xi\cot\xi$", 22, C_IM)).arrange(DOWN, aligned_edge=LEFT, buff=0.12)
+        leg.next_to(ax, RIGHT, buff=0.15).align_to(ax, UP)
+        self.play(Create(br), FadeIn(leg), run_time=2)
+        R = ValueTracker(1.0)
+
+        def circ():
+            r = R.get_value()
+            ts = np.linspace(0, np.pi / 2, 120)
+            xs, ys = r * np.cos(ts), r * np.sin(ts)
+            m = (xs <= M) & (ys <= M)
+            g = VGroup(curve(ax, xs[m], ys[m], C_HL, 3))
+            for xi, par in finite_well_roots(r):
+                eta = np.sqrt(max(r * r - xi * xi, 0))
+                g.add(Dot(ax.c2p(xi, eta), radius=0.08, color=C_PSI if par == "even" else C_IM))
+            return g
+        Cc = always_redraw(circ)
+        # 右侧：势阱和能级
+        W = Axes(x_range=[-1.5, 1.5, 1], y_range=[-0.05, 1.15, 1], x_length=4.2, y_length=3.3,
+                 axis_config={"include_tip": False, "include_ticks": False, "stroke_opacity": 0}).move_to(RIGHT * 4.3 + DOWN * 1.3)
+        well = VGroup(Line(W.c2p(-1.5, 1), W.c2p(-0.5, 1)), Line(W.c2p(-0.5, 1), W.c2p(-0.5, 0)),
+                      Line(W.c2p(-0.5, 0), W.c2p(0.5, 0)), Line(W.c2p(0.5, 0), W.c2p(0.5, 1)),
+                      Line(W.c2p(0.5, 1), W.c2p(1.5, 1))).set_stroke(C_POT, 4)
+        v0 = MT(r"V_0", 24, C_POT).next_to(W.c2p(1.5, 1), UP, buff=0.08)
+
+        def levels():
+            r = R.get_value()
+            g = VGroup()
+            for xi, par in finite_well_roots(r):
+                e = xi * xi / (r * r)
+                g.add(Line(W.c2p(-0.75, e), W.c2p(0.75, e), color=C_PSI if par == "even" else C_IM, stroke_width=3))
+            n = 1
+            while (n * np.pi / 2) ** 2 / r ** 2 < 1.1:
+                e = (n * np.pi / 2) ** 2 / r ** 2
+                g.add(DashedLine(W.c2p(-0.5, e), W.c2p(0.5, e), color=GREY_B, stroke_width=1.5))
+                n += 1
+            return g
+        Lv = always_redraw(levels)
+        info = always_redraw(lambda: VGroup(
+            MT(rf"R=\sqrt{{\tfrac{{ma^2V_0}}{{2\hbar^2}}}}={R.get_value():.2f}", 26, C_HL),
+            CT(rf"束缚态个数 $N={len(finite_well_roots(R.get_value()))}$", 24)).arrange(RIGHT, buff=0.4).next_to(W, UP, buff=0.25))
+        note = CT(r"实线：有限阱能级 $E=\dfrac{\xi^2}{R^2}V_0$　虚线：同宽无限阱", 20, GREY_B).next_to(W, DOWN, buff=0.1)
+        self.play(Create(well), FadeIn(v0), FadeIn(note))
+        self.add(Cc, Lv, info)
+        self.play(R.animate.set_value(1.5), run_time=2)
+        n1 = panel(r"圆再小也和第一支 $\xi\tan\xi$ 相交：", r"一维对称阱至少有一个（偶）束缚态", size=24, color=C_PSI)
+        fitw(n1, 6.6).move_to(RIGHT * 3.6 + UP * 2.2)
+        self.play(FadeIn(n1))
+        self.wait(1.5)
+        self.play(R.animate.set_value(4.2), run_time=6, rate_func=linear)
+        n2 = panel(r"$R$ 每增加 $\pi/2$ 多一个交点：$N=\lceil 2R/\pi\rceil$", r"每条能级都比同宽无限阱的低", size=24)
+        fitw(n2, 6.6).move_to(n1)
+        self.play(FadeOut(n1), FadeIn(n2))
+        self.play(R.animate.set_value(7.6), run_time=6, rate_func=linear)
+        n3 = panel(r"$V_0\to\infty$（$R\to\infty$）：交点趋于 $\xi=n\pi/2$，", r"回到无限深阱", size=24, color=C_HL)
+        fitw(n3, 6.6).move_to(n1)
+        self.play(FadeOut(n2), FadeIn(n3))
+        self.wait(2.5)

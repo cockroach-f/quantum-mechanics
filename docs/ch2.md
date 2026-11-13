@@ -1,8 +1,8 @@
 # 第 2 章 波函数和薛定谔方程
 
-!!! note "课件第 3–4 讲"
+!!! note "本章学习范围"
 
-    3 讲是波函数、薛定谔方程、叠加和概率流（2.1–2.5）。4 讲是无限深势阱、有限深势阱、隧穿和谐振子（2.6 起）。原有的势阱、谐振子、隧穿图都保留。有限深势阱课件有、原文没有，补在 2.6 后面，不另做图。
+    全章都是重点：2.1–2.5 是波函数、薛定谔方程、态叠加和概率流；2.6 起是一维定态问题（无限深与有限深势阱、谐振子、势垒穿透）。「拓展」方框介绍量子阱、量子点、隧穿器件、分子振动等应用，可以跳过。
 
 !!! tip "本章目标"
 
@@ -200,6 +200,16 @@ $$E\ \to\ \ii\hbar\frac{\partial}{\partial t},\qquad \vv p\ \to\ \hat{\vv p}=-\i
 
     上面的“猜法”只说明薛定谔方程是合理的，它本身是量子力学的**基本假设**，正确性由它导出的结论与实验一致来保证（就像牛顿第二定律）。注意方程中出现了 $\ii$：**波函数必然是复数**，否则 $\ii\hbar\partial_t\Psi$（纯虚）与 $\hat H\Psi$（实）无法相等。
 
+!!! info "直觉：薛定谔方程是「虚时间」的扩散方程"
+
+    自由粒子的薛定谔方程可以写成 $\dfrac{\partial\Psi}{\partial t}=\dfrac{\ii\hbar}{2m}\nabla^2\Psi$，形式上就是扩散方程 $\dfrac{\partial n}{\partial t}=D\nabla^2n$，只是扩散系数 $D=\dfrac{\ii\hbar}{2m}$ 是纯虚数。这个 $\ii$ 改变了一切。
+
+    - 扩散方程的平面波解 $\ee^{\ii kx}$ 按 $\ee^{-Dk^2t}$ **衰减**，墨水滴会不可逆地抹平；薛定谔方程的平面波按 $\ee^{-\ii\hbar k^2t/2m}$ **转相位**，振幅不变，所以 $\int\lvert\Psi\rvert^2\dd\tau$ 守恒（2.4 节），而且过程可逆。
+    - 扩散方程把 $t\to-t$ 就不再成立；薛定谔方程在 $t\to-t$ 同时取复共轭 $\Psi\to\Psi^*$ 下不变，这就是量子力学的时间反演对称。
+    - 不同 $k$ 的相位转得快慢不同（$\omega\propto k^2$），这就是波包的色散（动画 2-1）。
+
+    所以如果坚持 $\Psi$ 是实函数，得到的只能是扩散，得不到波动和干涉。**复数在量子力学里是必需的，不是计算上的方便。**
+
 !!! info "为什么薛定谔方程是线性的，且不含状态参量？【HUST 870 2009、2015、2018】"
 
     - **线性**：态叠加原理要求，若 $\Psi_1,\Psi_2$ 是方程的解，则 $c_1\Psi_1+c_2\Psi_2$ 也必须是解。只有线性方程才有这个性质。
@@ -377,19 +387,82 @@ $A,B$ 不能同时为零，所以有两组解：$A=0,\cos\alpha a=0$（$\alpha a
 
 ---
 
-!!! note "一维有限深势阱（课件第 4 讲有，这里补一段，不另作图）"
+### 2.6.1 有限深方势阱
 
-    势仍画成图 2-3 那种对称阱，只是阱壁从无穷高改成有限高 $V_0$。课件把阱宽记为 $a$，壁在 $x=\pm a/2$：
+真实的势阱都不是无穷深的：半导体量子阱的深度是两种材料导带边之差，约 $0.1\sim1\ \mathrm{eV}$；原子核里的核子势阱约 $50\ \mathrm{MeV}$。把图 2-3 的阱壁从无穷高降到有限高 $V_0$，阱宽仍为 $a$、壁在 $x=\pm a/2$：
 
-    $$U(x)=\begin{cases}0,&\lvert x\rvert<a/2\\ V_0,&\lvert x\rvert>a/2\end{cases},\qquad 0<E<V_0.$$
+$$U(x)=\begin{cases}0,&\lvert x\rvert<a/2\\ V_0,&\lvert x\rvert>a/2\end{cases},\qquad 0<E<V_0 .$$
 
-    阱内 $k=\sqrt{2mE}/\hbar$，阱外衰减常数 $\kappa=\sqrt{2m(V_0-E)}/\hbar$，所以 $k^2+\kappa^2=2mV_0/\hbar^2$。$\psi$ 和 $\psi'$ 在 $\pm a/2$ 连续，得到
+**求解。** 阱内 $\psi''=-k^2\psi$，$k=\sqrt{2mE}/\hbar$；阱外 $\psi''=\kappa^2\psi$，$\kappa=\sqrt{2m(V_0-E)}/\hbar$，有限性要求只留衰减解 $\ee^{-\kappa\lvert x\rvert}$。势能关于 $x=0$ 对称，本征函数可以取成偶函数或奇函数（3.6 节的宇称）：
 
-    $$\xi=\frac{ka}{2},\quad \eta=\frac{\kappa a}{2},\quad \xi^2+\eta^2=\frac{ma^2V_0}{2\hbar^2}.$$
+$$\psi_{\text{偶}}=\begin{cases}A\cos kx,&\lvert x\rvert<a/2\\ C\,\ee^{-\kappa\lvert x\rvert},&\lvert x\rvert>a/2\end{cases}\qquad \psi_{\text{奇}}=\begin{cases}A\sin kx,&\lvert x\rvert<a/2\\ \pm C\,\ee^{-\kappa\lvert x\rvert},&x\gtrless\pm a/2\end{cases}$$
 
-    偶态 $\eta=\xi\tan\xi$，奇态 $\eta=-\xi\cot\xi$。图解就是这条四分之一圆和两支曲线的交点，交点个数有限。奇态要有束缚态，圆必须够大：$ma^2V_0/(2\hbar^2)\ge\pi^2/4$。
+$U$ 有限跃变，$\psi$ 和 $\psi'$ 都连续，等价于对数导数 $\psi'/\psi$ 在 $x=a/2$ 连续。偶态 $-k\tan\dfrac{ka}{2}=-\kappa$，奇态 $k\cot\dfrac{ka}{2}=-\kappa$。引入量纲为一的
 
-    和无限深阱比：波函数穿出阱壁，$E$ 比同宽无限阱低；阱越浅、越窄，束缚态越少。量子点、量子阱激光器利用的就是能级间隔随阱宽变，$E_{n+1}-E_n\propto 1/a^2$。扫描隧道显微镜和薄栅氧化层漏电仍看 2.8 里已有的图。
+$$\xi=\frac{ka}{2},\qquad \eta=\frac{\kappa a}{2},\qquad \xi^2+\eta^2=R^2\equiv\frac{ma^2V_0}{2\hbar^2},$$
+
+能级由下面两组方程决定：
+
+$$\text{偶态：}\ \eta=\xi\tan\xi,\qquad \text{奇态：}\ \eta=-\xi\cot\xi,\qquad \xi,\eta>0 .$$
+
+**图解。** 在 $\xi\eta$ 平面上画半径 $R$ 的四分之一圆，它与 $\xi\tan\xi$（偶）、$-\xi\cot\xi$（奇）各支的交点就是束缚态（动画 2-5）。读图可以得到几个结论。
+
+1. **至少有一个束缚态。** $\xi\tan\xi$ 的第一支从原点出发，圆无论多小都与它相交。一维对称阱无论多浅多窄都至少有一个（偶的）束缚态。三维球形阱没有这个性质，阱必须足够深才有束缚态。
+2. **束缚态个数有限。** $\xi\tan\xi$、$-\xi\cot\xi$ 的各支依次从 $\xi=0,\tfrac\pi2,\pi,\tfrac{3\pi}2,\dots$ 出发，所以束缚态数 $N=\lceil 2R/\pi\rceil$。奇态出现的条件是 $R\ge\pi/2$。
+3. **能级比同宽的无限深阱低。** 交点总有 $\xi<n\pi/2$，而无限深阱是 $\xi=n\pi/2$。波函数在壁外拖了一个 $\ee^{-\kappa\lvert x\rvert}$ 尾巴，「有效阱宽」变大了。
+4. **$V_0\to\infty$ 回到无限深阱。** $R\to\infty$ 时交点趋于 $\xi=n\pi/2$，$E_n\to\dfrac{n^2\pi^2\hbar^2}{2ma^2}$，壁外的尾巴长度 $1/\kappa\to0$。
+
+<figure class="video" markdown>
+<video controls preload="metadata" width="100%" poster="assets/posters/C2_FiniteWell.jpg"><source src="assets/videos/C2_FiniteWell.mp4" type="video/mp4"></video>
+<figcaption>动画 2-5　有限深方势阱的图解：$R=\sqrt{ma^2V_0/2\hbar^2}$ 从 1 增大到 7.6，四分之一圆与 $\xi\tan\xi$（偶态）、$-\xi\cot\xi$（奇态）的交点逐个出现。右边是对应的能级（实线），虚线是同宽无限深阱的能级。</figcaption>
+</figure>
+
+<figure markdown>
+![无限深势阱与有限深势阱的本征函数](assets/figs/ch2_ppt_finite_vs_infinite.png){ width="75%" }
+<figcaption>图 2-5a　左：无限深势阱的前四个本征函数，在壁上为零；右：有限深势阱的前三个本征函数，穿进阱壁并指数衰减，能级（虚线）比同宽无限深阱的低（图源：课程课件）</figcaption>
+</figure>
+
+!!! example "例题（补充）　GaAs 量子阱"
+
+    $\mathrm{GaAs/Al_{0.3}Ga_{0.7}As}$ 量子阱中，导带电子的有效质量 $m^*=0.067m_e$，阱深 $V_0\approx0.25\ \mathrm{eV}$，阱宽 $a=10\ \mathrm{nm}$。求束缚态的个数和基态能量，并与同宽的无限深阱比较。
+
+    ??? success "解"
+
+        $$R=\sqrt{\frac{m^*a^2V_0}{2\hbar^2}}=\frac{a}{2\hbar}\sqrt{2m^*V_0}=3.32 .$$
+
+        $2R/\pi=2.11$，所以 $N=3$（偶、奇、偶）。数值解 $\xi\tan\xi=\sqrt{R^2-\xi^2}$ 的第一个根 $\xi_1=1.20$，
+
+        $$E_1=\frac{2\hbar^2\xi_1^2}{m^*a^2}=33\ \mathrm{meV}.$$
+
+        同宽无限深阱 $E_1^{\infty}=\dfrac{\pi^2\hbar^2}{2m^*a^2}=56\ \mathrm{meV}$。三个能级分别是 $33$、$126$、$245\ \mathrm{meV}$，无限深阱是 $56$、$225$、$505\ \mathrm{meV}$，越靠近阱口偏离越大。
+
+!!! info "拓展 · 低维量子结构"
+
+    把电子关在一个、两个或三个方向上尺寸为纳米的区域里，能级就由「阱宽」决定而不只由材料决定。这是本节最重要的应用，粗略地看都是 $E\propto1/a^2$。
+
+    - **共轭分子的颜色。** 苯、萘、蒽、并四苯、并五苯的 $\pi$ 电子可以在整个分子骨架上运动，近似为一维盒子里的自由电子。分子越长，$E_{n+1}-E_n=(2n+1)\dfrac{\pi^2\hbar^2}{2ma^2}$ 越小，吸收峰向长波移动：苯和萘吸收紫外、无色；并四苯吸收蓝光，看上去是橙色；并五苯吸收到 $580\ \mathrm{nm}$，看上去是紫色（图 2-5b）。
+    - **量子点。** 几纳米大小的半导体晶体在三个方向都受限，像一个「人造原子」。同一种材料 CdSe，直径从 $2\ \mathrm{nm}$ 变到 $5.5\ \mathrm{nm}$，荧光从蓝变到红（图 2-5c）。2023 年诺贝尔化学奖授予了量子点的发现和合成；量子点已经用在电视背光和生物荧光标记里。
+    - **量子阱激光器。** 把 $5\sim10\ \mathrm{nm}$ 厚的 GaAs 夹在 AlGaAs 中间，电子和空穴都被关在阱里，复合效率高、阈值电流低，波长还可以靠阱宽微调。今天的半导体激光器几乎都是量子阱结构。
+    - **量子级联激光器。** 1994 年贝尔实验室（Faist、Capasso、Cho 等）做出的量子级联激光器只用导带电子：电子在同一个阱里的两个子能级之间跃迁发光，然后隧穿到下一个阱，像瀑布一样一级级往下走，每一级都发一个光子（图 2-5d）。发光波长 $4.26\ \mu\mathrm m$ 对应子能级间距 $0.29\ \mathrm{eV}$，完全由阱宽设计，与材料的禁带无关。这让中红外、太赫兹波段有了紧凑的激光光源。
+
+    <div class="grid-2" markdown>
+
+    <figure markdown>
+    ![并苯类分子的吸收](assets/figs/ch2_ppt_acenes.png){ width="100%" }
+    <figcaption>图 2-5b　苯、萘、蒽、并四苯、并五苯的颜色和最大吸收波长：分子越长，吸收越向长波移动（图源：课程课件）</figcaption>
+    </figure>
+
+    <figure markdown>
+    ![量子级联激光器](assets/figs/ch2_ppt_qcl.png){ width="80%" }
+    <figcaption>图 2-5d　量子级联激光器的导带结构（Faist 等，Science 264, 553, 1994）：电子在有源区的子能级间跃迁发光，再经渐变区进入下一级（图源：课程课件）</figcaption>
+    </figure>
+
+    </div>
+
+    <figure markdown>
+    ![CdSe 量子点](assets/figs/ch2_ppt_quantum_dots.png){ width="100%" }
+    <figcaption>图 2-5c　CdSe 量子点：透射电镜照片、原子模型与能级示意；尺寸从 $20\ \text{\AA}$ 到 $55\ \text{\AA}$ 时荧光从蓝移到红，以及量子点 LED（图源：课程课件）</figcaption>
+    </figure>
 
 ## 2.7 线性谐振子
 
@@ -464,6 +537,43 @@ $$\xi\psi_n=\sqrt{\frac n2}\psi_{n-1}+\sqrt{\frac{n+1}{2}}\psi_{n+1},\qquad \fra
 
     $\dfrac{\dd w_1}{\dd x}\propto2x\,\ee^{-\alpha^2x^2}(1-\alpha^2x^2)=0$，除 $x=0$（极小，为零）外，得 $x=\pm\dfrac1\alpha=\pm\sqrt{\dfrac{\hbar}{m\omega}}$。
 
+### 2.7.1 谐振子模型的应用
+
+**分子振动。** 双原子分子的两个核在平衡间距 $r_e$ 附近振动，约化质量 $\mu=\dfrac{m_1m_2}{m_1+m_2}$，$\omega=\sqrt{k/\mu}$。振动能级间隔 $\hbar\omega$ 在 $0.1\sim0.5\ \mathrm{eV}$，跃迁落在红外波段，这就是红外光谱能鉴别分子的原因。光谱学习惯用波数 $\tilde\nu=\omega/2\pi c$：
+
+| 分子 | $\mathrm H_2$ | HD | $\mathrm D_2$ | HCl | $\mathrm{N_2}$ | CO | $\mathrm O_2$ |
+|---|---|---|---|---|---|---|---|
+| $\tilde\nu/\mathrm{cm^{-1}}$ | 4160 | 3632 | 2994 | 2886 | 2331 | 2145 | 1555 |
+| $\mu/\mathrm u$ | 0.504 | 0.672 | 1.007 | 0.980 | 7.00 | 6.86 | 8.00 |
+
+同位素分子 $\mathrm H_2$、HD、$\mathrm D_2$ 的电子结构一样，所以「弹簧」$k$ 相同，$\tilde\nu\propto\mu^{-1/2}$：由 $\mathrm H_2$ 的 4160 推出 HD 为 $4160\sqrt{0.504/0.672}=3603$，$\mathrm D_2$ 为 2943，与实测相差 1%～2%，余下的差别来自非简谐性。
+
+**三种运动的能量尺度。** 设分子线度为 $a$，电子质量 $m$，核质量 $M$。电子的能量 $E_{\text{el}}\sim\dfrac{\hbar^2}{ma^2}$（几 eV）。核振动的「弹簧」由电子提供，$k\sim E_{\text{el}}/a^2$，于是 $\hbar\omega=\hbar\sqrt{k/M}\sim E_{\text{el}}\sqrt{m/M}$。转动能 $\dfrac{\hbar^2l(l+1)}{2Ma^2}\sim E_{\text{el}}\dfrac mM$。所以
+
+$$E_{\text{el}}:E_{\text{vib}}:E_{\text{rot}}\approx1:\left(\frac mM\right)^{1/2}:\frac mM\approx1:10^{-2}:10^{-4},$$
+
+对应可见–紫外、红外、微波三个波段。这个层次也是玻恩–奥本海默近似（先解电子、再解核）成立的原因。
+
+**非简谐性。** 谐振子势能无限升高，真实分子的势能在 $r\to\infty$ 时趋于离解能。常用的模型是莫尔斯势 $V=D_e\left(1-\ee^{-\beta(r-r_e)}\right)^2$ 和兰纳–琼斯势 $V=4\varepsilon\left[(\sigma/r)^{12}-(\sigma/r)^6\right]$。莫尔斯势的能级 $E_v=\hbar\omega\left(v+\tfrac12\right)-\hbar\omega x_e\left(v+\tfrac12\right)^2$ 越往上越密，在离解能处汇成连续谱（图 2-8a）。非简谐性还使平均间距随振动能增大而变大，这是固体热膨胀的微观来源；纯谐振子的晶体不会热膨胀。
+
+**声子。** 晶体中 $N$ 个原子耦合在一起振动，可以变换成 $3N$ 个互相独立的简正模式，每个都是一个谐振子。第 $j$ 个模式的能量只能是 $\left(n_j+\tfrac12\right)\hbar\omega_j$，激发数 $n_j$ 就是该模式里的**声子**数。爱因斯坦和德拜用这一点解释了低温下固体热容趋于零（经典的杜隆–珀蒂定律给出常数 $3Nk_B$），这和普朗克解释黑体辐射用的是同一个 $\bar\varepsilon=\dfrac{\hbar\omega}{\ee^{\hbar\omega/k_BT}-1}$。电磁场的光子也是这样来的（第 4 章 4.6 节）。
+
+**相干态。** 定态 $\psi_n$ 的概率密度不随时间变化，看不出「来回振动」。把很多个 $\psi_n$ 按泊松分布的权重叠加，可以得到一个形状不变的高斯波包，中心按经典规律 $x_0\cos\omega t$ 来回摆动，这就是**相干态**（图 2-8b 的 H）。激光的光场就是电磁场谐振子的相干态。它的数学形式用第 4 章的升降算符最方便：相干态是湮灭算符 $\hat a$ 的本征态。
+
+<div class="grid-2" markdown>
+
+<figure markdown>
+![莫尔斯势](assets/figs/ch2_ppt_morse.png){ width="92%" }
+<figcaption>图 2-8a　莫尔斯势（蓝）与谐振子势（绿）：低能级几乎等间距，高能级越来越密，在离解能 $D_e$ 处汇成连续谱（图源：课程课件）</figcaption>
+</figure>
+
+<figure markdown>
+![经典与量子谐振子](assets/figs/ch2_ppt_coherent.png){ width="75%" }
+<figcaption>图 2-8b　A、B：经典振子；C–F：能量本征态（蓝为实部、红为虚部）；G：一般叠加态；H：相干态，波包像经典粒子一样来回运动（图源：课程课件）</figcaption>
+</figure>
+
+</div>
+
 ---
 
 ## 2.8 势垒穿透
@@ -530,14 +640,14 @@ $a,b$ 是经典转折点 $U(a)=U(b)=E$（图 2-10）。这个公式虽不严格�
 <figcaption>图 2-10　任意形状的势垒（图源：教材）</figcaption>
 </figure>
 
-!!! info "隧道效应的应用"
+### 2.8.1 隧道效应的应用
 
-    - **扫描隧道显微镜（STM）**：针尖与样品间距变化 $0.1\ \mathrm{nm}$，隧穿电流变化约一个数量级，因此能分辨单个原子（图 2-11）。STM 不仅能“看”原子，还能用针尖搬动原子（图 2-12）。
-    - **隧道二极管**、**约瑟夫森结**：利用隧穿实现负阻和超导量子器件。
-    - **闪存（Flash）**：编程/擦除时电子通过 F–N 隧穿穿过约 $10\ \mathrm{nm}$ 的氧化层进出浮栅。
-    - **MOSFET 栅极漏电**：栅氧化层薄到 $1\sim2\ \mathrm{nm}$ 时直接隧穿电流急剧增大，这是工艺改用高 $k$ 介质的原因之一。
+**扫描隧道显微镜（STM）。** 针尖与样品间隔一个约 $1\ \mathrm{nm}$ 的真空势垒，高度约等于逸出功 $\phi\approx4\sim5\ \mathrm{eV}$。加一个小偏压，隧穿电流 $I\propto\ee^{-2\kappa d}$，$\kappa=\sqrt{2m_e\phi}/\hbar\approx1.1\ \text{\AA}^{-1}$。间距变化 $0.1\ \mathrm{nm}$，电流变化约 $\ee^{2.2}\approx9$ 倍，所以能分辨单个原子（图 2-11）。宾宁和罗雷尔因此获 1986 年诺贝尔物理学奖。STM 不仅能「看」原子，还能用针尖搬动原子（图 2-12，图 2-5 的量子围栏也是这样搭出来的）。
 
 <div class="grid-2" markdown>
+
+<figure markdown>
+![STM 针尖扫描示意]<div class="grid-2" markdown>
 
 <figure markdown>
 ![STM 针尖扫描示意](assets/figs/ch2_stm_tip.jpg){ width="340" }
@@ -547,6 +657,46 @@ $a,b$ 是经典转折点 $U(a)=U(b)=E$（图 2-10）。这个公式虽不严格�
 <figure markdown>
 ![用原子写出的“原子”二字](assets/figs/ch2_stm_atoms.jpg){ width="200" }
 <figcaption>图 2-12　用 STM 在硅表面移走原子，刻出“原子”二字（中国科学院，图源：上海交大《大学物理 A3》课件）</figcaption>
+</figure>
+
+</div>
+
+**隧道二极管与共振隧穿。** 江崎玲於奈 1957 年把 p-n 结两边都掺杂得很重，耗尽层只有约 $10\ \mathrm{nm}$ 宽，费米能级分别进入导带和价带。加很小的正向电压时，n 区导带的电子可以直接隧穿到 p 区价带里同能量的空态，电流随电压上升（图 2-12a 中的点 1、2）；电压再大，两边能量相同的态错开，隧穿电流反而下降，出现**负微分电阻**（点 2→4）；最后普通的扩散电流接管（点 4 以后）。负阻可以用来做高频振荡器。江崎因此获 1973 年诺贝尔物理学奖。把两个很薄的势垒夹一个量子阱，就是**共振隧穿二极管**：入射电子能量恰好等于阱中准束缚能级时透射系数接近 1，这正是上面 $E>U_0$ 时 $k_2a=n\pi$ 共振透射的双势垒版本。
+
+<div class="grid-2" markdown>
+
+<figure markdown>
+![隧道二极管的 I–V 曲线](assets/figs/ch2_ppt_tunnel_diode_iv.png){ width="80%" }
+<figcaption>图 2-12a　隧道二极管的电流–电压特性：峰值电流 $I_p$、谷值电流 $I_v$ 之间是负阻区（图源：课程课件）</figcaption>
+</figure>
+
+<figure markdown>
+![隧道二极管的能带](assets/figs/ch2_ppt_tunnel_diode_bands.png){ width="52%" }
+<figcaption>图 2-12b　对应图 2-12a 中各点的能带：(a) 小正压隧穿开始，(b) 电流最大，(c)(d) 同能量的态错开、隧穿减小，(e) 反向偏压（图源：课程课件）</figcaption>
+</figure>
+
+</div>
+
+**齐纳击穿和闪存：三角形势垒。** 强电场 $\mathcal E$ 下，能带倾斜，电子面对的是一个三角形势垒：高度 $\phi$，宽度 $\Delta x=\phi/(q\mathcal E)$。用上面的任意形状势垒公式，$U-E=\phi-q\mathcal Ex$：
+
+$$D\approx\exp\left[-\frac2\hbar\int_0^{\Delta x}\sqrt{2m^*(\phi-q\mathcal Ex)}\,\dd x\right]=\exp\left[-\frac{4\sqrt{2m^*}\,\phi^{3/2}}{3\hbar q\mathcal E}\right].$$
+
+- **齐纳击穿。** 重掺杂 p-n 结加反向偏压，p 区价带电子穿过宽为禁带 $E_g$ 的三角势垒进入 n 区导带（$\phi=E_g$）。硅取 $m^*\approx0.2m_e$、$E_g=1.12\ \mathrm{eV}$：$\mathcal E=10^8\ \mathrm{V/m}$ 时 $D\sim10^{-16}$，$5\times10^8\ \mathrm{V/m}$ 时 $D\sim10^{-3}$。场强涨五倍，隧穿概率涨 13 个数量级，所以击穿电压非常陡峭，齐纳二极管可以用来稳压。
+- **闪存。** 浮栅晶体管的浮栅被二氧化硅包围，电子要越过 $\phi\approx3.1\ \mathrm{eV}$ 的 $\mathrm{Si/SiO_2}$ 势垒。写入时在控制栅上加约 $20\ \mathrm V$，氧化层里的场强达到 $10^9\ \mathrm{V/m}$ 量级，电子以福勒–诺德海姆（F–N）隧穿进入浮栅；擦除时反过来（图 2-12c）。断电后场强为零，三角势垒变成又高又宽的方势垒，电子能在浮栅里存十年以上。同一个公式取 $m^*\approx0.4m_e$：$10^9\ \mathrm{V/m}$ 时指数因子约 $10^{-11}$，场强减半就降到 $10^{-21}$。
+- **欧姆接触。** 金属与半导体接触形成肖特基势垒，宽度 $W\propto N_D^{-1/2}$。把半导体表面掺杂得极重，势垒薄到几纳米，电子直接隧穿，接触电阻 $R_c\propto\exp\left(\text{常数}\times\dfrac{V_D}{\sqrt{N_D}}\right)$ 随掺杂急剧下降，得到不整流的欧姆接触。芯片上每一个金属电极都靠它。
+- **MOSFET 栅极漏电。** 栅氧化层薄到 $1\sim2\ \mathrm{nm}$ 时直接隧穿电流急剧增大，这是工艺改用高 $k$ 介质（物理上更厚、电学上等效更薄）的原因之一。
+- **约瑟夫森结。** 两块超导体间夹约 $1\ \mathrm{nm}$ 的绝缘层，库珀对隧穿形成超导电流，是超导量子比特和超导量子干涉器（SQUID）的核心。
+
+<div class="grid-2" markdown>
+
+<figure markdown>
+![闪存的写入与擦除](assets/figs/ch2_ppt_flash.png){ width="100%" }
+<figcaption>图 2-12c　闪存单元：隧穿写入（控制栅 $20\ \mathrm V$）、隧穿擦除（衬底 $20\ \mathrm V$）与热电子写入（图源：课程课件）</figcaption>
+</figure>
+
+<figure markdown>
+![齐纳击穿的三角势垒](assets/figs/ch2_ppt_zener.png){ width="100%" }
+<figcaption>图 2-12d　大反向偏压下 p-n 结的能带：价带电子穿过宽 $\Delta x$、高 $E_g$ 的三角形势垒到达导带（图源：课程课件）</figcaption>
 </figure>
 
 </div>
@@ -791,6 +941,64 @@ graph TD
         $$E=-\frac{m\gamma^2}{2\hbar^2},\qquad \psi(x)=\sqrt\kappa\,\ee^{-\kappa\lvert x\rvert}=\frac{\sqrt{m\gamma}}{\hbar}\ee^{-m\gamma\lvert x\rvert/\hbar^2}.$$
 
         只有**一个**束缚态。
+
+!!! example "练习 9　分子间势的束缚态"
+
+    分子间的范德瓦耳斯作用可以粗略地用下面的势能描写：
+
+    $$U(x)=\begin{cases}\infty,&x<0\\ U_0,&0\le x<a\\ -U_1,&a\le x\le b\\ 0,&x>b\end{cases}\qquad(U_0,U_1>0).$$
+
+    求束缚态（$-U_1<E<0$）能级所满足的方程。
+
+    ??? success "答案"
+
+        记 $\kappa_1=\dfrac{\sqrt{2m(U_0-E)}}{\hbar}$，$k=\dfrac{\sqrt{2m(E+U_1)}}{\hbar}$，$\kappa=\dfrac{\sqrt{-2mE}}{\hbar}$。$\psi(0)=0$ 和 $x\to\infty$ 有限要求
+
+        $$\psi=\begin{cases}A\sinh\kappa_1x,&0<x<a\\ B\sin(kx+\delta),&a<x<b\\ C\,\ee^{-\kappa x},&x>b\end{cases}$$
+
+        在 $x=a$、$x=b$ 处对数导数连续：
+
+        $$k\cot(ka+\delta)=\kappa_1\coth\kappa_1a\equiv\beta,\qquad k\cot(kb+\delta)=-\kappa .$$
+
+        记 $L=b-a$，两式相减的角度为 $kL$，用 $\tan(\theta_2-\theta_1)$ 公式消去 $\delta$：
+
+        $$\tan kL=\frac{k(\kappa+\kappa_1\coth\kappa_1a)}{k^2-\kappa\,\kappa_1\coth\kappa_1a}.$$
+
+        检验：$U_0=0$、$a\to0$ 时 $\beta\to\infty$，方程变成 $\tan kL=-k/\kappa$，正是「一侧硬壁、一侧有限高」的阱的结果。取 $\hbar=m=1$，$U_0=5$、$U_1=10$、$a=0.5$、$b=2$，方程的根 $E=-8.651,\ -4.765$ 与数值对角化的结果一致。
+
+!!! example "练习 10　由振动频率求化学键的「弹簧常数」"
+
+    HCl 的振动吸收在 $\tilde\nu=2886\ \mathrm{cm^{-1}}$，约化质量 $\mu=0.980\ \mathrm u$。(1) 求力常数 $k$；(2) 求振动的零点能；(3) 室温下处于第一激发振动态的分子占多少？
+
+    ??? success "答案"
+
+        (1) $\omega=2\pi c\tilde\nu=2\pi\times3.00\times10^{10}\ \mathrm{cm/s}\times2886\ \mathrm{cm^{-1}}=5.44\times10^{14}\ \mathrm{s^{-1}}$，$k=\mu\omega^2=0.980\times1.66\times10^{-27}\times(5.44\times10^{14})^2\ \mathrm{N/m}=481\ \mathrm{N/m}$。
+
+        (2) $\hbar\omega=hc\tilde\nu=0.358\ \mathrm{eV}$，零点能 $\tfrac12\hbar\omega=0.179\ \mathrm{eV}$。
+
+        (3) $N_1/N_0=\ee^{-\hbar\omega/k_BT}=\ee^{-0.358/0.0259}\approx10^{-6}$。室温下几乎所有分子都在振动基态，所以振动对气体热容几乎没有贡献，这是能量量子化最直接的宏观后果之一。
+
+!!! example "练习 11　有限深阱的散射态"
+
+    对 2.6.1 节的有限深方势阱，能量 $E>V_0$ 的粒子从左方入射。不必计算，说明：(1) 能量是否量子化？(2) 透射系数何时等于 1？
+
+    ??? success "答案"
+
+        (1) 不量子化。$E>V_0$ 时阱外是振荡解，没有「两边都衰减」的要求，任何 $E$ 都有解。
+
+        (2) 阱外波数 $k_1=\sqrt{2m(E-V_0)}/\hbar$，阱内 $k_2=\sqrt{2mE}/\hbar$。这和定理 2.5 中 $E>U_0$ 的方势垒是同一个计算，只是阱内的波数比阱外大，透射系数的形式不变：$\sin k_2a=0$，即 $k_2a=n\pi$ 时 $D=1$。阱宽恰好容纳整数个半波长，两壁的反射波相消，这就是共振透射。冷中子穿过薄膜、电子在共振隧穿二极管中的透射峰都是这个效应。
+
+!!! example "练习 12　STM 的灵敏度"
+
+    STM 针尖与样品之间的势垒高度取 $4.5\ \mathrm{eV}$。(1) 间距从 $0.50\ \mathrm{nm}$ 变到 $0.51\ \mathrm{nm}$，隧穿电流变化百分之几？(2) 若电流测量精度为 2%，能分辨多小的高度差？
+
+    ??? success "答案"
+
+        $\kappa=\sqrt{2m_e\phi}/\hbar=\sqrt{2\times0.511\times10^6\times4.5}\ \mathrm{eV}/(197.3\ \mathrm{eV\cdot nm})=10.9\ \mathrm{nm^{-1}}$。
+
+        (1) $I\propto\ee^{-2\kappa d}$，$\dfrac{\Delta I}{I}\approx-2\kappa\Delta d=-2\times10.9\times0.01=-0.22$，电流减小约 20%。
+
+        (2) $2\kappa\,\Delta d=0.02$，$\Delta d=9\times10^{-4}\ \mathrm{nm}\approx0.001\ \mathrm{nm}$，远小于原子大小。
 
 ### 真题拓展
 
