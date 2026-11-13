@@ -513,6 +513,10 @@ $t$ 足够大时，由引理 $\frac{\sin^2(\omega t/2)}{\omega^2}\to\frac{\pi t}
 
     对**单个**精确共振的末态，$W\propto t^2$（振幅 $\propto t$ 的相干累积）；对**一群**连续分布的末态，只有宽度 $\sim1/t$ 内的末态能跟上，数目 $\propto1/t$，于是 $t^2\times\frac1t=t$。黄金定则只适用于后一种情况，并且要求 $t$ 足够长（峰远窄于 $\rho$、$H'$ 的变化尺度）又足够短（$W\ll1$）。
 
+!!! info "直觉：跃迁概率的「谱线」就是单缝衍射"
+
+    $\dfrac{\sin^2(\Delta\omega\,t/2)}{(\Delta\omega/2)^2}$ 和单缝夫琅禾费衍射的光强 $\dfrac{\sin^2(ka\sin\theta/2)}{(k\sin\theta/2)^2}$ 是同一个函数：作用时间 $t$ 对应缝宽 $a$，频率失谐 $\Delta\omega$ 对应衍射角。两者都是「有限长的窗口做傅里叶变换」。缝越宽，衍射主峰越窄、越高（中央强度 $\propto a^2$，宽度 $\propto1/a$，总光通量 $\propto a$）；作用时间越长，对频率的选择越尖锐。黄金定则里的 $\delta(\epsilon_m-\epsilon_k)$ 就是「缝宽趋于无穷」的极限，能量守恒是长时间作用的结果，短时间内则允许 $\Delta E\sim\hbar/t$ 的偏离（5.7.4）。
+
 **自由粒子末态的态密度。** 用边长 $L$ 的箱归一化 $\phi_{\boldsymbol p}=L^{-3/2}e^{\mathrm i\boldsymbol p\cdot\boldsymbol r/\hbar}$，动量取值间隔 $2\pi\hbar/L$，动量空间每个态占体积 $(2\pi\hbar/L)^3$。动量大小在 $p\sim p+\mathrm{d}p$、方向在立体角 $\mathrm{d}\Omega$ 内的态数为 $\left(\frac{L}{2\pi\hbar}\right)^3p^2\,\mathrm{d}p\,\mathrm{d}\Omega$；由 $\epsilon=\frac{p^2}{2m}$，$\mathrm{d}\epsilon=\frac pm\mathrm{d}p$：
 
 $$\rho(m)=\left(\frac{L}{2\pi\hbar}\right)^3mp\,\mathrm{d}\Omega .$$
@@ -576,6 +580,16 @@ $$\Delta E\,\Delta t\sim\hbar .$$
 
     它必须与普朗克公式 $I(\omega)=\frac{\hbar\omega^3}{\pi^2c^3}\cdot\frac{1}{e^{\hbar\omega/k_BT}-1}$（即 $\rho(\nu)=\frac{8\pi h\nu^3}{c^3}\frac{1}{e^{h\nu/k_BT}-1}$，$\rho(\nu)=2\pi I(\omega)$）对一切 $T$ 相同，比较即得。$\blacksquare$
 
+!!! info "直觉：$A/B$ 是「每个模式一个光子」的能量密度"
+
+    $\dfrac{\omega^2}{\pi^2c^3}$ 是单位体积、单位角频率间隔里的电磁模式数（第 1 章 1.2.1 的 $8\pi\nu^2/c^3$），再乘 $\hbar\omega$，$\dfrac{A}{B}=\dfrac{\hbar\omega^3}{\pi^2c^3}$ 恰好是「每个模式里有一个光子」时的能量密度 $I_1$。若每个模式平均有 $\bar n$ 个光子，$I=\bar nI_1$，向下跃迁的总速率是
+
+    $$A+BI=A(1+\bar n).$$
+
+    自发辐射就是「被真空里那一个零点光子诱发」的受激辐射。这和第 4 章产生算符的 $\sqrt{n+1}$ 是同一件事：$\lvert\mel{n+1}{\hat a^\dagger}{n}\rvert^2=n+1$。
+
+    $A\propto\omega^3$ 还解释了两个现象。一是**短波激光难做**：上能级寿命 $\tau\propto\omega^{-3}$，维持粒子数反转所需的泵浦功率随频率急剧增大，X 射线激光要靠自由电子激光这类完全不同的机制。二是**低频跃迁几乎不自发辐射**：氢原子基态超精细能级（21 cm 线，$1.42\ \mathrm{GHz}$）的 $A=2.9\times10^{-15}\ \mathrm{s^{-1}}$，寿命约一千万年。射电天文学家仍能看到这条线，是因为银河系里的氢原子数量极多。
+
 ### 5.8.2 用微扰论计算 $B$：电偶极近似
 
 光波电场 $\mathcal E_x=\mathcal E_0\cos\left(\frac{2\pi z}{\lambda}-\omega t\right)$。两条近似：
@@ -599,6 +613,17 @@ $$\Delta E\,\Delta t\sim\hbar .$$
 
 **寿命。** $\mathrm{d}N_m=-A_{mk}N_m\mathrm{d}t$，$N_m(t)=N_m(0)e^{-t/\tau}$；能级 $m$ 的平均寿命 $\tau_m=1/\sum_kA_{mk}$（对所有更低能级求和）。
 
+不同类型的能级寿命相差很多数量级，大体按 $A\propto\omega^3\lvert\boldsymbol r_{mk}\rvert^2$ 排列：
+
+| 能级类型 | 跃迁频率量级 | 自发辐射寿命量级 |
+|---|---|---|
+| 原子、分子的电子激发态（允许跃迁） | $500\ \mathrm{THz}$ | $10\ \mathrm{ns}$ |
+| 分子振动激发态 | $10\sim100\ \mathrm{THz}$ | $1\sim10\ \mathrm{ms}$ |
+| 分子转动态、基态超精细能级 | $1\sim10\ \mathrm{GHz}$ | 几乎不自发辐射（碰撞先发生） |
+| 电偶极禁戒的电子态（亚稳态） | 可见光 | $\mathrm{ms}\sim\mathrm{s}$ 或更长 |
+
+最后一行是激光的关键：亚稳态上能存住粒子。
+
 !!! example "例题 5.7（氢原子 2p→1s 的自发发射）"
 
     求氢原子 $2\mathrm p\ (m=0)\to1\mathrm s$ 的自发发射系数和 2p 态的寿命。
@@ -621,6 +646,35 @@ $T=300\ \mathrm K$ 时两者相等的波长约 $69\ \mu\mathrm m$。可见光（
 
 1. **粒子数反转** $N_m>N_k$，使受激发射多于吸收；
 2. **受激发射远多于自发发射**：可见光波段需用谐振腔把腔内辐射密度提得远高于热平衡值；微波波段自动满足。
+
+**为什么两能级做不出反转。** 光泵浦两能级体系时，吸收和受激发射的系数相同（$B_{mk}=B_{km}$），泵得越强，两者越接近相等，最多只能达到 $N_m=N_k$，永远越不过去。必须借助第三个能级。
+
+**红宝石激光器（梅曼，1960）。** 红宝石是掺约 $0.05\%$ $\mathrm{Cr^{3+}}$ 的 $\mathrm{Al_2O_3}$。氙闪光灯的蓝、绿光把 $\mathrm{Cr^{3+}}$ 从基态 $E_1$ 抽运到两条很宽的吸收带 $E_3$；$E_3$ 在约 $100\ \mathrm{ns}$ 内无辐射地（交给晶格振动）掉到亚稳态 $E_2$；$E_2\to E_1$ 是禁戒跃迁，寿命约 $3\ \mathrm{ms}$，粒子在 $E_2$ 上越积越多。只要抽运足够快，就能把一半以上的离子搬到 $E_2$，实现 $N_2>N_1$。$E_2\to E_1$ 的受激辐射就是 $694.3\ \mathrm{nm}$ 的红光。
+
+<div class="grid-2" markdown>
+
+<figure markdown>
+![红宝石激光器结构](assets/figs/ch5_ppt_ruby_laser.png){ width="100%" }
+<figcaption>图 5.6　红宝石激光器：螺旋形闪光灯包住红宝石棒，棒的两端是反射镜（一端部分透射）（图源：课程课件）</figcaption>
+</figure>
+
+<figure markdown>
+![红宝石激光器能级](assets/figs/ch5_ppt_ruby_levels.png){ width="85%" }
+<figcaption>图 5.7　$\mathrm{Cr^{3+}}$ 的能级：绿光、蓝光把离子抽运到宽吸收带，约 $100\ \mathrm{ns}$ 弛豫到寿命约 $3\ \mathrm{ms}$ 的亚稳态，再受激辐射 $694.3\ \mathrm{nm}$ 的光子（图源：课程课件）</figcaption>
+</figure>
+
+</div>
+
+**谐振腔里的雪崩。** 实现反转后，某个沿腔轴方向的自发光子在介质中来回走，每遇到一个 $E_2$ 上的离子就可能诱发出一个同频率、同相位、同方向、同偏振的光子。光子数按 $2,4,8,\dots$ 指数增长，偏离轴向的光子很快跑出腔外，只有沿轴的模式被放大，这就是激光方向性好、单色性好、相干性好的来源。三能级系统要把一半以上的粒子搬离基态，阈值很高，所以红宝石激光器只能脉冲工作。氦氖激光器、Nd:YAG 激光器用的是**四能级**结构：激光下能级本来就几乎是空的，一点点抽运就有反转。
+
+<figure class="video" markdown>
+<video controls preload="metadata" width="100%" poster="assets/posters/C5_Laser.jpg"><source src="assets/videos/C5_Laser.mp4" type="video/mp4"></video>
+<figcaption>动画 5-6　激光的原理：热平衡时 $N_2/N_1=\ee^{-\Delta E/k_BT}$，上能级几乎是空的；三能级（红宝石）抽运把粒子堆到亚稳态 $E_2$，实现粒子数反转；谐振腔里受激辐射一变二、二变四，形成同相位的光子雪崩。</figcaption>
+</figure>
+
+!!! info "拓展 · 从微波激射器到激光"
+
+    第一台利用受激辐射的器件是汤斯 1954 年做成的**氨分子微波激射器**（maser）。$\mathrm{NH_3}$ 的 N 原子可以从三个 H 组成的平面的一侧隧穿到另一侧，对称和反对称两种组合的能量差对应 $23.87\ \mathrm{GHz}$，这正是第 4 章二能级体系的一个实例。汤斯用非均匀电场把处于上能级的分子筛选出来送进谐振腔，直接得到了「粒子数反转」的分子束。1960 年梅曼把同样的思想推广到光频，做出了红宝石激光器。汤斯与巴索夫、普罗霍罗夫分享了 1964 年诺贝尔物理学奖。
 
 ---
 
@@ -830,6 +884,34 @@ $T=300\ \mathrm K$ 时两者相等的波长约 $69\ \mu\mathrm m$。可见光（
     (1) $\frac{A}{BI}=e^{hc/\lambda k_BT}-1$，$\frac{hc}{\lambda k_BT}=\frac{6.63\times10^{-34}\times3\times10^8}{5\times10^{-7}\times1.38\times10^{-23}\times300}\approx96$，比值 $\approx e^{96}\sim10^{41}$。
 
     (2) 热平衡下受激发射完全可以忽略，而且吸收（$\propto N_k$）多于受激发射（$\propto N_m$）。要让受激发射成为主导，必须 ① 粒子数反转 $N_m>N_k$，使净效果是放大；② 用谐振腔把同一模式的辐射密度 $I$ 提高许多个数量级，使 $BI\gg A$。
+
+!!! example "练习 9　红宝石的粒子数反转"
+
+    红宝石的 $\mathrm{Cr^{3+}}$ 浓度约 $1.6\times10^{25}\ \mathrm{m^{-3}}$，激光上能级 $E_2$ 比基态高 $1.79\ \mathrm{eV}$，寿命 $\tau=3\ \mathrm{ms}$，抽运光波长约 $550\ \mathrm{nm}$。(1) 室温热平衡时 $N_2/N_1$ 是多少？(2) 至少要把一半离子维持在 $E_2$ 上，每立方米红宝石需要多大的抽运功率（只算 $E_2$ 自发衰减造成的损失）？
+
+    ??? success "答案"
+
+        (1) $N_2/N_1=\ee^{-1.79/0.0259}=\ee^{-69}\approx10^{-30}$，热平衡下 $E_2$ 实际上是空的。
+
+        (2) $E_2$ 上有 $N/2=0.8\times10^{25}\ \mathrm{m^{-3}}$ 个离子，每秒衰减 $\dfrac{N/2}{\tau}$ 个，每个都要用一个 $h\nu_p=1240/550\ \mathrm{eV}=2.25\ \mathrm{eV}$ 的抽运光子补回来：
+
+        $$P\gtrsim\frac{N}{2\tau}h\nu_p=\frac{0.8\times10^{25}}{3\times10^{-3}}\times2.25\times1.60\times10^{-19}\ \mathrm W/\mathrm m^3\approx1\times10^9\ \mathrm{W/m^3}=1\ \mathrm{kW/cm^3}.$$
+
+        还没算闪光灯的低效率和晶体发热。所以红宝石激光器只能用强闪光灯脉冲工作，四能级的激光器阈值则低得多。
+
+!!! example "练习 10　自发辐射与受激辐射之比"
+
+    (1) $T=300\ \mathrm K$ 的热辐射中，$\lambda=500\ \mathrm{nm}$ 处 $A/(BI)$ 是多少？(2) 在什么波长两者相等？(3) 太阳表面（$5800\ \mathrm K$）的 $500\ \mathrm{nm}$ 处呢？
+
+    ??? success "答案"
+
+        $A/(BI)=\ee^{\hbar\omega/k_BT}-1$。
+
+        (1) $\hbar\omega/k_BT=\dfrac{2.48\ \mathrm{eV}}{0.0259\ \mathrm{eV}}=96$，比值 $\approx\ee^{96}\approx5\times10^{41}$。
+
+        (2) $\ee^{x}-1=1$，$x=\ln2$，$\lambda=\dfrac{hc}{k_BT\ln2}=\dfrac{1240\ \mathrm{eV\cdot nm}}{0.0259\times0.693\ \mathrm{eV}}=69\ \mu\mathrm m$，远红外。
+
+        (3) $x=2.48/0.50=5.0$，比值 $\approx\ee^5-1\approx150$。即使在太阳表面，可见光也主要是自发辐射，所以阳光是非相干的。
 
 ## 补充练习
 
