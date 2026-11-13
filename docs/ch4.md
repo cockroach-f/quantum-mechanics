@@ -277,6 +277,16 @@ $$\ii\hbar\frac{\dd a_m}{\dd t}=\sum_nH_{mn}a_n,\qquad\text{即}\quad\ii\hbar\fr
 
 偏微分方程变成了一组耦合的常微分方程。若取能量表象，$H$ 对角，各分量互不耦合，$a_n(t)=a_n(0)\ee^{-\ii E_nt/\hbar}$；若取别的表象，$H$ 的非对角元会让各分量之间来回“转移概率”。
 
+!!! info "拓展 · 矩阵力学其实比薛定谔方程更早"
+
+    本节把薛定谔方程「翻译」成矩阵，历史上的顺序正好相反。
+
+    - **1925 年 6 月，海森伯。** 他在黑尔戈兰岛养病时决定只用可观测量建立理论：原子里看不到电子轨道，看得到的是谱线的频率 $\nu_{mn}=(E_m-E_n)/h$ 和强度。于是他把经典的坐标 $x(t)=\sum_kx_k\ee^{\ii k\omega t}$ 换成一张两个指标的表 $x_{mn}\ee^{\ii\omega_{mn}t}$，并发现这样的表相乘不满足交换律。用它算谐振子，自然得到 $E_n=\left(n+\tfrac12\right)\hbar\omega$。
+    - **1925 年秋，玻恩和约当。** 玻恩认出海森伯的「表」就是矩阵，和约当一起写出了 $xp-px=\ii\hbar$，这正是 3.6 节的基本对易关系。玻恩、海森伯、约当的「三人文章」建立了完整的矩阵力学。同年狄拉克从泊松括号出发独立得到同样的结构（$\{u,v\}\to\frac{1}{\ii\hbar}[\hat u,\hat v]$）。
+    - **1926 年，泡利和薛定谔。** 泡利用矩阵力学算出了氢原子能级。几个月后薛定谔发表波动方程，随即证明两种理论等价：$x_{mn}$ 就是 $\int u_m^*xu_n\,\dd x$。这就是本章的主题，同一个态和同一个算符，在不同表象里有不同的样子。
+
+    矩阵力学适合处理有限维和代数结构清楚的问题（自旋、角动量、谐振子），波动力学适合处理有具体势能形状的问题（势阱、散射）。今天的量子计算几乎全部用矩阵语言。
+
 !!! example "例题 4.5　久期方程求 $L_x$ 的本征值和本征矢"
 
     用例题 4.4 中 $l=1$ 的 $L_x$ 矩阵，求 $\hat L_x$ 的本征值和归一化本征矢。
@@ -599,6 +609,17 @@ $a$ 只有对角线**上方**一条非零，$a^\dagger$ 只有**下方**一条�
 
     期望值以经典频率 $\omega$ 振荡，正是两能级差 $\hbar\omega/\hbar$。定态中 $\langle x\rangle$ 不随时间变，只有不同能量的定态叠加才会“动起来”。
 
+!!! info "拓展 · 从一个谐振子到量子场：二次量子化"
+
+    本节的代数只用了 $[\hat a,\hat a^\dagger]=1$，所以凡是能写成一组独立谐振子的体系，都可以照搬。
+
+    - **光子。** 腔里的电磁场按驻波模式展开，每个模式 $\vv k$（及偏振）就是一个频率为 $\omega_k$ 的谐振子。$\hat a_k^\dagger$ 产生一个光子，$\ket{n_k}$ 表示这个模式里有 $n_k$ 个光子，$\hat H=\sum_k\hbar\omega_k\left(\hat a_k^\dagger\hat a_k+\tfrac12\right)$。热平衡时 $\langle n_k\rangle=\dfrac{1}{\ee^{\hbar\omega_k/k_BT}-1}$，乘以模式数就回到普朗克公式（第 1 章）。真空 $\ket0$ 里每个模式还有零点能，它的可观测后果之一是两块金属板之间的卡西米尔力。
+    - **受激辐射。** 原子向已有 $n$ 个光子的模式发射光子，矩阵元带 $\mel{n+1}{\hat a^\dagger}{n}=\sqrt{n+1}$，跃迁率正比于 $n+1$。其中的 $n$ 是受激辐射，$1$ 是自发辐射。这就是第 5 章爱因斯坦系数和激光的微观来源。
+    - **声子与其他准粒子。** 晶格振动的简正模式给出声子（第 2 章 2.7.1），自旋波给出磁振子，等等。固体物理里的「粒子」大多是这样量子化出来的。
+    - **相干态与压缩态。** 激光的光场近似是 $\hat a$ 的本征态（练习 9），光子数服从泊松分布。把 $\Delta x$ 压到零点值以下、代价是 $\Delta p$ 变大的「压缩态」已经用在引力波探测器 LIGO 里，降低了量子噪声。
+
+    费米子（电子）用反对易的算符（4.6.4），同一个态最多一个粒子。两种算符合起来就是量子场论和多体理论的语言。
+
 ### 4.6.4 玻色子算符与费米子算符
 
 !!! warning "延伸 · 选学（只要求玻色子升降算符）"
@@ -805,6 +826,24 @@ graph TD
         (1) 归纳：$n=1$ 即 $[\hat a,\hat a^\dagger]=1$。设对 $n$ 成立，则 $[\hat a,(\hat a^\dagger)^{n+1}]=[\hat a,(\hat a^\dagger)^n]\hat a^\dagger+(\hat a^\dagger)^n[\hat a,\hat a^\dagger]=(n+1)(\hat a^\dagger)^n$。于是 $\hat N(\hat a^\dagger)^n\ket0=\hat a^\dagger[\hat a,(\hat a^\dagger)^n]\ket0=n(\hat a^\dagger)^n\ket0$（用了 $\hat a\ket0=0$）。归一化：$\mel{0}{\hat a^n(\hat a^\dagger)^n}{0}=n\mel{0}{\hat a^{n-1}(\hat a^\dagger)^{n-1}}{0}=\cdots=n!$。
 
         (2) $\hat N^2=\hat a^\dagger\hat a\hat a^\dagger\hat a=\hat a^\dagger(1-\hat a^\dagger\hat a)\hat a=\hat a^\dagger\hat a-(\hat a^\dagger)^2\hat a^2=\hat N$（$\hat a^2=\tfrac12\{\hat a,\hat a\}=0$）。若 $\hat N\ket\nu=\nu\ket\nu$，则 $\nu^2=\nu$，$\nu=0$ 或 $1$：一个费米子态最多被一个粒子占据。
+
+!!! example "练习 9　相干态"
+
+    定义 $\ket\alpha=\ee^{-\lvert\alpha\rvert^2/2}\displaystyle\sum_{n=0}^\infty\frac{\alpha^n}{\sqrt{n!}}\ket n$，$\alpha=\lvert\alpha\rvert\ee^{\ii\varphi}$ 是复数。(1) 证明 $\ket\alpha$ 已归一化，且 $\hat a\ket\alpha=\alpha\ket\alpha$；(2) 求测得 $n$ 个能量子的概率和 $\langle N\rangle$；(3) 求 $\langle x\rangle(t)$ 和 $\Delta x$。
+
+    ??? success "答案"
+
+        (1) $\ip{\alpha}{\alpha}=\ee^{-\lvert\alpha\rvert^2}\sum_n\dfrac{\lvert\alpha\rvert^{2n}}{n!}=1$。$\hat a\ket n=\sqrt n\ket{n-1}$：
+
+        $$\hat a\ket\alpha=\ee^{-\lvert\alpha\rvert^2/2}\sum_{n\ge1}\frac{\alpha^n\sqrt n}{\sqrt{n!}}\ket{n-1}=\alpha\,\ee^{-\lvert\alpha\rvert^2/2}\sum_{n\ge1}\frac{\alpha^{n-1}}{\sqrt{(n-1)!}}\ket{n-1}=\alpha\ket\alpha .$$
+
+        (2) $P_n=\ee^{-\lvert\alpha\rvert^2}\dfrac{\lvert\alpha\rvert^{2n}}{n!}$，泊松分布；$\langle N\rangle=\mel{\alpha}{\hat a^\dagger\hat a}{\alpha}=\lvert\alpha\rvert^2$，$\Delta N=\lvert\alpha\rvert$。
+
+        (3) 每个 $\ket n$ 带相因子 $\ee^{-\ii(n+1/2)\omega t}$，所以 $\ket{\alpha(t)}=\ee^{-\ii\omega t/2}\ket{\alpha\ee^{-\ii\omega t}}$，仍是相干态。由 $\hat x=\sqrt{\dfrac{\hbar}{2m\omega}}(\hat a+\hat a^\dagger)$，
+
+        $$\langle x\rangle(t)=\sqrt{\frac{\hbar}{2m\omega}}\left(\alpha\ee^{-\ii\omega t}+\alpha^*\ee^{\ii\omega t}\right)=\sqrt{\frac{2\hbar}{m\omega}}\,\lvert\alpha\rvert\cos(\omega t-\varphi).$$
+
+        $\langle x^2\rangle-\langle x\rangle^2=\dfrac{\hbar}{2m\omega}\mel{\alpha}{\hat a\hat a^\dagger-\hat a^\dagger\hat a}{\alpha}=\dfrac{\hbar}{2m\omega}$，与基态相同，不随时间变。所以相干态是一个形状不变、中心按经典规律振动的波包（第 2 章图 2-8b 的 H），$\Delta x\Delta p=\hbar/2$。
 
 ## 补充练习
 
