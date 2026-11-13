@@ -201,3 +201,92 @@ class C1_DoubleSlit(Scene):
         key.to_corner(DR, buff=0.3)
         self.play(FadeIn(key))
         self.wait(2.5)
+
+
+# --------------------------------------------------------------------------
+# 1.3 夫兰克–赫兹实验：电子能量的锯齿 + I–V 曲线的周期下降
+# --------------------------------------------------------------------------
+def _fh_raw(V, Eex=4.9, Vr=0.5):
+    Ef = np.where(V < Eex, V, np.mod(V, Eex))
+    pas = 1 / (1 + np.exp(-(Ef - Vr) / 0.18))
+    return (0.12 + 0.88 * pas) * (np.maximum(V, 0) / 16.0) ** 1.3
+
+
+def fh_current(V):
+    d = np.linspace(-0.6, 0.6, 41)
+    w = np.exp(-d ** 2 / (2 * 0.2 ** 2)); w /= w.sum()
+    V = np.atleast_1d(V)
+    return np.array([np.sum(w * _fh_raw(v + d)) for v in V])
+
+
+class C1_FranckHertz(Scene):
+    def construct(self):
+        title = title_bar(r"夫兰克–赫兹实验：电子动能攒够 $4.9\,\mathrm{eV}$ 就被汞原子“收走”，电流每隔 $4.9\,\mathrm V$ 掉一次")
+        self.play(FadeIn(title))
+        Eex = 4.9
+        # 上：电子能量沿 K→G 的分布
+        ax1 = Axes(x_range=[0, 1, 1], y_range=[0, 6, 1], x_length=6.2, y_length=2.3,
+                   axis_config={"include_tip": False, "include_ticks": False}).to_corner(UL, buff=0.5).shift(DOWN * 0.75 + RIGHT * 0.3)
+        l1 = VGroup(CT(r"阴极 K", 20).next_to(ax1.c2p(0, 0), DOWN, buff=0.12),
+                    CT(r"栅极 G", 20).next_to(ax1.c2p(1, 0), DOWN, buff=0.12),
+                    CT(r"电子动能", 20).next_to(ax1.y_axis, UP, buff=0.08))
+        ex = DashedLine(ax1.c2p(0, Eex), ax1.c2p(1, Eex), color=RED_C, stroke_width=2)
+        exl = MT(r"4.9\,\mathrm{eV}", 22, RED_C).next_to(ex, RIGHT, buff=0.1)
+        # 下：I–V 曲线
+        ax2 = Axes(x_range=[0, 16, 4.9], y_range=[0, 1.1, 0.5], x_length=6.2, y_length=2.6,
+                   axis_config={"include_tip": False, "include_ticks": False}).to_corner(DL, buff=0.55).shift(RIGHT * 0.3)
+        l2 = VGroup(MT(r"U_{GK}", 24).next_to(ax2.x_axis, RIGHT, buff=0.1), CT(r"板极电流 $I$", 20).next_to(ax2.y_axis, UP, buff=0.08))
+        ticks = VGroup(*[VGroup(DashedLine(ax2.c2p(v, 0), ax2.c2p(v, 1.05), color=GREY_D, stroke_width=1),
+                                MT(rf"{v:.1f}", 18, GREY_B).next_to(ax2.c2p(v, 0), DOWN, buff=0.08)) for v in [4.9, 9.8, 14.7]])
+        self.play(Create(ax1), FadeIn(l1), Create(ex), FadeIn(exl), Create(ax2), FadeIn(l2), FadeIn(ticks))
+        V = ValueTracker(0.3)
+        Vs = np.linspace(0, 16, 400)
+        Is = fh_current(Vs)
+        Is = Is / Is.max()
+
+        def profile():
+            v = V.get_value()
+            xs = np.linspace(0, 1, 300)
+            E = np.mod(v * xs, Eex) if v >= Eex else v * xs
+            # 每次达到 4.9 eV 处画一个碰撞点
+            m = VGroup(curve(ax1, xs, E, YELLOW, 3))
+            for kk in range(1, int(v // Eex) + 1):
+                xc = kk * Eex / v
+                m.add(Star(n=6, outer_radius=0.11, color=RED_C, fill_opacity=1).move_to(ax1.c2p(xc, Eex)))
+            return m
+
+        def ivc():
+            v = V.get_value()
+            msk = Vs <= v
+            if msk.sum() < 2:
+                return VGroup()
+            return VGroup(curve(ax2, Vs[msk], Is[msk], C_PROB, 3),
+                          Dot(ax2.c2p(v, np.interp(v, Vs, Is)), radius=0.06, color=C_HL))
+        P = always_redraw(profile)
+        C = always_redraw(ivc)
+        vl = always_redraw(lambda: MT(rf"U_{{GK}}={V.get_value():.1f}\,\mathrm V", 30, C_HL).move_to(RIGHT * 4.0 + UP * 2.55))
+        self.add(P, C, vl)
+        # 右侧：汞的能级
+        g = Line(RIGHT * 2.6, RIGHT * 4.6, color=WHITE).shift(DOWN * 2.3 + RIGHT * 1.6)
+        e1 = g.copy().shift(UP * 2.2)
+        gl = MT(r"6^1S_0", 22).next_to(g, RIGHT, buff=0.1)
+        el = MT(r"6^3P_1\ (4.89\,\mathrm{eV})", 22).next_to(e1, RIGHT, buff=0.1).shift(LEFT * 0.0)
+        hg = VGroup(g, e1, gl, el, CT("汞原子", 22).next_to(e1, UP, buff=0.4))
+        fitw(hg, 5.0).to_corner(DR, buff=0.4).shift(UP * 0.4)
+        self.play(FadeIn(hg))
+        self.play(V.animate.set_value(4.6), run_time=3, rate_func=linear)
+        n1 = panel(r"$U<4.9\,\mathrm V$：只有弹性碰撞，", r"电子动能一路增加，$I$ 上升", size=24)
+        fitw(n1, 5.4).move_to(RIGHT * 4.0 + UP * 1.2)
+        self.play(FadeIn(n1))
+        self.play(V.animate.set_value(6.0), run_time=3, rate_func=linear)
+        arr = Arrow(g.get_center(), e1.get_center(), buff=0.05, color=RED_C, stroke_width=4)
+        n2 = panel(r"动能到 $4.9\,\mathrm{eV}$：非弹性碰撞，", r"电子几乎停下，越不过板极前", r"$0.5\,\mathrm V$ 的反向电压，$I$ 骤降", size=24)
+        fitw(n2, 5.4).move_to(RIGHT * 4.0 + UP * 1.2)
+        self.play(GrowArrow(arr), FadeOut(n1), FadeIn(n2))
+        self.play(V.animate.set_value(11.0), run_time=5, rate_func=linear)
+        ph = FunctionGraph(lambda x: 0.12 * np.sin(18 * x), x_range=[0, 1.4], color=PURPLE_B).next_to(e1, LEFT, buff=0.3).shift(DOWN * 1.0)
+        n3 = panel(r"受激汞原子退激发出紫外线", r"$\lambda=hc/4.9\,\mathrm{eV}=253.7\,\mathrm{nm}$：", r"碰撞和光谱量出同一个能级", size=24)
+        fitw(n3, 5.4).move_to(RIGHT * 4.0 + UP * 1.2)
+        self.play(FadeOut(n2), FadeIn(n3), FadeIn(ph), FadeOut(arr))
+        self.play(V.animate.set_value(16.0), run_time=5, rate_func=linear)
+        self.wait(2)

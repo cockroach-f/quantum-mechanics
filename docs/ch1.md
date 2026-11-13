@@ -60,6 +60,12 @@
 
 </div>
 
+**为什么偏偏研究黑体。** 基尔霍夫（1859）证明：在同一温度下，任何物体的单色辐出度 $M_\nu$ 与它的吸收率 $\alpha_\nu$ 之比都相同，等于黑体的辐出度，
+
+$$\frac{M_\nu(T)}{\alpha_\nu(T)}=M_\nu^{\text{黑体}}(T).$$
+
+道理很简单：把物体放进温度为 $T$ 的空腔，平衡时它吸收多少就必须发射多少，否则会自发变热或变冷，违反热力学第二定律。所以「吸收强的物体发射也强」，而黑体（$\alpha_\nu=1$）的辐射是一个**与材料无关的普适函数** $\rho_\nu(T)$。普适函数里藏着普适常数，这就是普朗克常量 $h$ 出现的地方。
+
 经典理论的两次尝试都失败了：维恩从热力学出发得到的公式在短波（高频）处与实验符合，长波处偏低；瑞利和金斯用能量均分定理（每个振动模式平均能量 $k_BT$）得到的公式在长波处符合，短波处趋于无穷——这就是“紫外灾难”。
 
 !!! theorem "定理 1.1（普朗克黑体辐射公式，1900）"
@@ -82,6 +88,14 @@
         当 $h\nu\gg k_BT$ 时 $\bar\varepsilon\approx h\nu\,\ee^{-h\nu/k_BT}\to0$：**高频模式的能量子太“贵”，热运动激发不起来**，紫外灾难就消失了。
 
     两者相乘即得普朗克公式。
+
+??? info "拓展 · 模式数 $8\pi\nu^2/c^3$ 是怎么数出来的"
+
+    取边长 $L$ 的立方腔，腔壁导电，电场在壁上切向为零。驻波的波矢只能取 $\vv k=\dfrac{\pi}{L}(n_x,n_y,n_z)$，$n_i=1,2,\dots$。在 $\vv k$ 空间里，每个允许的点占体积 $(\pi/L)^3$。$|\vv k|<k$ 的点落在第一卦限的 $1/8$ 球内，再乘以两个独立的偏振方向：
+
+    $$N(k)=2\times\frac18\times\frac{\frac43\pi k^3}{(\pi/L)^3}=\frac{Vk^3}{3\pi^2},\qquad k=\frac{2\pi\nu}{c}\ \Longrightarrow\ N(\nu)=\frac{8\pi V\nu^3}{3c^3}.$$
+
+    对 $\nu$ 求导再除以 $V$，单位体积、单位频率间隔的模式数是 $\dfrac{8\pi\nu^2}{c^3}$。结果与腔的形状无关（$L\gg\lambda$ 时），这也是黑体辐射普适的原因之一。第 3 章 3.2 节的「箱归一化」用的是同一套数格点的办法。
 
 普朗克公式包含了两个经典公式作为极限：
 
@@ -112,6 +126,16 @@ $$h\nu\ll k_BT:\ \ \rho_\nu\approx\frac{8\pi\nu^2}{c^3}k_BT\ \ (\text{瑞利–�
 <figcaption>图 1-3　COBE 测得的宇宙微波背景辐射谱（方块）与普朗克公式（实线）（图源：上海交大《大学物理 A3》课件）</figcaption>
 </figure>
 
+!!! info "拓展 · 普朗克的「孤注一掷」和爱因斯坦的涨落公式"
+
+    1900 年 10 月，普朗克先是凑出了一个与实验吻合的内插公式，两个月后才找到「能量子」这个解释。他后来说那是「一个孤注一掷的行动」：为了得到正确的公式，他愿意牺牲以往对物理的任何信念。很长时间里他本人都把 $h\nu$ 看成计数技巧，并不认为光本身是一颗一颗的。
+
+    1909 年爱因斯坦从普朗克公式出发，算出腔内体积 $V$、频带 $\dd\nu$ 中辐射能量的方均涨落
+
+    $$\overline{(\Delta E)^2}=\Big(\underbrace{h\nu\,\rho_\nu}_{\text{粒子项}}+\underbrace{\frac{c^3}{8\pi\nu^2}\rho_\nu^2}_{\text{波动项}}\Big)V\,\dd\nu .$$
+
+    第二项正是经典电磁波的干涉涨落；第一项是一群互相独立、每个能量为 $h\nu$ 的粒子的数目涨落。同一个公式里同时出现「波」和「粒子」两项，是波粒二象性的第一次定量表述，比德布罗意早了 15 年。
+
 ### 1.2.2 光电效应与光量子
 
 光照射金属表面时有电子逸出，这就是**光电效应**。实验规律有三条：
@@ -119,6 +143,8 @@ $$h\nu\ll k_BT:\ \ \rho_\nu\approx\frac{8\pi\nu^2}{c^3}k_BT\ \ (\text{瑞利–�
 1. 存在**截止频率** $\nu_0$：$\nu<\nu_0$ 时，无论光多强、照多久，都没有光电子；
 2. 光电子的最大动能随频率线性增大，与光强无关；光强只影响光电子的**数目**；
 3. 只要 $\nu>\nu_0$，光一照上去就立即（$<10^{-9}\ \mathrm s$）有电子逸出。
+
+这些规律是一点点积累起来的：赫兹 1887 年在验证电磁波时偶然发现紫外光照在火花隙上更容易放电；勒纳德 1902 年测出光电子的最大动能与光强无关；最后的定量检验是密立根 1914–1916 年的实验。
 
 <figure markdown>
 ![光电效应实验装置](assets/figs/ch1_photoelectric_setup.jpg){ width="300" }
@@ -144,6 +170,13 @@ $$E=h\nu=\hbar\omega,\qquad \vv p=\frac{h\nu}{c}\vv e_k=\frac{h}{\lambda}\vv e_k
 
 左边 $(E,\vv p)$ 描述粒子，右边 $(\omega,\vv k)$ 描述波，$\hbar$ 是换算系数。
 
+**密立根的验证。** 爱因斯坦方程预言：遏止电压 $U_a$ 与频率成直线，$eU_a=h\nu-W_0$，**斜率 $h/e$ 与金属无关**。密立根本想推翻光量子假设，花了十年把钠、锂、钾表面在真空中现切现测，结果却得到了一条漂亮的直线（图 1-4a），从斜率定出 $h=6.56\times10^{-34}\ \mathrm{J\cdot s}$，与普朗克从黑体辐射得到的值相差不到 1%。
+
+<figure markdown>
+![密立根光电效应数据](assets/figs/ch1_ppt_millikan.png){ width="72%" }
+<figcaption>图 1-4a　密立根测得的钠的遏止电压–频率直线（1916）：斜率 $\dd U/\dd\nu=4.124\times10^{-15}\ \mathrm{V\cdot s}$，乘以 $e$ 即得 $h$（图源：课程课件）</figcaption>
+</figure>
+
 !!! example "例题 1.2"
 
     一台 $1\ \mathrm{mW}$ 的氦氖激光器，波长 $632.8\ \mathrm{nm}$。求每个光子的能量和动量，以及每秒发出的光子数。
@@ -153,6 +186,12 @@ $$E=h\nu=\hbar\omega,\qquad \vv p=\frac{h\nu}{c}\vv e_k=\frac{h}{\lambda}\vv e_k
     $$E=\frac{hc}{\lambda}=\frac{1240}{632.8}\ \mathrm{eV}=1.96\ \mathrm{eV}=3.14\times10^{-19}\ \mathrm J,\qquad p=\frac{h}{\lambda}=\frac{6.626\times10^{-34}}{632.8\times10^{-9}}=1.05\times10^{-27}\ \mathrm{kg\cdot m/s}.$$
 
     每秒光子数 $N=\dfrac{P}{E}=\dfrac{10^{-3}}{3.14\times10^{-19}}\approx3.2\times10^{15}\ \mathrm{s^{-1}}$。光子数这么多，所以日常生活中感觉不到光的“颗粒性”。
+
+!!! info "拓展 · 光电效应的应用"
+
+    - **光电倍增管。** 一个光子从光阴极打出一个电子，经过十来级「打拿极」，每级二次发射放大几倍，最后得到 $10^6\sim10^7$ 个电子，能数单个光子。日本超级神冈中微子探测器的水池四壁装了约一万一千只直径 $50\ \mathrm{cm}$ 的光电倍增管，记录中微子产生的切伦科夫光。光阴极要对可见光敏感，所以选逸出功小的碱金属及其化合物（练习 10）。
+    - **光电子能谱。** 用已知能量 $h\nu$ 的紫外光或 X 射线照射样品，测出射电子的动能 $E_k$，由 $E_B=h\nu-E_k-W$ 得到电子在原子或固体里的结合能。不同元素、不同化学环境的结合能不同，于是能做成分和化学态分析（XPS）；角分辨光电子能谱（ARPES）还能直接测出固体的能带。
+    - **半导体的内光电效应。** 光子把电子从价带激发到导带（不用逸出表面），条件是 $h\nu\ge E_g$。光电二极管、太阳能电池、CCD/CMOS 相机都基于这一点。门槛由禁带宽度 $E_g$ 决定，与金属的逸出功是同一个道理（练习 11）。
 
 ### 1.2.3 康普顿散射
 
@@ -252,6 +291,23 @@ $m=1$ 为莱曼系（紫外），$m=2$ 为巴耳末系（可见），$m=3$ 为�
 
 这个结果在第 3 章 3.3 节会由薛定谔方程严格得到，能级公式完全一样，但“轨道”的图像会被“电子云”取代。
 
+**玻尔理论的几个定量推论。**
+
+- **轨道速度和周期。** $v_n=\dfrac{\alpha c}{n}$，$\alpha=\dfrac{e^2}{4\pi\varepsilon_0\hbar c}\approx\dfrac1{137}$，基态 $v_1=2.19\times10^6\ \mathrm{m/s}$，绕核一周 $T_1=2\pi a_0/v_1=1.52\times10^{-16}\ \mathrm s$。电子速度远小于光速，所以非相对论处理是好的近似；相对论修正是 $\alpha^2\sim10^{-5}$ 量级，这就是第 7 章的精细结构。
+- **约化质量。** 核不是无穷重，电子和核绕共同质心转动，公式里的 $m_e$ 应换成约化质量 $\mu=\dfrac{m_eM}{m_e+M}$，于是 $R_M=\dfrac{R_\infty}{1+m_e/M}$。氢和氘的 $R_M$ 相差约 $2.7\times10^{-4}$，H$_\alpha$ 线 $656.279\ \mathrm{nm}$ 旁边应当有一条 $656.100\ \mathrm{nm}$ 的氘线，相距 $0.179\ \mathrm{nm}$。尤里（1932）正是在氢光谱里看到这条弱线才发现了氘。
+- **类氢离子。** 核电荷 $Ze$、只剩一个电子的离子（$\mathrm{He^+}$、$\mathrm{Li^{2+}}$……）中，$e^2\to Ze^2$：$r_n=\dfrac{n^2}{Z}a_0$，$E_n=-\dfrac{Z^2\times13.6\ \mathrm{eV}}{n^2}$。$\mathrm{He^+}$ 的 $n=4\to3$ 等跃迁曾被误认为是氢的谱线（皮克林系），玻尔用 $Z=2$ 解释了它，这是玻尔理论的早期胜利之一。
+
+**莫塞莱定律（1913）。** 内层电子的跃迁给出 X 射线的特征谱线。用高能电子把原子的 $K$ 壳层（$n=1$）打出一个电子，$L$ 壳层（$n=2$）的电子掉下来发出 $K_\alpha$ 线。对这个电子，核电荷被留在 $K$ 壳层的另一个电子屏蔽掉约一个单位，按类氢公式
+
+$$h\nu_{K_\alpha}\approx13.6\ \mathrm{eV}\times(Z-1)^2\left(\frac1{1^2}-\frac1{2^2}\right),\qquad \sqrt{\nu_{K_\alpha}}=\sqrt{\tfrac34Rc}\,(Z-1),$$
+
+其中 $\tfrac34Rc=2.47\times10^{15}\ \mathrm{Hz}$。$\sqrt\nu$ 与 $Z$ 成直线。莫塞莱测了从 Ca 到 Cu 一串元素（图 1-8a），谱线随原子序数整齐地移动，由此确认元素周期表应当按核电荷 $Z$ 而不是原子量排，并预言了当时空着的 43、61、75 号元素。对铜（$Z=29$），$h\nu=8.0\ \mathrm{keV}$，$\lambda=0.155\ \mathrm{nm}$，实测 $0.154\ \mathrm{nm}$，这正是 X 射线衍射仪常用的 Cu $K_\alpha$ 线。
+
+<figure markdown>
+![莫塞莱的 X 射线谱](assets/figs/ch1_ppt_moseley.png){ width="36%" }
+<figcaption>图 1-8a　莫塞莱拍摄的 Ca 到 Cu 及黄铜的 X 射线特征谱线：原子序数每增加 1，谱线有规律地向短波移动（图源：课程课件）</figcaption>
+</figure>
+
 **夫兰克–赫兹实验（1914）：能级的直接证据。** 光谱只是间接证据。夫兰克和赫兹让加速电子穿过汞蒸气，测量到达收集极的电流。加速电压每增加约 $4.9\ \mathrm V$，电流就骤降一次（图 1-10）：电子动能达到 $4.9\ \mathrm{eV}$ 时，能把汞原子从基态激发到第一激发态，自己几乎失去全部动能，越不过收集极前的小反向电压。被激发的汞原子随后发出 $\lambda=hc/4.9\ \mathrm{eV}\approx253.7\ \mathrm{nm}$ 的紫外线，正好是汞光谱中的一条谱线。原子吸收能量也是“一份一份”的。
 
 <div class="grid-2" markdown>
@@ -267,6 +323,29 @@ $m=1$ 为莱曼系（紫外），$m=2$ 为巴耳末系（可见），$m=3$ 为�
 </figure>
 
 </div>
+
+动画 1-4 逐步加大加速电压：电子在阴极 K 与栅极 G 之间加速，动能一到 $4.9\ \mathrm{eV}$ 就发生一次非弹性碰撞，把动能交给汞原子，然后从零重新加速。电压为 $4.9\ \mathrm V$ 的 $n$ 倍时电子恰好在 G 之前碰了 $n$ 次，电流出现第 $n$ 个谷。
+
+<figure class="video" markdown>
+<video controls preload="metadata" width="100%" poster="assets/posters/C1_FranckHertz.jpg"><source src="assets/videos/C1_FranckHertz.mp4" type="video/mp4"></video>
+<figcaption>动画 1-4　夫兰克–赫兹实验：上图是电子在 K–G 间的动能（锯齿形，每到 $4.9\ \mathrm{eV}$ 碰撞一次），下图是收集极电流，右边是汞原子从 $6\,{}^1S_0$ 激发到 $6\,{}^3P_1$ 并发出 $253.7\ \mathrm{nm}$ 光子。</figcaption>
+</figure>
+
+<div class="grid-2" markdown>
+
+<figure markdown>
+![汞原子能级](assets/figs/ch1_ppt_hg_levels.png){ width="70%" }
+<figcaption>图 1-10a　汞原子能级与谱线（波长单位 nm）。$4.89\ \mathrm{eV}$ 的第一激发态退激发出 $253.7\ \mathrm{nm}$ 紫外线（图源：课程课件）</figcaption>
+</figure>
+
+<figure markdown>
+![氖管中的发光层](assets/figs/ch1_ppt_neon_fh.png){ width="90%" }
+<figcaption>图 1-10b　充氖的夫兰克–赫兹管：在加速区出现几层分立的橙红色发光带，每一层是电子又攒够一次激发能的地方（图源：课程课件）</figcaption>
+</figure>
+
+</div>
+
+图 1-10b 更直观。氖的激发能约 $18.7\ \mathrm{eV}$，被激发的氖原子先跃迁到 $16.6\ \mathrm{eV}$ 附近的能级，发出约 $2\ \mathrm{eV}$ 的橙红光（$\lambda\approx600\ \mathrm{nm}$），再发紫外光回到基态。电子从阴极出发加速 $18.7\ \mathrm V$ 后碰撞发光、失去动能、再加速，于是管内出现间隔相等的发光层；加速电压每增加约 $18.7\ \mathrm V$，就多出一层。
 
 **玻尔–索末菲量子化条件。** 索末菲把角动量量子化推广到任意周期运动：对每一个广义坐标 $q$ 和对应的广义动量 $p$，
 
@@ -368,6 +447,30 @@ $$2\pi r=n\lambda=n\frac{h}{p}\quad\Longrightarrow\quad L=pr=n\hbar .$$
 $$2d\sin\theta=n\lambda\qquad(d\ \text{为晶面间距},\ \theta\ \text{为掠射角}).$$
 
 由衍射极大的位置算出的 $\lambda$ 与 $h/p$ 完全一致。同年汤姆孙让电子穿过多晶金属薄膜，得到与 X 射线粉末衍射一样的同心圆环。后来中子、原子、分子的衍射也都被观察到。电子显微镜正是利用了电子波长远小于可见光波长这一点。
+
+<figure markdown>
+![戴维森–革末实验的数值](assets/figs/ch1_ppt_davisson_germer.png){ width="80%" }
+<figcaption>图 1-13a　戴维森–革末实验：$54\ \mathrm V$ 电子在镍单晶表面的散射强度在 $50^\circ$ 处出现峰；表面原子列间距 $d=2.15\ \text{\AA}$（图源：课程课件）</figcaption>
+</figure>
+
+**把数字对一遍。** $54\ \mathrm V$ 加速的电子 $\lambda=1.226/\sqrt{54}\ \mathrm{nm}=1.67\ \text{\AA}$。电子在表面一排排原子上反射，相邻两列（间距 $d$）出射波的程差是 $d\sin\varphi$（$\varphi$ 是出射方向与入射方向的夹角）。第一级极大要求 $d\sin\varphi=\lambda$：$2.15\ \text{\AA}\times\sin50^\circ=1.65\ \text{\AA}$，与 $h/p=1.67\ \text{\AA}$ 相差约 1%。
+
+**越来越大的「粒子」。** 1999 年蔡林格小组让 $C_{60}$ 分子（720 个原子质量单位、直径约 $1\ \mathrm{nm}$）从约 $900\ \mathrm K$ 的炉子里飞出，穿过周期 $100\ \mathrm{nm}$ 的光栅，在后面看到了一级衍射峰（图 1-13b）。今天物质波干涉已经做到了 $2.5\times10^4$ 原子质量单位的分子。
+
+<figure markdown>
+![C60 分子衍射](assets/figs/ch1_ppt_c60.png){ width="80%" }
+<figcaption>图 1-13b　$C_{60}$ 分子的光栅衍射（Arndt 等，Nature 401, 680, 1999）。a：有光栅时中央峰两侧出现一级衍射峰；b：去掉光栅只剩准直缝的投影（图源：课程课件）</figcaption>
+</figure>
+
+| 粒子 | 条件 | 德布罗意波长 |
+|---|---|---|
+| 电子 | $54\ \mathrm{eV}$ | $167\ \mathrm{pm}$ |
+| 热中子 | $0.025\ \mathrm{eV}$（室温） | $181\ \mathrm{pm}$ |
+| 室温氢分子 | $\tfrac32k_BT$，$300\ \mathrm K$ | $0.10\ \mathrm{nm}$ |
+| $C_{60}$ | $v\approx220\ \mathrm{m/s}$ | $2.5\ \mathrm{pm}$ |
+| $^{87}\mathrm{Rb}$ 冷原子 | $170\ \mathrm{nK}$ | $0.66\ \mu\mathrm m$ |
+
+热中子的波长恰好和晶格间距相当，所以中子衍射是研究晶体（尤其是含氢、含磁性原子的晶体）结构的主要手段。最后一行是 1995 年第一次实现玻色–爱因斯坦凝聚时的温度：原子的德布罗意波长长到与原子间距相当，各原子的波包交叠在一起，量子统计（第 8 章）开始起决定作用。
 
 ### 1.4.3 双缝实验与概率波
 
@@ -598,6 +701,84 @@ graph LR
         两端是波节，驻波条件 $a=n\dfrac\lambda2$，$\lambda=\dfrac{2a}{n}$，$p=\dfrac h\lambda=\dfrac{nh}{2a}$，$E=\dfrac{p^2}{2m}=\dfrac{n^2h^2}{8ma^2}$，$n=1,2,\dots$
 
         $E_1=\dfrac{(hc)^2}{8m_ec^2a^2}=\dfrac{1240^2}{8\times0.511\times10^6\times0.01}\ \mathrm{eV}\approx37.6\ \mathrm{eV}$。这正是原子能级的数量级。第 2 章 2.6 节会用薛定谔方程严格得到同样的结果。
+
+!!! example "练习 9　人体的热辐射"
+
+    人体表面积约 $1.5\ \mathrm{m^2}$，皮肤温度约 $34\,{}^\circ\mathrm C$，可看作黑体。求人体的辐射功率；若环境温度为 $20\,{}^\circ\mathrm C$，净辐射损失多少？
+
+    ??? success "答案"
+
+        $P=\sigma AT^4=5.67\times10^{-8}\times1.5\times307^4\ \mathrm W\approx7.5\times10^2\ \mathrm W$（取 $T=307\ \mathrm K$）。人体同时吸收环境的辐射，净损失
+
+        $$P_{\text{净}}=\sigma A\,(T^4-T_0^4)=5.67\times10^{-8}\times1.5\times(307^4-293^4)\ \mathrm W\approx1.3\times10^2\ \mathrm W,$$
+
+        与静息代谢功率（约 $100\ \mathrm W$）同量级，所以辐射是人体散热的主要途径之一。峰值波长 $\lambda_m=b/T\approx9.4\ \mu\mathrm m$。
+
+!!! example "练习 10　光阴极的选择"
+
+    几种材料的逸出功：Cs $1.9\ \mathrm{eV}$，Li $2.3\ \mathrm{eV}$，Ba $2.5\ \mathrm{eV}$，W $4.5\ \mathrm{eV}$，Pt $5.6\ \mathrm{eV}$。(1) 求各自的截止波长；(2) 哪些能在可见光（$400\sim700\ \mathrm{nm}$）下工作？(3) 用 Cs，$400\ \mathrm{nm}$ 光照射时的遏止电压是多少？
+
+    ??? success "答案"
+
+        (1) $\lambda_0=hc/W_0=1240\ \mathrm{eV\cdot nm}/W_0$：Cs $653\ \mathrm{nm}$，Li $539\ \mathrm{nm}$，Ba $496\ \mathrm{nm}$，W $276\ \mathrm{nm}$，Pt $221\ \mathrm{nm}$。
+
+        (2) Cs 几乎覆盖整个可见光；Li、Ba 只对绿、蓝、紫光有响应；W、Pt 只对紫外有响应。所以可见光光电管用铯或含铯的化合物做阴极。
+
+        (3) $h\nu=1240/400\ \mathrm{eV}=3.10\ \mathrm{eV}$，$eU_a=3.10-1.9=1.2\ \mathrm{eV}$，$U_a=1.2\ \mathrm V$。
+
+!!! example "练习 11　$365\ \mathrm{nm}$ 紫外激光能激发哪些半导体"
+
+    室温禁带宽度：Ge $0.66$，Si $1.12$，InP $1.34$，GaAs $1.42$，4H-SiC $3.26$，ZnO $3.37$，GaN $3.4$，$\mathrm{Ga_2O_3}$ $4.8$，金刚石 $5.5$，AlN $6.0$（单位 eV）。用 $365\ \mathrm{nm}$ 激光照射，哪些材料能产生电子–空穴对（单光子吸收）？
+
+    ??? success "答案"
+
+        光子能量 $h\nu=1240/365\ \mathrm{eV}=3.40\ \mathrm{eV}$。条件是 $h\nu\ge E_g$：Ge、Si、InP、GaAs、SiC、ZnO 都可以；GaN 恰在吸收边上，只有很弱的吸收（这正是 GaN 紫外 LED 发光在 $365\ \mathrm{nm}$ 附近的原因）；$\mathrm{Ga_2O_3}$、金刚石、AlN 对它透明，要用更短波长（「日盲」紫外）才能激发。
+
+!!! example "练习 12　由反冲电子的速度求散射角"
+
+    波长 $\lambda_0=0.003\ \mathrm{nm}$ 的 $\gamma$ 光子与静止的自由电子发生康普顿散射，反冲电子的速度为 $0.6c$。求反冲电子的动能、散射光子的波长和散射角。
+
+    ??? success "答案"
+
+        电子 $\gamma=1/\sqrt{1-0.36}=1.25$，动能 $E_k=(\gamma-1)m_ec^2=0.25\times511\ \mathrm{keV}=127.8\ \mathrm{keV}$。
+
+        入射光子能量 $hc/\lambda_0=1240\ \mathrm{eV\cdot nm}/0.003\ \mathrm{nm}=413.3\ \mathrm{keV}$。散射光子能量 $413.3-127.8=285.5\ \mathrm{keV}$，$\lambda=1240/285.5\times10^{3}\ \mathrm{nm}=4.34\times10^{-3}\ \mathrm{nm}$。
+
+        $\Delta\lambda=1.34\times10^{-3}\ \mathrm{nm}=\lambda_C(1-\cos\theta)$，$1-\cos\theta=0.553$，$\theta=63.5^\circ$。
+
+!!! example "练习 13　引力原子与地球的量子数"
+
+    (1) 设想一个只靠万有引力束缚的「氢原子」（质子和电子）。仿照玻尔理论求它的「玻尔半径」和基态能量。(2) 把地球绕太阳的公转看成玻尔轨道，地球的角动量量子数 $n$ 约为多少？说明为什么行星运动看不出量子化。
+
+    ??? success "答案"
+
+        (1) 把 $\dfrac{e^2}{4\pi\varepsilon_0}$ 换成 $Gm_pm_e$：
+
+        $$a_G=\frac{\hbar^2}{Gm_pm_e^2}=1.2\times10^{29}\ \mathrm m,\qquad E_1=-\frac{m_e(Gm_pm_e)^2}{2\hbar^2}=-4.2\times10^{-97}\ \mathrm J.$$
+
+        「原子」比可观测宇宙（$\sim4\times10^{26}\ \mathrm m$）还大，引力在原子结构中毫无作用。
+
+        (2) $L=M_\oplus vr=5.97\times10^{24}\times2.98\times10^4\times1.50\times10^{11}\ \mathrm{kg\,m^2/s}=2.7\times10^{40}\ \mathrm{J\cdot s}$，$n=L/\hbar\approx2.5\times10^{74}$。相邻轨道的相对差 $\Delta r/r=2/n\sim10^{-74}$，完全连续。这是对应原理的一个例子：量子数很大时量子结果过渡到经典结果。
+
+!!! example "练习 14　为什么早期的阴极射线实验看不到电子的波动性"
+
+    汤姆孙测荷质比时，电子的动能约为几百 eV，管中光阑的孔径约 $1\ \mathrm{mm}$。估算 $200\ \mathrm{eV}$ 电子的德布罗意波长和它经过光阑后的衍射角，说明为什么看不到衍射。
+
+    ??? success "答案"
+
+        $\lambda=1.226/\sqrt{200}\ \mathrm{nm}=0.087\ \mathrm{nm}$，衍射角 $\theta\sim\lambda/a=8.7\times10^{-11}/10^{-3}\approx10^{-7}\ \mathrm{rad}$。飞行 $1\ \mathrm m$ 后展宽只有 $0.1\ \mu\mathrm m$，远小于荧光屏上光斑的大小。要看到电子的波动性，障碍物的尺度必须接近 $\lambda$，也就是晶体的原子间距。这正是 1927 年的电子衍射实验用晶体做光栅的原因。
+
+!!! example "练习 15　冷原子的德布罗意波长"
+
+    (1) 求 $300\ \mathrm K$ 时氢分子（取平均动能 $\tfrac32k_BT$）的德布罗意波长；(2) 求 $170\ \mathrm{nK}$ 时 $^{87}\mathrm{Rb}$ 原子的德布罗意波长。与气体中分子的平均间距相比，哪种情况下量子效应明显？
+
+    ??? success "答案"
+
+        $p=\sqrt{3mk_BT}$，$\lambda=h/p$。
+
+        (1) $m=2.016\,\mathrm u=3.35\times10^{-27}\ \mathrm{kg}$，$\lambda=0.10\ \mathrm{nm}$。常温常压下分子间距约 $3.3\ \mathrm{nm}$（[练习 0.4](atom.md)），$\lambda$ 小得多，可以把分子当经典粒子。
+
+        (2) $m=86.9\,\mathrm u=1.44\times10^{-25}\ \mathrm{kg}$，$\lambda=0.66\ \mu\mathrm m$。当时的冷原子气体密度约 $10^{18}\sim10^{19}\ \mathrm{m^{-3}}$，间距 $0.5\sim1\ \mu\mathrm m$，与 $\lambda$ 相当，原子的波包互相交叠，出现玻色–爱因斯坦凝聚。
 
 ### 真题拓展
 
