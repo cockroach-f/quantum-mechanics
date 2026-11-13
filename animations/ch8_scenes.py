@@ -275,3 +275,75 @@ class C8_HeliumLevels(Scene):
         fitw(box, 13.2).to_edge(DOWN, buff=0.12)
         self.play(FadeOut(n1), FadeIn(box))
         self.wait(3)
+
+
+# --------------------------------------------------------------------------
+# 8.3 应用：OLED 的 1:3 自旋统计——单态发荧光，三重态是“暗”的
+# --------------------------------------------------------------------------
+class C8_SpinStatistics(Scene):
+    def construct(self):
+        title = title_bar(r"电子与空穴随机配对：三重态占 $3/4$，单态只占 $1/4$——这限制了荧光 OLED 的效率")
+        self.play(FadeIn(title))
+
+        def spin(up, color):
+            return Arrow(DOWN * 0.3, UP * 0.3, buff=0, color=color, stroke_width=5, max_tip_length_to_length_ratio=0.35).rotate(0 if up else PI)
+        labels = [(r"\ket{1,1}=\ket{\uparrow\uparrow}", "T"), (r"\ket{1,0}=\tfrac{1}{\sqrt2}\left(\ket{\uparrow\downarrow}+\ket{\downarrow\uparrow}\right)", "T"),
+                  (r"\ket{1,-1}=\ket{\downarrow\downarrow}", "T"), (r"\ket{0,0}=\tfrac{1}{\sqrt2}\left(\ket{\uparrow\downarrow}-\ket{\downarrow\uparrow}\right)", "S")]
+        boxes = VGroup()
+        for tex, kind in labels:
+            col = RED_C if kind == "T" else BLUE_C
+            r = RoundedRectangle(width=3.0, height=1.5, corner_radius=0.12, color=col)
+            t = fitw(MT(tex, 24, col), 2.8).move_to(r).shift(UP * 0.25)
+            k = CT("三重态" if kind == "T" else "单态", 20, col).move_to(r).shift(DOWN * 0.4)
+            boxes.add(VGroup(r, t, k))
+        boxes.arrange(RIGHT, buff=0.25).shift(UP * 1.2)
+        self.play(LaggedStart(*[FadeIn(b) for b in boxes], lag_ratio=0.2))
+        eh = CT(r"注入的电子与空穴自旋取向互不相关：四个态等概率，各占 $25\%$", 24).next_to(boxes, DOWN, buff=0.35)
+        self.play(FadeIn(eh))
+        # 随机抽样 40 个激子
+        rng = np.random.default_rng(3)
+        counts = [0, 0, 0, 0]
+        tally = VGroup(*[MT("0", 28).next_to(b, DOWN, buff=1.15) for b in boxes])
+        self.play(FadeIn(tally))
+        for _ in range(40):
+            j = int(rng.integers(0, 4))
+            counts[j] += 1
+            new = MT(str(counts[j]), 28, RED_C if j < 3 else BLUE_C).move_to(tally[j])
+            self.play(Transform(tally[j], new), boxes[j][0].animate.set_stroke(width=6), run_time=0.08)
+            boxes[j][0].set_stroke(width=4)
+        tot = CT(rf"三重态 {sum(counts[:3])} : 单态 {counts[3]}（理论 $3:1$）", 26, C_HL).next_to(tally, DOWN, buff=0.3)
+        self.play(FadeIn(tot))
+        self.wait(1.5)
+        self.play(FadeOut(VGroup(boxes, eh, tally, tot)))
+        # 能级图：S0、S1、T1
+        S0 = Line(LEFT * 1.4, RIGHT * 1.4).shift(LEFT * 3.2 + DOWN * 2.4)
+        S1 = Line(LEFT * 1.6, RIGHT * 0.0).shift(LEFT * 3.4 + UP * 1.4)
+        T1 = Line(LEFT * 0.0, RIGHT * 1.6).shift(LEFT * 3.0 + UP * 0.8)
+        lab = VGroup(MT("S_0", 26).next_to(S0, LEFT), MT("S_1", 26, BLUE_C).next_to(S1, LEFT), MT("T_1", 26, RED_C).next_to(T1, RIGHT))
+        S1.set_color(BLUE_C); T1.set_color(RED_C)
+        fl = Arrow(S1.get_center(), S0.get_center() + LEFT * 0.8, buff=0.05, color=BLUE_C, stroke_width=5)
+        ph = DashedLine(T1.get_center(), S0.get_center() + RIGHT * 0.8, color=RED_C, stroke_width=3)
+        fll = CT(r"荧光：允许，$\sim\mathrm{ns}$", 24, BLUE_C).next_to(fl, LEFT, buff=0.05)
+        phl = CT(r"磷光：$\Delta S\neq0$ 禁戒，$\mathrm{ms}$–$\mathrm{s}$", 24, RED_C).next_to(ph, RIGHT, buff=0.05)
+        self.play(Create(S0), Create(S1), Create(T1), FadeIn(lab))
+        self.play(GrowArrow(fl), FadeIn(fll), Create(ph), FadeIn(phl))
+        why = boxed(panel(r"为什么 $T_1$ 比 $S_1$ 低？和氦原子一样：",
+                          r"三重态的空间波函数反对称，两电子“互相躲开”，",
+                          r"排斥能少一个交换积分 $2J$：$E_S-E_T=2J>0$",
+                          r"$\Rightarrow$ 荧光材料内量子效率上限 $25\%$", size=22))
+        fitw(why, 6.2).to_corner(UR, buff=0.3).shift(DOWN * 1.0)
+        self.play(FadeIn(why))
+        self.wait(2.5)
+        # TADF
+        tadf = boxed(panel(r"热激活延迟荧光（TADF，2012）：",
+                           r"把 $\Delta E_{ST}=2J$ 压到 $\lesssim0.1\,\mathrm{eV}$，",
+                           r"室温 $k_BT\approx0.026\,\mathrm{eV}$ 就能把 $T_1$ 送回 $S_1$，",
+                           r"三重态也从 $S_1$ 发光，内量子效率可接近 $100\%$", size=24))
+        fitw(tadf, 6.2).move_to(why)
+        self.play(FadeOut(why), FadeIn(tadf), S1.animate.shift(DOWN * 0.45), lab[1].animate.shift(DOWN * 0.45),
+                  FadeOut(fl), FadeOut(fll))
+        risc = CurvedArrow(T1.get_center() + UP * 0.08, S1.get_center() + UP * 0.08, angle=2.2, color=YELLOW, stroke_width=4)
+        rl = CT(r"$k_{\mathrm{RISC}}\propto\ee^{-\Delta E_{ST}/k_BT}$", 24, YELLOW).next_to(risc, UP, buff=0.08)
+        fl2 = Arrow(S1.get_center(), S0.get_center() + LEFT * 0.8, buff=0.05, color=BLUE_C, stroke_width=5)
+        self.play(Create(risc), FadeIn(rl), GrowArrow(fl2))
+        self.wait(3)
