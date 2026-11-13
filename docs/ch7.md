@@ -819,21 +819,21 @@ $$\begin{aligned}
 
     ```mermaid
     flowchart TD
-        EXP["实验事实<br/>施特恩–格拉赫：两束<br/>钠 D 双线"] --> HYP["§7.1 自旋假设<br/>S_z = ±ħ/2，μ_s = −(e/m)S，g_s = 2"]
+        EXP["实验事实<br/>施特恩–格拉赫：两束<br/>钠 D 双线"] --> HYP["§7.1 自旋假设<br/>S_z = ±ħ/2，μ_s = −(e/mₑ)S，g_s = 2"]
         HYP --> OP["§7.2 自旋算符<br/>S×S = iħS，S² = 3ħ²/4"]
         OP --> PAULI["泡利矩阵 σ_x, σ_y, σ_z<br/>σ_iσ_j = δ_ij + iε_ijk σ_k"]
         OP --> SPINOR["旋量 Ψ = (Ψ₁, Ψ₂)ᵀ<br/>二维希尔伯特空间"]
         SPINOR --> BLOCH["布洛赫球<br/>χ = (cos(θ/2), exp(iφ) sin(θ/2))ᵀ"]
-        BLOCH --> PREC["磁场中进动 ω = eB/m<br/>拉比振荡（磁共振）"]
+        BLOCH --> PREC["磁场中进动 ω = eB/mₑ<br/>拉比振荡（磁共振）"]
         PREC --> QB["§7.2.8 量子比特与量子门"]
-        OP --> ZEE["§7.3 强场塞曼效应<br/>E = E_nl + μ_B B (m + 2m_s)<br/>谱线一分为三"]
+        OP --> ZEE["§7.3 强场塞曼效应<br/>E = E_nl + μ_B B (m_l + 2m_s)<br/>谱线一分为三"]
         OP --> CPL["§7.4 角动量耦合<br/>j = j₁+j₂ … |j₁−j₂|，m = m₁+m₂"]
         CPL --> CG["CG 系数（j₂ = 1/2）<br/>三重态 / 单态"]
         CG --> FS["§7.5 精细结构<br/>ξ(r) L·S 在耦合表象中对角"]
         FS --> DLINE["j = l ± 1/2 分裂<br/>钠 D 双线"]
         PT["第5章 简并微扰"] -.-> FS
-        CG -.第8章.-> ID["全同粒子：交换对称性"]
-        ZEE -.弱场.-> LANDE["反常塞曼效应 g_j"]
+        CG -.->|"第8章"| ID["全同粒子：交换对称性"]
+        ZEE -.->|"弱场"| LANDE["反常塞曼效应 g_j"]
     ```
 
     **核心公式**
@@ -850,7 +850,7 @@ $$\begin{aligned}
     | 期望值 | $\chi=\binom ab$：$\langle\sigma_x\rangle=2\operatorname{Re}(a^*b)$，$\langle\sigma_y\rangle=2\operatorname{Im}(a^*b)$，$\langle\sigma_z\rangle=\lvert a\rvert^2-\lvert b\rvert^2$ |
     | 拉比公式 | $P_{\uparrow\to\downarrow}=\dfrac{\omega_1^2}{(\omega_0-\omega)^2+\omega_1^2}\sin^2\dfrac{\Omega t}2$，$\Omega=\sqrt{(\omega_0-\omega)^2+\omega_1^2}$ |
     | 自旋进动 | $\hat H=\mu_{\mathrm B}\boldsymbol\sigma\cdot\boldsymbol B$，$\omega=\frac{eB}{m_{\mathrm e}}$；$\ee^{-\ii\alpha\boldsymbol n\cdot\boldsymbol\sigma}=\cos\alpha-\ii\boldsymbol n\cdot\boldsymbol\sigma\sin\alpha$ |
-    | 强场塞曼 | $E=E_{nl}+\mu_{\mathrm B}B(m+2m_s)$，$\omega=\omega_0,\ \omega_0\pm\frac{eB}{2m_{\mathrm e}}$ |
+    | 强场塞曼 | $E=E_{nl}+\mu_{\mathrm B}B(m_l+2m_s)$，$\omega=\omega_0,\ \omega_0\pm\frac{eB}{2m_{\mathrm e}}$ |
     | 朗德因子（弱场） | $g_j=1+\frac{j(j+1)-l(l+1)+s(s+1)}{2j(j+1)}$，$\Delta E=g_j\mu_{\mathrm B}Bm_j$ |
     | 三角形关系 | $j=j_1+j_2,\dots,\lvert j_1-j_2\rvert$，$m=m_1+m_2$，$\sum(2j+1)=(2j_1+1)(2j_2+1)$ |
     | CG（$j_2=\frac12$） | $\ket{j_1\pm\frac12,m}=\pm\sqrt{\frac{j_1\pm m+\frac12}{2j_1+1}}\ket{m-\frac12}\chi_++\sqrt{\frac{j_1\mp m+\frac12}{2j_1+1}}\ket{m+\frac12}\chi_-$ |

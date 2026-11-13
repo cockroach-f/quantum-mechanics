@@ -476,7 +476,7 @@ $$u_1\cos\theta_0=v_m+u_1'\cos\theta,\qquad u_1\sin\theta_0=u_1'\sin\theta .$$
         BO --> FT["f ∝ Ũ(K), K = 2k sin(θ/2)"]
         FT --> RU["屏蔽库仑 → 卢瑟福 csc⁴(θ/2)"]
         C --> LAB["§6.5 质心系 ↔ 实验室系"]
-        LAB -.第8章.-> ID["全同粒子散射 f(θ) ± f(π−θ)"]
+        LAB -.->|"第8章"| ID["全同粒子散射 f(θ) ± f(π−θ)"]
     ```
 
     **核心公式**
@@ -656,7 +656,10 @@ $$u_1\cos\theta_0=v_m+u_1'\cos\theta,\qquad u_1\sin\theta_0=u_1'\sin\theta .$$
         - 分波法适用于**低能**（$ka\lesssim1$），只需保留少数几个分波。只有满足 $l\lesssim ka$ 的分波才碰得到势场，因为经典碰撞参数 $l/k$ 必须小于力程 $a$。
         - 玻恩近似适用于**高能**或**弱势**，其结果 $f\propto\tilde U(q)$ 就是势能的傅里叶变换。
         - 光学定理：$\sigma_t=\dfrac{4\pi}{k}\operatorname{Im}f(0)$。
-        - 全同粒子散射（与第 8 章衔接）：对自旋为 0 的玻色子，$\sigma=\lvert f(\theta)+f(\pi-\theta)\rvert^2$，在 $\theta=90^\circ$ 处是经典（可区分）结果的两倍。
+        - 全同粒子散射（与第 8 章衔接）：对自旋为 0 的玻色子，$\sigma(\theta)=\lvert f(\theta)+f(\pi-\theta)\rvert^2$。在 $\theta=90^\circ$ 处 $\sigma=4\lvert f(\tfrac\pi2)\rvert^2$：
+            - 与可区分粒子的经典结果 $\lvert f(\theta)\rvert^2+\lvert f(\pi-\theta)\rvert^2=2\lvert f(\tfrac\pi2)\rvert^2$ 比较，是它的 **2 倍**。这里的经典结果把探测器收到的入射粒子和反冲靶粒子都计入了。
+            - 与只计入射粒子的 $\lvert f(\tfrac\pi2)\rvert^2$ 比较，是它的 4 倍。两种说法对应的参照量不同，比较时要写清楚。
+            - 作为对照，未极化的自旋 $\tfrac12$ 费米子 $\sigma=\tfrac14\lvert f(\theta)+f(\pi-\theta)\rvert^2+\tfrac34\lvert f(\theta)-f(\pi-\theta)\rvert^2$，在 $90^\circ$ 处等于 $\lvert f(\tfrac\pi2)\rvert^2$，只有经典结果的一半。
 
 ---
 

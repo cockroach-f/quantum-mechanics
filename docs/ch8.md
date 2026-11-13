@@ -529,13 +529,19 @@ $$
 
     *全同粒子的截面。* 空间波函数对称化后，在质心系中散射到 $\theta$ 方向与 $\pi-\theta$ 方向无法区分，振幅相加：
 
-    $$\sigma(\theta)=|f(\theta)+f(\pi-\theta)|^2=4|f|^2,\qquad \sigma_{\mathrm t}=\int\sigma(\theta)\,\mathrm d\Omega=16\pi a^2\left(\frac{\tan k_0a}{k_0a}-1\right)^2 .$$
+    $$\sigma_{\mathrm S}(\theta)=|f(\theta)+f(\pi-\theta)|^2=4|f|^2=4a^2\left(\frac{\tan k_0a}{k_0a}-1\right)^2 .$$
+
+    *总截面只对半个球面积分。* 每次碰撞后，一个中子飞向 $\theta$，另一个飞向 $\pi-\theta$，两个都会被计数。$\sigma(\theta)$ 统计的是“在 $\theta$ 方向测到一个中子”，对整个球面积分会把每次碰撞数两次。所以全同粒子的总截面取 $0\le\theta\le\pi/2$：
+
+    $$\sigma_{\mathrm t,\mathrm S}=\int_{\theta\le\pi/2}\sigma_{\mathrm S}(\theta)\,\mathrm d\Omega=2\pi\cdot4|f|^2=8\pi a^2\left(\frac{\tan k_0a}{k_0a}-1\right)^2 .$$
 
     未极化时四个自旋态等概率，处于单态的概率为 $\frac14$（三重态在 $s$ 波中被禁止，低能下对散射无贡献），所以
 
-    $$\sigma_{\text{总有效}}=\frac14\sigma_{\mathrm t}=4\pi a^2\left(\frac{\tan k_0a}{k_0a}-1\right)^2\ \xrightarrow{\ \text{刚球极限}\ }\ 4\pi a^2 .$$
+    $$\sigma(\theta)=\frac14\sigma_{\mathrm S}(\theta)=|f|^2,\qquad \sigma_{\mathrm t}=\frac14\sigma_{\mathrm t,\mathrm S}=2\pi a^2\left(\frac{\tan k_0a}{k_0a}-1\right)^2 .$$
 
-    （刚球极限对应势为无限高的排斥芯，此时 $c_0/c_1\to-a$。）$4\pi a^2$ 恰为半径 $a$ 的球面积，是经典截面 $\pi a^2$ 的 4 倍：低能下波长远大于 $a$，$s$ 波各向同性地“绕满”整个球面，这是纯粹的量子效应。
+    若把单态通道的势换成半径 $a$ 的刚球（无限高排斥芯），则 $c_0/c_1=-a$，$f=-a$，得 $\sigma_{\mathrm t}=2\pi a^2$。
+
+    对比：可区分粒子的低能刚球截面是 $4\pi a^2$（第 6 章）。这里的未极化中子是它的一半，原因是 $\frac14$ 的单态权重乘上对称化带来的因子 2（振幅相加 $\times4$，半球积分 $\div2$）。$2\pi a^2$ 仍是经典截面 $\pi a^2$ 的 2 倍，因为低能 $s$ 波各向同性，这是量子效应。如果对全球面积分，得到的 $4\pi a^2$ 是“探测到的中子数”对应的截面，每次碰撞被算了两次。
 
 !!! warning "易错点"
 
@@ -873,7 +879,7 @@ $K$ 的三项依次是两电子间的库仑能、电子 2 在核 $A$ 场中的�
         BOS --> BUN["聚束、BEC"]
         FER --> SP["Φ = φ(r)·χ(s)<br/>空间与自旋对称性相反"]
         SP --> SPIN["§8.3 两电子自旋<br/>三重态 S=1（对称）<br/>单态 S=0（反对称）"]
-        SPIN --> HE["§8.4 氦原子<br/>K±J，仲氦/正氦"]
+        SPIN --> HE["§8.4 氦原子<br/>K+J：单态，仲氦<br/>K−J：三重态，正氦"]
         SPIN --> H2["§8.5 氢分子<br/>单态成键，共价键饱和性"]
         HE --> EX["交换能 J：量子特有<br/>源于对称化 + 库仑作用"]
         H2 --> EX

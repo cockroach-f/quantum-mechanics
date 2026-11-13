@@ -142,7 +142,7 @@
 | 布洛赫球 | 两态的跃迁概率 $\lvert\chi_{\vv n}^\dagger\chi_{\vv n'}\rvert^2=\cos^2\dfrac\Theta2$（$\Theta$ 为 $\vv n,\vv n'$ 夹角）；$\langle\hat{\vv S}\rangle=\dfrac\hbar2\vv n$ |
 | 自旋磁矩 | $\vv\mu_s=-\dfrac{e}{m_e}\vv S$（$g_s=2$），$\vv\mu_l=-\dfrac{e}{2m_e}\vv L$（$g_l=1$）；统一写成 $\vv\mu=-g\dfrac{\mu_B}{\hbar}\vv J$ |
 | 磁场中的进动 | $\hat H=-\vv\mu_s\cdot\vv B=\mu_B\vv\sigma\cdot\vv B$；拉莫尔频率 $\omega=eB/m_e$ |
-| 简单塞曼效应（强场） | $E=E_{nl}+\mu_BB(m+2m_s)$；谱线分裂为三条，$\Delta\omega=\dfrac{eB}{2m_e}$（$\Delta m=0,\pm1$） |
+| 简单塞曼效应（强场） | $E=E_{nl}+\mu_BB(m_l+2m_s)$；谱线分裂为三条，$\Delta\omega=\dfrac{eB}{2m_e}$（$\Delta m=0,\pm1$） |
 | 弱场（反常塞曼效应） | $\Delta E=g_j\mu_BBm_j$，$g_j=1+\dfrac{j(j+1)-l(l+1)+s(s+1)}{2j(j+1)}$ |
 | 角动量耦合 | $\vv J=\vv J_1+\vv J_2$：$j=j_1+j_2,\dots,\lvert j_1-j_2\rvert$，$\sum_j(2j+1)=(2j_1+1)(2j_2+1)$ |
 | 克莱布什–戈登（$j_2=\tfrac12$） | $\psi_{l,l\pm\frac12,m}=\pm\sqrt{\dfrac{l\pm m+\frac12}{2l+1}}\,Y_{l,m-\frac12}\chi_++\sqrt{\dfrac{l\mp m+\frac12}{2l+1}}\,Y_{l,m+\frac12}\chi_-$ |
@@ -163,4 +163,4 @@
 | 总自旋 | $\hat S^2=\hbar^2\left[\tfrac32+\tfrac12\hat{\vv\sigma}_1\cdot\hat{\vv\sigma}_2\right]$，$\langle\vv\sigma_1\cdot\vv\sigma_2\rangle=1$（三重态），$-3$（单态） |
 | 氦原子（微扰） | $E=E_1^{(0)}+E_2^{(0)}+K\pm J$；正氦（三重态）取 $-J$，仲氦（单态）取 $+J$ |
 | 库仑积分、交换积分 | $K=\iint\dfrac{e^2}{4\pi\varepsilon_0r_{12}}\lvert\psi_1(1)\rvert^2\lvert\psi_2(2)\rvert^2$，$J=\iint\dfrac{e^2}{4\pi\varepsilon_0r_{12}}\psi_1^*(1)\psi_2^*(2)\psi_1(2)\psi_2(1)$ |
-| 氢分子（海特勒–伦敦） | $E_\pm=2E_0+\dfrac{K\pm J}{1\pm S^2}$；自旋单态形成稳定化学键 |
+| 氢分子（海特勒–伦敦） | $E_\pm=2E_{\mathrm H}+\dfrac{e^2}{4\pi\varepsilon_0R_{AB}}+\dfrac{K\pm J}{1\pm\Delta^2}$：$E_+$ 为自旋单态（空间对称），$E_-$ 为三重态（空间反对称）；$\Delta$ 为重叠积分，$K,J$ 含电子–核吸引项，见 (8.5.8–9)。成键距离上 $J<0$，单态形成稳定化学键 |
