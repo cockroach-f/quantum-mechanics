@@ -1,5 +1,9 @@
 # 第 6 章 散射
 
+!!! warning "选读 · 课件未讲"
+
+    《量子物理基础》没有这一讲。正文、例题和原图都保留，考试按课件可以整章跳过。
+
 !!! tip "本章目标"
 
     1. 理解**微分散射截面** $q(\theta,\varphi)$、**总截面** $Q$ 和**散射振幅** $f(\theta,\varphi)$ 的意义，会由概率流推出 $q=|f|^2$；
@@ -461,11 +465,11 @@ $$u_1\cos\theta_0=v_m+u_1'\cos\theta,\qquad u_1\sin\theta_0=u_1'\sin\theta .$$
 
     ```mermaid
     flowchart TD
-        A["散射问题<br/>E 连续，求 f(θ,φ)"] --> B["边界条件<br/>ψ → e^{ikz} + f e^{ikr}/r"]
+        A["散射问题<br/>E 连续，求 f(θ,φ)"] --> B["边界条件<br/>ψ → exp(ikz) + f exp(ikr)/r"]
         B --> C["截面 q = |f|², Q = ∫q dΩ"]
         C --> PW["分波法（低能）<br/>中心力场 + 角动量分解"]
         C --> BO["玻恩近似（高能）<br/>黄金定则 + 傅里叶变换"]
-        PW --> D["相移 δ_l<br/>f = (1/k)Σ(2l+1)e^{iδ}sinδ P_l"]
+        PW --> D["相移 δ_l<br/>f = (1/k) Σ (2l+1) exp(iδₗ) sinδₗ Pₗ"]
         D --> OT["光学定理 Im f(0) = kQ/4π"]
         D --> SW["低能 s 波：方势阱、势垒"]
         SW --> HS["硬球 Q → 4πa²（高能 2πa²）"]
