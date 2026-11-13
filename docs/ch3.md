@@ -327,6 +327,14 @@ $$R_{30}=\frac{2}{3\sqrt3\,a_0^{3/2}}\left(1-\frac{2r}{3a_0}+\frac{2r^2}{27a_0^2
     - **$m$ 简并**（$2l+1$ 重）：任何中心力场都有，来自空间各向同性（$z$ 轴可以随便选）。
     - **$l$ 简并**（同一 $n$ 下不同 $l$ 能量相同）：库仑势 $1/r$ 特有的“偶然简并”，来自一个隐藏的守恒量（龙格–楞次矢量）。碱金属原子中价电子感受到的不是纯库仑势，$l$ 简并就被解除了；第 7 章的精细结构会进一步解除它。
 
+**碱金属：$l$ 简并怎样被解除。** Li、Na、K 的价电子在内层电子和核组成的「原子实」外运动。在远处它看到的是净电荷 $+e$；钻进原子实内部时，内层电子的屏蔽变弱，看到的有效电荷 $Z_{\text{eff}}(r)$ 变大，势能比 $-e^2/(4\pi\varepsilon_0r)$ 更深。势不再是纯 $1/r$，龙格–楞次矢量不守恒，$l$ 简并解除，但势仍是中心力场，$m$ 简并保留：能级变成 $E_{nl}$。
+
+$l$ 越小，轨道越偏心（$l=0$ 的 $R_{n0}$ 在 $r=0$ 处不为零），钻进原子实越深，能量降得越多。经验上写成
+
+$$E_{nl}=-\frac{13.6\ \mathrm{eV}}{(n-\Delta_l)^2},$$
+
+$\Delta_l$ 叫**量子亏损**。钠的 $\Delta_s=1.37$、$\Delta_p=0.88$、$\Delta_d\approx0.01$：$E_{3s}=-5.14\ \mathrm{eV}$（正是钠的电离能），$E_{3p}=-3.03\ \mathrm{eV}$，$3p\to3s$ 跃迁 $\lambda\approx590\ \mathrm{nm}$，就是路灯的黄光（钠 D 线）。$d$ 轨道几乎不钻进原子实，$\Delta_d\approx0$，和氢一样。这也是元素周期表里 $4s$ 比 $3d$ 先被填充的原因之一。
+
 ### 3.3.3 电子的概率分布
 
 **径向分布。** 在半径 $r\sim r+\dd r$ 的球壳内找到电子的概率
@@ -725,6 +733,14 @@ $$[\hat A,\hat B\hat C]=[\hat A,\hat B]\hat C+\hat B[\hat A,\hat C],\qquad [\hat
 
     这种估计只保证数量级（$p\sim\hbar/r$ 中的系数取法不同，结果会差一个常数因子；这里恰好得到精确值是巧合）。它也说明了**原子为什么稳定**：电子若落向核，$r$ 变小，动能 $\sim\hbar^2/2mr^2$ 比势能 $\sim-1/r$ 增长得更快。
 
+!!! info "拓展 · 用不确定关系估计核力的力程：汤川介子"
+
+    1935 年汤川秀树设想：核子之间交换一种有质量的粒子，就像电荷之间交换光子。从一个核子「借」出质量 $m_\pi$ 的粒子，能量不守恒 $\Delta E\approx m_\pi c^2$，按能量–时间不确定关系只能维持 $\Delta t\sim\hbar/\Delta E$，这段时间里粒子最多飞 $r_0\sim c\Delta t=\hbar/(m_\pi c)$。核力的力程 $r_0\approx1.4\ \mathrm{fm}$，于是
+
+    $$m_\pi c^2\sim\frac{\hbar c}{r_0}=\frac{197\ \mathrm{MeV\cdot fm}}{1.4\ \mathrm{fm}}\approx140\ \mathrm{MeV},$$
+
+    约为电子质量的 270 倍。1947 年在宇宙线中发现的 $\pi$ 介子质量正是 $139.6\ \mathrm{MeV}/c^2$（$\pi^\pm$），汤川因此获 1949 年诺贝尔奖。交换有质量粒子得到的势是 $V(r)\propto-\dfrac{\ee^{-r/r_0}}{r}$（汤川势），$m\to0$ 时回到库仑势，第 6 章玻恩近似里会用到它。
+
 **角动量分量的不确定关系。** 由 $[\hat L_x,\hat L_y]=\ii\hbar\hat L_z$，
 
 $$\overline{(\Delta L_x)^2}\;\overline{(\Delta L_y)^2}\geqslant\frac{\hbar^2}{4}\overline{L_z}^{\,2}.$$
@@ -988,6 +1004,46 @@ graph TD
         $\langle L_x^2+L_y^2\rangle=\langle L^2-L_z^2\rangle=[l(l+1)-m^2]\hbar^2$。绕 $z$ 轴的转动对称性使 $\langle L_x^2\rangle=\langle L_y^2\rangle$，各占一半。
 
         即使 $m=l$，$\langle L_x^2+L_y^2\rangle=l\hbar^2>0$：这就是动画 3-2 中 $\vv L$ 不能完全指向 $z$ 轴的定量说法。
+
+!!! example "练习 9　原子核里有没有电子"
+
+    原子核半径约 $5\ \mathrm{fm}$。用不确定关系估计关在核内的电子的最小动能，并说明 $\beta$ 衰变放出的电子（能量约 $1\ \mathrm{MeV}$）不可能事先待在核里。
+
+    ??? success "答案"
+
+        取 $\Delta x\approx R=5\ \mathrm{fm}$，$\Delta p\gtrsim\dfrac{\hbar}{2\Delta x}$，$pc\gtrsim\dfrac{197\ \mathrm{MeV\cdot fm}}{10\ \mathrm{fm}}\approx20\ \mathrm{MeV}\gg m_ec^2$，电子是极端相对论的，动能 $E_k=\sqrt{p^2c^2+m_e^2c^4}-m_ec^2\approx19\ \mathrm{MeV}$。
+
+        这比 $\beta$ 电子的能量大一个数量级，而核与电子之间的库仑吸引只有 $\dfrac{Ze^2}{4\pi\varepsilon_0R}\sim Z\times0.3\ \mathrm{MeV}$，对轻核远不够把它束缚住。所以核里没有电子；$\beta$ 衰变的电子是中子变成质子时当场产生的（$n\to p+e^-+\bar\nu_e$）。同样的估计用于质子、中子（质量大 1836 倍），动能只有几 MeV，与核的结合能相当，核子待在核里是自洽的。
+
+!!! example "练习 10　不确定关系的数值"
+
+    一个粒子被限制在 $\Delta x=12\ \text{\AA}$ 的范围内。分别对 (1) 电子 $m=9\times10^{-31}\ \mathrm{kg}$；(2) $m=5\times10^{-28}\ \mathrm{kg}$ 的粒子，估计速度的最小不确定度。
+
+    ??? success "答案"
+
+        $\Delta v\ge\dfrac{\hbar}{2m\Delta x}$。
+
+        (1) $\Delta v\ge\dfrac{1.055\times10^{-34}}{2\times9\times10^{-31}\times1.2\times10^{-9}}\ \mathrm{m/s}=4.9\times10^4\ \mathrm{m/s}$，与原子中电子的速度（$\sim10^6\ \mathrm{m/s}$）相比已不可忽略。
+
+        (2) $\Delta v\ge88\ \mathrm{m/s}$。质量大约 550 倍，速度的不确定度小同样的倍数。
+
+!!! example "练习 11　指数型波函数"
+
+    $\psi(x)=A\,\ee^{-\lambda\lvert x\rvert}$（$\lambda>0$）。(1) 归一化；(2) 求 $\Delta x$、$\Delta p$，验证不确定关系；(3) 求动量分布 $\lvert c(p)\rvert^2$。
+
+    ??? success "答案"
+
+        (1) $\displaystyle\int_{-\infty}^\infty A^2\ee^{-2\lambda\lvert x\rvert}\dd x=\frac{A^2}{\lambda}=1$，$A=\sqrt\lambda$。
+
+        (2) $\psi$ 是偶函数，$\langle x\rangle=0$；$\langle p\rangle=0$（$\psi$ 是实函数）。
+
+        $$\langle x^2\rangle=2\lambda\int_0^\infty x^2\ee^{-2\lambda x}\dd x=2\lambda\cdot\frac{2}{(2\lambda)^3}=\frac{1}{2\lambda^2},\qquad \langle p^2\rangle=\hbar^2\int\lvert\psi'\rvert^2\dd x=\hbar^2\lambda^2 .$$
+
+        （$\psi'$ 在 $x=0$ 有跃变但没有 $\delta$ 函数奇异性，用 $\int\lvert\psi'\rvert^2$ 计算 $\langle p^2\rangle$ 是安全的。）$\Delta x\,\Delta p=\dfrac{1}{\sqrt2\lambda}\cdot\hbar\lambda=\dfrac{\hbar}{\sqrt2}>\dfrac\hbar2$。
+
+        (3) $$c(p)=\frac{1}{\sqrt{2\pi\hbar}}\int\sqrt\lambda\,\ee^{-\lambda\lvert x\rvert}\ee^{-\ii px/\hbar}\dd x=\sqrt{\frac{\lambda}{2\pi\hbar}}\cdot\frac{2\lambda}{\lambda^2+p^2/\hbar^2},\qquad \lvert c(p)\rvert^2=\frac{2\lambda^3\hbar^3}{\pi(\lambda^2\hbar^2+p^2)^2}.$$
+
+        可以验证 $\int\lvert c\rvert^2\dd p=1$。动量分布的尾巴按 $p^{-4}$ 衰减，比高斯慢得多，这是 $\psi$ 在 $x=0$ 有尖角的结果：尖角需要高动量成分来拼。
 
 ---
 
