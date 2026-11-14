@@ -421,7 +421,9 @@ $$F'_{\alpha\beta}=\sum_{m,n}S_{m\alpha}^*F_{mn}S_{n\beta},\qquad\text{即}\quad
     1. **右矢** $\ket\psi$：表示一个态，是与表象无关的抽象矢量。本征态常用本征值或量子数标记：$\ket x$、$\ket p$、$\ket{E_n}$ 或 $\ket n$、$\ket{lm}$ 等。
     2. **左矢** $\bra\psi=\ket\psi^\dagger$：右矢的厄米共轭，属于对偶空间。
     3. **内积**（标积）：
+
     $$\ip{\psi}{\varphi}=\int\psi^*(x)\,\varphi(x)\,\dd x,\qquad\ip{\psi}{\varphi}^*=\ip{\varphi}{\psi}.$$
+
     $\ip{\psi}{\varphi}=0$ 称两态正交，$\ip{\psi}{\psi}=1$ 称归一化。
 
 注意 $\ip{\psi}{\varphi}$ 是一个**数**，而 $\ket\varphi\bra\psi$ 是一个**算符**（外积）：它作用在 $\ket\chi$ 上给出 $\ket\varphi\ip{\psi}{\chi}$，即“沿 $\ket\varphi$ 方向、长度为 $\ip{\psi}{\chi}$ 的矢量”。

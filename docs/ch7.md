@@ -554,10 +554,13 @@ $$\hat{\boldsymbol J}_1\times\hat{\boldsymbol J}_1=\ii\hbar\hat{\boldsymbol J}_1
 !!! definition "定义 7.5（两种表象）"
 
     - **无耦合表象**：$\{\hat J_1^2,\hat J_{1z},\hat J_2^2,\hat J_{2z}\}$ 的共同本征矢
-      $$\ket{j_1,m_1}\ket{j_2,m_2}\equiv\ket{j_1,m_1,j_2,m_2},$$
-      $m_1=-j_1,\dots,j_1$，$m_2=-j_2,\dots,j_2$，共 $(2j_1+1)(2j_2+1)$ 个。
+
+        $$\ket{j_1,m_1}\ket{j_2,m_2}\equiv\ket{j_1,m_1,j_2,m_2},$$
+
+        $m_1=-j_1,\dots,j_1$，$m_2=-j_2,\dots,j_2$，共 $(2j_1+1)(2j_2+1)$ 个。
     - **耦合表象**：$\{\hat J_1^2,\hat J_2^2,\hat J^2,\hat J_z\}$ 的共同本征矢 $\ket{j_1,j_2,j,m}$：
-      $$\hat J^2\ket{j_1,j_2,j,m}=j(j+1)\hbar^2\ket{j_1,j_2,j,m},\qquad\hat J_z\ket{j_1,j_2,j,m}=m\hbar\ket{j_1,j_2,j,m}.$$
+
+        $$\hat J^2\ket{j_1,j_2,j,m}=j(j+1)\hbar^2\ket{j_1,j_2,j,m},\qquad\hat J_z\ket{j_1,j_2,j,m}=m\hbar\ket{j_1,j_2,j,m}.$$
 
     两组基矢都正交归一、完全，由幺正变换联系：
 

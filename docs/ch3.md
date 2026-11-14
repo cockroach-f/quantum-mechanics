@@ -85,6 +85,7 @@ $$\langle\vv p\rangle=\int\psi^*(\vv r)\left(-\ii\hbar\nabla\right)\psi(\vv r)\,
     2. **算符之积**：$(\hat A\hat B)\psi=\hat A(\hat B\psi)$。一般 $\hat A\hat B\neq\hat B\hat A$，定义**对易子** $[\hat A,\hat B]=\hat A\hat B-\hat B\hat A$。若 $[\hat A,\hat B]=0$，称 $\hat A,\hat B$ 对易。
     3. **厄米共轭**：$\hat F^\dagger$ 定义为对任意 $\psi,\phi$ 有 $\displaystyle\int\psi^*\hat F^\dagger\phi\,\dd\tau=\int(\hat F\psi)^*\phi\,\dd\tau$。
     4. **厄米算符**：$\hat F^\dagger=\hat F$，即
+
         $$\int\psi^*\hat F\phi\,\dd\tau=\int(\hat F\psi)^*\phi\,\dd\tau\qquad\text{对一切}\ \psi,\phi.$$
 
 教材 3.1 节系统列出了算符的运算规则，汇总如下（$u$ 为任意函数，内积 $(u,v)=\int u^*v\,\dd\tau=\ip uv$）：
@@ -549,6 +550,7 @@ $$\int\phi_m^*\phi_n\,\dd\tau=\delta_{mn}\ (\text{分立谱}),\qquad \int\phi_\l
     $$\int_0^\infty r\,\ee^{-r/a_0}\sin\frac{pr}{\hbar}\dd r=\Im\frac{1}{(1/a_0-\ii p/\hbar)^2}=\frac{2p/(\hbar a_0)}{(1/a_0^2+p^2/\hbar^2)^2}.$$
 
     整理得
+
     $$\lvert c(\vv p)\rvert^2=\frac{8a_0^3\hbar^5}{\pi^2\left(a_0^2p^2+\hbar^2\right)^4}.$$
 
     只与 $p=\lvert\vv p\rvert$ 有关。动量大小在 $p\sim p+\dd p$ 内的概率要乘以动量空间球壳体积 $4\pi p^2\dd p$：
@@ -615,7 +617,9 @@ $$\int\phi_m^*\phi_n\,\dd\tau=\delta_{mn}\ (\text{分立谱}),\qquad \int\phi_\l
     $$[\hat x_\alpha,\hat p_\beta]=\ii\hbar\,\delta_{\alpha\beta},\qquad [\hat x_\alpha,\hat x_\beta]=0,\qquad [\hat p_\alpha,\hat p_\beta]=0\qquad(\alpha,\beta=x,y,z).$$
 
     角动量：
+
     $$[\hat L_x,\hat L_y]=\ii\hbar\hat L_z,\quad [\hat L_y,\hat L_z]=\ii\hbar\hat L_x,\quad [\hat L_z,\hat L_x]=\ii\hbar\hat L_y\qquad(\text{简写}\ \hat{\vv L}\times\hat{\vv L}=\ii\hbar\hat{\vv L}),$$
+
     $$[\hat L^2,\hat L_\alpha]=0 .$$
 
 计算对易子常用的代数恒等式（与矩阵完全一样）：
@@ -803,8 +807,10 @@ $$\hat P\hat H(\vv r)\psi(\vv r)=\hat H(-\vv r)\psi(-\vv r)=\hat H(\vv r)\hat P\
 
     - 能量：$P(E_1)=P(E_2)=\tfrac12$ 不随时间变，$\langle H\rangle=\tfrac12(E_1+E_2)=\dfrac{5\pi^2\hbar^2}{4ma^2}$。$\hat H$ 不显含时间，能量守恒。
     - 坐标：$\langle x\rangle=\tfrac12(x_{11}+x_{22})+x_{12}\cos\omega t$，其中 $x_{11}=x_{22}=\tfrac a2$，$\omega=\dfrac{E_2-E_1}{\hbar}=\dfrac{3\pi^2\hbar}{2ma^2}$，
-      $$x_{12}=\frac2a\int_0^ax\sin\frac{\pi x}{a}\sin\frac{2\pi x}{a}\dd x=-\frac{16a}{9\pi^2}\ \Rightarrow\ \langle x\rangle=\frac a2-\frac{16a}{9\pi^2}\cos\omega t .$$
-      粒子在阱中左右“晃动”，$[\hat x,\hat H]\neq0$，$x$ 不守恒。验证埃伦费斯特定理：$m\dd\langle x\rangle/\dd t=\langle p\rangle\neq0$。
+
+        $$x_{12}=\frac2a\int_0^ax\sin\frac{\pi x}{a}\sin\frac{2\pi x}{a}\dd x=-\frac{16a}{9\pi^2}\ \Rightarrow\ \langle x\rangle=\frac a2-\frac{16a}{9\pi^2}\cos\omega t .$$
+
+        粒子在阱中左右“晃动”，$[\hat x,\hat H]\neq0$，$x$ 不守恒。验证埃伦费斯特定理：$m\dd\langle x\rangle/\dd t=\langle p\rangle\neq0$。
     - 关于阱中心的宇称：$\phi_1$ 偶、$\phi_2$ 奇，势对中心对称，宇称守恒，$P(+1)=P(-1)=\tfrac12$ 始终不变，但态本身没有确定宇称。
 
     这个例子同时说明：**叠加态不是定态**（$\langle x\rangle$ 变化），而**守恒量的分布在非定态中也不变**。
@@ -1041,7 +1047,9 @@ graph TD
 
         （$\psi'$ 在 $x=0$ 有跃变但没有 $\delta$ 函数奇异性，用 $\int\lvert\psi'\rvert^2$ 计算 $\langle p^2\rangle$ 是安全的。）$\Delta x\,\Delta p=\dfrac{1}{\sqrt2\lambda}\cdot\hbar\lambda=\dfrac{\hbar}{\sqrt2}>\dfrac\hbar2$。
 
-        (3) $$c(p)=\frac{1}{\sqrt{2\pi\hbar}}\int\sqrt\lambda\,\ee^{-\lambda\lvert x\rvert}\ee^{-\ii px/\hbar}\dd x=\sqrt{\frac{\lambda}{2\pi\hbar}}\cdot\frac{2\lambda}{\lambda^2+p^2/\hbar^2},\qquad \lvert c(p)\rvert^2=\frac{2\lambda^3\hbar^3}{\pi(\lambda^2\hbar^2+p^2)^2}.$$
+        (3)
+
+        $$c(p)=\frac{1}{\sqrt{2\pi\hbar}}\int\sqrt\lambda\,\ee^{-\lambda\lvert x\rvert}\ee^{-\ii px/\hbar}\dd x=\sqrt{\frac{\lambda}{2\pi\hbar}}\cdot\frac{2\lambda}{\lambda^2+p^2/\hbar^2},\qquad \lvert c(p)\rvert^2=\frac{2\lambda^3\hbar^3}{\pi(\lambda^2\hbar^2+p^2)^2}.$$
 
         可以验证 $\int\lvert c\rvert^2\dd p=1$。动量分布的尾巴按 $p^{-4}$ 衰减，比高斯慢得多，这是 $\psi$ 在 $x=0$ 有尖角的结果：尖角需要高动量成分来拼。
 

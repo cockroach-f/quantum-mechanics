@@ -164,6 +164,7 @@ $$\psi_{\vv p}(\vv r)=\frac{1}{(2\pi\hbar)^{3/2}}\ee^{\ii\vv p\cdot\vv r/\hbar}.
     求高斯波函数 $\psi(x)=\left(\dfrac{1}{2\pi\sigma^2}\right)^{1/4}\ee^{-x^2/4\sigma^2+\ii p_0x/\hbar}$ 的动量概率分布。
 
     **解。** 
+
     $$c(p)=\frac{1}{\sqrt{2\pi\hbar}}\left(\frac{1}{2\pi\sigma^2}\right)^{1/4}\int_{-\infty}^{\infty}\exp\left[-\frac{x^2}{4\sigma^2}-\frac{\ii(p-p_0)x}{\hbar}\right]\dd x .$$
 
     配方：指数 $=-\dfrac{1}{4\sigma^2}\left[x+\dfrac{2\ii\sigma^2(p-p_0)}{\hbar}\right]^2-\dfrac{\sigma^2(p-p_0)^2}{\hbar^2}$。把积分路径平移到 $\Im x=$ 常数的直线上不改变积分值（被积函数解析，这一步就是[复变函数 · 第 3 章](https://cockroach-f.github.io/complex-functions/ch3.html)的柯西定理），得到
@@ -496,7 +497,9 @@ $$\text{偶态：}\ \eta=\xi\tan\xi,\qquad \text{奇态：}\ \eta=-\xi\cot\xi,\q
 
 1. **渐近行为**：$\lvert\xi\rvert\to\infty$ 时 $\lambda$ 可略，$\psi''\approx\xi^2\psi$，$\psi\sim\ee^{\pm\xi^2/2}$。有限性要求取 $\ee^{-\xi^2/2}$。
 2. **剥离渐近因子**：令 $\psi=\ee^{-\xi^2/2}H(\xi)$，代入得**厄米方程**
+
     $$H''-2\xi H'+(\lambda-1)H=0 .$$
+
 3. **级数截断**：设 $H=\sum_k a_k\xi^k$，得递推 $a_{k+2}=\dfrac{2k+1-\lambda}{(k+1)(k+2)}a_k$。若级数不中断，$k\to\infty$ 时 $a_{k+2}/a_k\to2/k$，与 $\ee^{\xi^2}$ 的展开系数比相同，于是 $\psi\sim\ee^{\xi^2/2}$ 发散。所以级数必须在某一项中断，即 $\lambda=2n+1$，$n=0,1,2,\dots$
 
 !!! theorem "定理 2.4（线性谐振子的能级与波函数）"
@@ -504,6 +507,7 @@ $$\text{偶态：}\ \eta=\xi\tan\xi,\qquad \text{奇态：}\ \eta=-\xi\cot\xi,\q
     $$E_n=\left(n+\frac12\right)\hbar\omega,\qquad \psi_n(x)=N_n\,\ee^{-\alpha^2x^2/2}H_n(\alpha x),\qquad N_n=\left(\frac{\alpha}{\sqrt\pi\,2^nn!}\right)^{1/2},\quad n=0,1,2,\dots$$
 
     $H_n$ 是厄米多项式：
+
     $$H_n(\xi)=(-1)^n\ee^{\xi^2}\frac{\dd^n}{\dd\xi^n}\ee^{-\xi^2};\quad H_0=1,\ H_1=2\xi,\ H_2=4\xi^2-2,\ H_3=8\xi^3-12\xi .$$
 
     递推关系：$H_{n+1}=2\xi H_n-2nH_{n-1}$，$H_n'=2nH_{n-1}$。
@@ -604,12 +608,15 @@ $$D=\frac{J_D}{J}=\frac{\lvert C\rvert^2}{\lvert A\rvert^2},\qquad R=\frac{J_R}{
 !!! theorem "定理 2.5（方势垒的透射系数）"
 
     $E>U_0$：
+
     $$D=\frac{4k_1^2k_2^2}{(k_1^2-k_2^2)^2\sin^2k_2a+4k_1^2k_2^2}.$$
 
     $E<U_0$：$k_2=\ii k_3$，$k_3=\sqrt{2m(U_0-E)}/\hbar$，
+
     $$D=\frac{4k_1^2k_3^2}{(k_1^2+k_3^2)^2\sinh^2k_3a+4k_1^2k_3^2}.$$
 
     当 $k_3a\gg1$ 时，$\sinh^2k_3a\approx\tfrac14\ee^{2k_3a}$，
+
     $$D\approx D_0\,\ee^{-2k_3a}=D_0\exp\left[-\frac2\hbar\sqrt{2m(U_0-E)}\,a\right],\qquad D_0=\frac{16k_1^2k_3^2}{(k_1^2+k_3^2)^2}\sim1 .$$
 
 <figure class="video" markdown>
